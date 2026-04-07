@@ -8,7 +8,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 /* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* ── Theme Tokens ── */
 :root {
@@ -63,7 +69,9 @@
 }
 
 /* ── Base ── */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--bg);
@@ -80,7 +88,11 @@ body {
   color: var(--bg);
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 a {
   text-decoration: none;
@@ -95,7 +107,9 @@ button {
   transition: all 0.3s ease;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: var(--font-mono);
 }
 
@@ -106,7 +120,11 @@ input, textarea, select {
 }
 
 /* ── Typography ── */
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.03em;
@@ -114,9 +132,17 @@ h1, h2, h3, h4, h5 {
   color: var(--fg);
 }
 
-h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
-h2 { font-size: clamp(2.2rem, 6vw, 5rem); }
-h3 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+}
+
+h2 {
+  font-size: clamp(2.2rem, 6vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
 
 p {
   font-size: 0.8rem;
@@ -236,8 +262,15 @@ p {
 
 /* ── Reveal animations ── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
@@ -246,14 +279,23 @@ p {
 
 /* ── Responsive ── */
 @media (max-width: 60rem) {
-  .page-section { padding: 5rem 3rem; }
+  .page-section {
+    padding: 5rem 3rem;
+  }
 }
 
 @media (max-width: 37.5rem) {
-  :root { --ui-inset: 1.25rem; }
-  .page-section { padding: 4rem 1.25rem; }
+  :root {
+    --ui-inset: 1.25rem;
+  }
 
-  #scene_strip { display: none !important; }
+  .page-section {
+    padding: 4rem 1.25rem;
+  }
+
+  #scene_strip {
+    display: none !important;
+  }
 
   #theme_toggle {
     bottom: 1rem !important;

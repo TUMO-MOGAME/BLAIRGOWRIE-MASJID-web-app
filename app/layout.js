@@ -12,6 +12,11 @@ export const metadata = {
   description: 'Blairgowrie Masjid — A center for prayer, learning, community service, and bridge-building in Blairgowrie, Randburg.',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dark">

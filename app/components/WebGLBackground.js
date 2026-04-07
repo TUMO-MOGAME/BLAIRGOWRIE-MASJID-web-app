@@ -95,7 +95,7 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
 
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
     const ap = gl.getAttribLocation(prog, 'a');
     gl.enableVertexAttribArray(ap);
     gl.vertexAttribPointer(ap, 2, gl.FLOAT, false, 0, 0);
@@ -287,7 +287,7 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
 
       {/* HUD */}
       <div id="hud" style={{
-        position: 'fixed', top: 'var(--ui-inset)', right: 'var(--ui-inset)',
+        position: 'fixed', top: 'calc(var(--ui-inset) + 5.5rem)', right: 'var(--ui-inset)',
         zIndex: 10, textAlign: 'right', fontSize: '0.65rem',
         letterSpacing: '0.15em', color: 'var(--muted)', textTransform: 'uppercase',
       }}>
@@ -312,7 +312,7 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
         transform: 'translate(-50%, -50%)', zIndex: 10,
         display: 'flex', flexDirection: 'column', gap: '0.5rem',
       }}>
-        {[0,1,2,3,4].map(i => (
+        {[0, 1, 2, 3, 4].map(i => (
           <div key={i} className={`scene-dot ${i === 0 ? 'active' : ''}`} />
         ))}
       </div>

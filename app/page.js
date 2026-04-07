@@ -24,7 +24,7 @@ export default function Home() {
             </p>
             <div className={styles.heroBtns}>
               <Link href="/salah-times" className="btn-filled">View Salah Times</Link>
-              <Link href="/about" className="btn">Our Mission</Link>
+              <Link href="/about" className={`btn ${styles.heroBtnSecondary}`}>Our Mission</Link>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function Home() {
           <div className={styles.newsHeader}>
             <div>
               <h2 className={styles.sectionTitle}>News &amp; Community Updates</h2>
-              <p style={{color:'var(--muted)',fontSize:'0.78rem'}}>Stay connected with the latest happenings at our Masjid.</p>
+              <p style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>Stay connected with the latest happenings at our Masjid.</p>
             </div>
             <a href="#" className={styles.viewAll}>
               View All News <span className="material-symbols-outlined">arrow_forward</span>
