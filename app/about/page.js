@@ -39,7 +39,7 @@ export default function AboutPage() {
           </div>
           <div className={styles.journeyCta}>
             <div className={styles.ctaCard}>
-              <span className="material-symbols-outlined" style={{ fontSize: '2.5rem', color: 'var(--secondary)' }}>account_balance_wallet</span>
+              <span className="material-symbols-outlined" style={{ fontSize: '2.5rem', color: 'var(--accent)' }}>account_balance_wallet</span>
               <h3 className={styles.ctaTitle}>Support Our Foundation</h3>
               <p className={styles.ctaDesc}>Your contributions help secure our permanent home in Blairgowrie.</p>
               <Link href="/donate" className={styles.ctaBtn}>CONTRIBUTE TO PURCHASE</Link>
@@ -51,7 +51,7 @@ export default function AboutPage() {
       {/* Vision Section */}
       <section className={styles.vision}>
         <div className={styles.visionCenter}>
-          <span className="material-symbols-outlined" style={{ fontSize: '3rem', color: 'var(--secondary)' }}>visibility</span>
+          <span className="material-symbols-outlined" style={{ fontSize: '3rem', color: 'var(--accent)' }}>visibility</span>
           <h2 className={styles.visionTitle}>Our Vision</h2>
           <p className={styles.visionQuote}>
             &ldquo;To serve the community with excellence, fostering a space where spiritual devotion meets community service in the heart of Blairgowrie.&rdquo;
@@ -107,8 +107,8 @@ export default function AboutPage() {
           <h2 className={styles.legacyTitle}>Be Part of the Legacy</h2>
           <p className={styles.legacyDesc}>Your support today builds the foundation for generations of worship and learning in our neighborhood.</p>
           <div className={styles.legacyBtns}>
-            <Link href="/donate" className="btn btn-primary">Make a Donation</Link>
-            <Link href="/prospectus" className="btn btn-secondary">Download Prospectus</Link>
+            <Link href="/donate" className="btn-filled">Make a Donation</Link>
+            <Link href="/prospectus" className="btn">Download Prospectus</Link>
           </div>
         </div>
       </section>

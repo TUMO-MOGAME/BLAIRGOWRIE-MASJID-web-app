@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
-const navLinks = [
+const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/salah-times', label: 'Salah Times' },
@@ -14,83 +14,62 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    const handler = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
+  }, [menuOpen]);
 
   return (
     <>
-      <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} id="main-nav">
+      <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
-          <Link href="/" className={styles.logo}>Blairgowrie Masjid</Link>
+          <Link href="/" className={styles.logo}>BLAIRGOWRIE MASJID</Link>
 
           <div className={styles.desktopLinks}>
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
-              >
-                {link.label}
+            {links.map(l => (
+              <Link key={l.href} href={l.href}
+                className={`${styles.navLink} ${pathname === l.href ? styles.active : ''}`}>
+                {l.label}
               </Link>
             ))}
           </div>
 
           <div className={styles.actions}>
-            <Link href="/donate" className={styles.donateBtn} id="nav-donate-btn">
-              Donate
-            </Link>
-            <button
-              className={styles.hamburger}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-              id="mobile-menu-toggle"
-            >
-              <span className="material-symbols-outlined">
-                {mobileOpen ? 'close' : 'menu'}
-              </span>
+            <Link href="/donate" className={styles.donateBtn}>DONATE</Link>
+            <button className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+              <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div className={`${styles.mobileOverlay} ${mobileOpen ? styles.mobileOpen : ''}`} onClick={() => setMobileOpen(false)} />
-      <div className={`${styles.mobileMenu} ${mobileOpen ? styles.mobileOpen : ''}`} id="mobile-menu">
+      {/* Mobile overlay */}
+      <div className={`${styles.mobileOverlay} ${menuOpen ? styles.mobileOpen : ''}`}
+        onClick={() => setMenuOpen(false)} />
+
+      {/* Mobile menu */}
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileOpen : ''}`}>
         <div className={styles.mobileMenuInner}>
-          {navLinks.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.mobileLink} ${pathname === link.href ? styles.active : ''}`}
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
+          {links.map(l => (
+            <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
+              className={`${styles.mobileLink} ${pathname === l.href ? styles.active : ''}`}>
+              {l.label}
             </Link>
           ))}
-          <Link href="/donate" className={styles.mobileDonate} onClick={() => setMobileOpen(false)}>
-            Donate
+          <Link href="/donate" className={styles.mobileDonate} onClick={() => setMenuOpen(false)}>
+            DONATE
           </Link>
-          <Link href="/contact" className={styles.mobileContact} onClick={() => setMobileOpen(false)}>
-            Contact Us
+          <Link href="/contact" className={styles.mobileContact} onClick={() => setMenuOpen(false)}>
+            CONTACT US
           </Link>
         </div>
       </div>

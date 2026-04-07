@@ -56,7 +56,7 @@ export default function ProspectusPage() {
         <h2 className={styles.downloadTitle}>Explore the Complete Vision</h2>
         <p className={styles.downloadDesc}>Our comprehensive prospectus provides in-depth details on architectural plans, financial projections, governance structures, and the five-year community roadmap.</p>
         <div className={styles.downloadBtns}>
-          <button className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <button className="btn-filled" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             Download our full Prospectus PDF <span className="material-symbols-outlined">download</span>
           </button>
           <a href="#" className={styles.printLink}>Request a Printed Copy</a>

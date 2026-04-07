@@ -39,7 +39,7 @@ export default function EventsPage() {
               <h3 className={styles.featuredTitle}>Ramadan 2024: Spiritual Excellence</h3>
               <p className={styles.featuredDesc}>Join our community for Taraweeh prayers, weekend Iftars, and nightly lectures throughout the holy month.</p>
               <div className={styles.featuredActions}>
-                <button className="btn btn-emerald">View Schedule</button>
+                <button className="btn-filled">View Schedule</button>
                 <span className={styles.eventLocation}>
                   <span className="material-symbols-outlined" style={{fontSize:'1rem'}}>location_on</span> Main Prayer Hall
                 </span>

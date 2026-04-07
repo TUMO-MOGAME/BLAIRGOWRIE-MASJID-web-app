@@ -1,406 +1,70 @@
 /* ── Home Page ── */
-
-.page { }
+.page { padding-top: 4rem; }
 
 /* Hero */
-.hero {
-  position: relative;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.heroBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.heroGradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #003229 0%, #004b3e 100%);
-  opacity: 0.95;
-  z-index: 1;
-}
-
-.heroImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: overlay;
-}
-
-.heroContent {
-  position: relative;
-  z-index: 10;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  width: 100%;
-}
-
-.heroText {
-  max-width: 48rem;
-}
-
-.heroTitle {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  color: #fff;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-
-.heroSubtitle {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--primary-fixed-dim);
-  opacity: 0.9;
-  margin-bottom: 2.5rem;
-}
-
-.heroBtns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+.hero { position: relative; min-height: 90vh; display: flex; align-items: center; overflow: hidden; }
+.heroBg { position: absolute; inset: 0; z-index: 0; }
+.heroGradient { position: absolute; inset: 0; background: transparent; z-index: 1; }
+.heroImg { width: 100%; height: 100%; object-fit: cover; opacity: 0.08; mix-blend-mode: screen; }
+.heroContent { position: relative; z-index: 10; max-width: 80rem; margin: 0 auto; padding: 2rem 5rem; width: 100%; }
+.heroText { max-width: 48rem; }
+.heroTitle { font-family: var(--font-display); font-weight: 400; font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); line-height: 0.92; letter-spacing: 0.03em; margin-bottom: 1.5rem; }
+.heroSubtitle { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); opacity: 0.9; margin-bottom: 2.5rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.heroBtns { display: flex; flex-wrap: wrap; gap: 1rem; }
 
 /* Prayer Strip */
-.prayerStrip {
-  position: relative;
-  z-index: 20;
-  margin-top: -3rem;
-  padding: 0 1.5rem;
-}
-
-.prayerStripInner {
-  max-width: 64rem;
-  margin: 0 auto;
-  background: var(--tertiary-container);
-  padding: 1.5rem 2rem;
-  border-radius: 100px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.prayerCurrent {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.prayerLabel {
-  font-size: 0.625rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 700;
-  color: var(--on-tertiary-container);
-}
-
-.prayerName {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: #fff;
-}
-
-.prayerTimes {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 0 1.5rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  flex-wrap: wrap;
-}
-
-.prayerTimeItem {
-  text-align: center;
-}
-
-.prayerTimeLabel {
-  font-size: 0.6875rem;
-  color: rgba(181, 173, 153, 0.6);
-}
-
-.prayerTimeValue {
-  color: #fff;
-  font-weight: 500;
-}
-
-.prayerFullBtn {
-  background: var(--secondary-fixed);
-  color: var(--on-secondary-fixed);
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
+.prayerStrip { position: relative; z-index: 20; margin-top: -3rem; padding: 0 1.5rem; }
+.prayerStripInner { max-width: 64rem; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 1.5rem 2rem; border-radius: var(--card-radius); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.35); border: var(--hairline) solid var(--card-border); }
+.prayerCurrent { display: flex; align-items: center; gap: 1rem; }
+.prayerLabel { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 400; color: var(--muted); }
+.prayerName { font-family: var(--font-display); font-size: 1.8rem; color: var(--fg); letter-spacing: 0.03em; }
+.prayerTimes { display: flex; gap: 1.5rem; align-items: center; padding: 0 1.5rem; border-left: var(--hairline) solid var(--card-border); border-right: var(--hairline) solid var(--card-border); flex-wrap: wrap; }
+.prayerTimeItem { text-align: center; }
+.prayerTimeLabel { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; }
+.prayerTimeValue { color: var(--fg); font-weight: 400; font-size: 0.8rem; }
+.prayerFullBtn { background: var(--accent); color: var(--bg); padding: 0.6rem 1.25rem; border-radius: 0.125rem; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 400; white-space: nowrap; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
+.prayerFullBtn:hover { opacity: 0.85; }
 
 /* Mission */
-.mission {
-  padding: 6rem 1.5rem;
-  background: var(--surface);
-}
-
-.missionGrid {
-  max-width: 80rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-.missionImgWrap {
-  position: relative;
-}
-
-.missionGlow {
-  position: absolute;
-  top: -3rem;
-  left: -3rem;
-  width: 16rem;
-  height: 16rem;
-  background: rgba(119, 90, 25, 0.1);
-  border-radius: 50%;
-  filter: blur(60px);
-}
-
-.missionImg {
-  position: relative;
-  border-radius: 0.75rem;
-  box-shadow: var(--shadow-editorial);
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
-.missionText {}
-
-.sectionTitle {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--primary);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
-
-.sectionSubtitle {
-  color: var(--on-surface-variant);
-}
-
-.bodyText {
-  color: var(--on-surface-variant);
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-}
-
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.pillarTitle {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: var(--secondary);
-  margin-bottom: 0.5rem;
-}
-
-.pillarText {
-  font-size: 0.875rem;
-  color: var(--on-surface-variant);
-}
+.mission { padding: 6rem 5rem; }
+.missionGrid { max-width: 80rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+.missionImgWrap { position: relative; }
+.missionGlow { display: none; }
+.missionImg { position: relative; border-radius: var(--card-radius); box-shadow: 0 10px 30px rgba(0,0,0,0.35); width: 100%; aspect-ratio: 4/5; object-fit: cover; opacity: 0.85; }
+.sectionTitle { font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 5rem); color: var(--fg); margin-bottom: 1.5rem; letter-spacing: 0.03em; line-height: 0.92; }
+.bodyText { color: color-mix(in srgb, var(--fg) 55%, transparent); font-size: 0.78rem; line-height: 1.8; margin-bottom: 1.5rem; }
+.pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+.pillarTitle { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 0.03em; }
+.pillarText { font-size: 0.7rem; color: var(--muted); }
 
 /* News */
-.news {
-  padding: 6rem 1.5rem;
-  background: var(--surface-container-low);
-}
-
-.newsContainer {
-  max-width: 80rem;
-  margin: 0 auto;
-}
-
-.newsHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.viewAll {
-  color: var(--secondary);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.viewAll:hover {
-  gap: 0.75rem;
-}
-
-.newsGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.newsCard {
-  background: var(--surface-container-lowest);
-  padding: 2rem;
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
-}
-
-.newsCard:hover {
-  transform: translateY(-4px);
-}
-
-.newsCardCat {
-  color: var(--secondary);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
-}
-
-.newsCardTitle {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  transition: color 0.3s;
-}
-
-.newsCard:hover .newsCardTitle {
-  color: var(--secondary);
-}
-
-.newsCardDesc {
-  color: var(--on-surface-variant);
-  font-size: 0.875rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.newsCardDate {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(64, 73, 69, 0.6);
-  font-size: 0.75rem;
-}
+.news { padding: 6rem 5rem; }
+.newsContainer { max-width: 80rem; margin: 0 auto; }
+.newsHeader { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
+.viewAll { color: var(--accent); font-weight: 400; display: flex; align-items: center; gap: 0.5rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.newsGrid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.newsCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 2rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); transition: all 0.3s ease; }
+.newsCard:hover { transform: translateY(-4px); }
+.newsCardCat { color: var(--accent); font-size: 0.6rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem; }
+.newsCardTitle { font-family: var(--font-display); font-size: 1.8rem; color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; transition: color 0.3s; }
+.newsCard:hover .newsCardTitle { color: var(--accent); }
+.newsCardDesc { color: var(--muted); font-size: 0.7rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.newsCardDate { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.1em; }
 
 /* Location */
-.location {
-  padding: 6rem 1.5rem;
-  background: var(--surface);
-}
+.location { padding: 6rem 5rem; }
+.locationGrid { max-width: 80rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: stretch; }
+.locationInfo { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 3rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); display: flex; flex-direction: column; justify-content: center; }
+.locationTitle { font-family: var(--font-display); font-size: 3rem; margin-bottom: 1.5rem; color: var(--fg); letter-spacing: 0.03em; }
+.locationDesc { color: var(--muted); font-size: 0.78rem; line-height: 1.7; margin-bottom: 2rem; }
+.locationDetails { display: flex; flex-direction: column; gap: 1rem; }
+.locationItem { display: flex; align-items: center; gap: 1rem; color: var(--fg); font-size: 0.75rem; }
+.locationIcon { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: color-mix(in srgb, var(--accent) 15%, transparent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
+.directionsBtn { display: inline-block; background: var(--accent); color: var(--bg); padding: 0.6rem 1.5rem; border-radius: 0.125rem; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 3rem; align-self: flex-start; transition: opacity 0.3s; }
+.directionsBtn:hover { opacity: 0.85; }
+.locationMap { border-radius: var(--card-radius); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.35); min-height: 400px; }
+.mapImg { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); opacity: 0.5; }
 
-.locationGrid {
-  max-width: 80rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: stretch;
-}
-
-.locationInfo {
-  background: var(--primary);
-  padding: 3rem;
-  border-radius: 0.75rem;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.locationTitle {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.locationDesc {
-  color: var(--primary-fixed-dim);
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-}
-
-.locationDetails {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.locationItem {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.locationIcon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.directionsBtn {
-  display: inline-block;
-  background: var(--secondary-container);
-  color: var(--on-secondary-container);
-  padding: 0.75rem 2rem;
-  border-radius: 0.25rem;
-  font-weight: 700;
-  margin-top: 3rem;
-  align-self: flex-start;
-  transition: all 0.3s;
-}
-
-.directionsBtn:hover {
-  filter: brightness(1.1);
-}
-
-.locationMap {
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: var(--shadow-editorial);
-  min-height: 400px;
-}
-
-.mapImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1);
-  opacity: 0.8;
-}
-
-/* Responsive */
 @media (min-width: 768px) {
   .missionGrid { grid-template-columns: 1fr 1fr; }
   .newsGrid { grid-template-columns: repeat(3, 1fr); }
@@ -409,18 +73,10 @@
 }
 
 @media (max-width: 767px) {
-  .prayerTimes {
-    border: none;
-    padding: 0;
-    justify-content: center;
-  }
-  .prayerStripInner {
-    border-radius: 1rem;
-    justify-content: center;
-    text-align: center;
-  }
-  .prayerFullBtn {
-    width: 100%;
-    text-align: center;
-  }
+  .hero { min-height: 80vh; }
+  .heroContent { padding: 2rem 1.25rem; }
+  .mission, .news, .location { padding: 4rem 1.25rem; }
+  .prayerTimes { border: none; padding: 0; justify-content: center; }
+  .prayerStripInner { border-radius: var(--card-radius); justify-content: center; text-align: center; }
+  .prayerFullBtn { width: 100%; text-align: center; }
 }

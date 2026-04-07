@@ -1,7 +1,11 @@
 .footer {
-  background: var(--primary);
-  color: var(--surface);
-  border-top: 1px solid rgba(0, 80, 60, 0.2);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: var(--hairline) solid var(--card-border);
+  color: var(--fg);
+  position: relative;
+  z-index: 2;
 }
 
 .grid {
@@ -13,28 +17,26 @@
   padding: 3rem 2rem;
 }
 
-.brand {}
-
 .logo {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: var(--secondary);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
   margin-bottom: 1rem;
 }
 
 .desc {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   line-height: 1.7;
-  color: rgba(180, 230, 210, 0.8);
+  color: var(--muted);
   max-width: 20rem;
 }
 
-.col {}
-
 .colTitle {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: var(--surface);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: var(--fg);
   margin-bottom: 1rem;
 }
 
@@ -49,22 +51,13 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.875rem;
-  color: rgba(180, 230, 210, 0.8);
+  font-size: 0.7rem;
+  color: var(--muted);
   transition: color 0.2s ease;
 }
 
-.listItem:hover {
-  color: #fff;
-}
-
-.listItem a {
-  color: inherit;
-}
-
-.listItem a:hover {
-  color: #fff;
-}
+.listItem:hover { color: var(--fg); }
+.listItem a { color: inherit; }
 
 .links {
   display: flex;
@@ -73,41 +66,38 @@
 }
 
 .link {
-  font-size: 0.875rem;
-  color: rgba(180, 230, 210, 0.8);
+  font-size: 0.7rem;
+  color: var(--muted);
   transition: all 0.2s ease;
 }
 
 .link:hover {
-  color: #fff;
+  color: var(--fg);
   transform: translateX(4px);
 }
 
 .linkGold {
-  font-size: 0.875rem;
-  color: #f59e0b;
-  font-weight: 500;
+  font-size: 0.7rem;
+  color: var(--accent);
   transition: all 0.2s ease;
 }
 
-.linkGold:hover {
-  transform: translateX(4px);
-}
+.linkGold:hover { transform: translateX(4px); }
 
 .bottom {
   max-width: 80rem;
   margin: 0 auto;
   padding: 1.5rem 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: var(--hairline) solid var(--card-border);
 }
 
 .copyright {
-  font-size: 0.75rem;
-  color: rgba(180, 230, 210, 0.5);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  opacity: 0.5;
 }
 
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .grid { grid-template-columns: repeat(3, 1fr); }
 }

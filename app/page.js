@@ -23,8 +23,8 @@ export default function Home() {
               Serving the community with spiritual growth and educational excellence
             </p>
             <div className={styles.heroBtns}>
-              <Link href="/salah-times" className="btn btn-primary">View Salah Times</Link>
-              <Link href="/about" className="btn btn-secondary">Our Mission</Link>
+              <Link href="/salah-times" className="btn-filled">View Salah Times</Link>
+              <Link href="/about" className="btn">Our Mission</Link>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ export default function Home() {
       <section className={styles.prayerStrip}>
         <div className={styles.prayerStripInner}>
           <div className={styles.prayerCurrent}>
-            <span className="material-symbols-outlined" style={{ color: 'var(--secondary-fixed)', fontSize: '1.75rem' }}>schedule</span>
+            <span className="material-symbols-outlined" style={{ color: 'var(--accent)', fontSize: '1.75rem' }}>schedule</span>
             <div>
               <p className={styles.prayerLabel}>Current Prayer</p>
               <h3 className={styles.prayerName}>Dhuhr</h3>
@@ -97,7 +97,7 @@ export default function Home() {
           <div className={styles.newsHeader}>
             <div>
               <h2 className={styles.sectionTitle}>News &amp; Community Updates</h2>
-              <p className={styles.sectionSubtitle}>Stay connected with the latest happenings at our Masjid.</p>
+              <p style={{color:'var(--muted)',fontSize:'0.78rem'}}>Stay connected with the latest happenings at our Masjid.</p>
             </div>
             <a href="#" className={styles.viewAll}>
               View All News <span className="material-symbols-outlined">arrow_forward</span>
@@ -134,13 +134,13 @@ export default function Home() {
             <div className={styles.locationDetails}>
               <div className={styles.locationItem}>
                 <div className={styles.locationIcon}>
-                  <span className="material-symbols-outlined" style={{ color: 'var(--secondary-fixed)' }}>location_on</span>
+                  <span className="material-symbols-outlined" style={{ color: 'var(--accent)' }}>location_on</span>
                 </div>
                 <span>70 Conrad Drive, Blairgowrie, Randburg</span>
               </div>
               <div className={styles.locationItem}>
                 <div className={styles.locationIcon}>
-                  <span className="material-symbols-outlined" style={{ color: 'var(--secondary-fixed)' }}>mail</span>
+                  <span className="material-symbols-outlined" style={{ color: 'var(--accent)' }}>mail</span>
                 </div>
                 <span>blairgowriemasjid@gmail.com</span>
               </div>
