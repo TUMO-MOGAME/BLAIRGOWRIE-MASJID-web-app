@@ -132,8 +132,6 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
     let maxScroll = 1;
     let tgt = 0;
     let smooth = 0;
-    let velocity = 0;
-    const scrollEase = 0.1;
 
     let qualityScale = 1.0;
     const MAX_DPR = 1.5;
@@ -181,17 +179,7 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
     window.addEventListener('scroll', updateScrollMetrics, { passive: true });
     window.addEventListener('load', updateScrollMetrics, { passive: true });
 
-    /* ── custom wheel scroll ── */
-    const onWheel = (e) => {
-      if (e.ctrlKey || e.metaKey || e.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
-      e.preventDefault();
-      const linePx = 16;
-      const pagePx = window.innerHeight * 0.9;
-      const delta = e.deltaMode === 1 ? e.deltaY * linePx : e.deltaMode === 2 ? e.deltaY * pagePx : e.deltaY;
-      velocity += delta;
-      velocity = Math.max(-520, Math.min(520, velocity));
-    };
-    window.addEventListener('wheel', onWheel, { passive: false });
+
 
     /* ── HUD update ── */
     const progFill = document.getElementById('prog_fill');
@@ -266,10 +254,6 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
       lastNow = now;
       maybeAdjustQuality(dt);
 
-      velocity *= Math.pow(0.86, dt * 60);
-      if (Math.abs(velocity) < 0.02) velocity = 0;
-      if (velocity !== 0) window.scrollBy({ top: velocity * scrollEase, behavior: 'auto' });
-
       smooth += (tgt - smooth) * (1 - Math.exp(-dt * 8));
       const raw = smooth * (N - 1);
       const si = Math.min(Math.floor(raw), N - 2);
@@ -289,7 +273,6 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
       if (rafId.current) cancelAnimationFrame(rafId.current);
       window.removeEventListener('resize', resize);
       window.removeEventListener('scroll', updateScrollMetrics);
-      window.removeEventListener('wheel', onWheel);
       observer.disconnect();
       io.disconnect();
     };

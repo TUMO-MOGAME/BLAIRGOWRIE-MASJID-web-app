@@ -127,16 +127,16 @@ export default function Home() {
       <section className={styles.location}>
         <div className={styles.locationGrid}>
           <div className={styles.locationInfo}>
-            <h2 className={styles.locationTitle}>Our Future Home</h2>
+            <h2 className={styles.locationTitle}>Sayyidina Ubay bin Ka'b (RA) - Musalla & Madressa</h2>
             <p className={styles.locationDesc}>
-              Blairgowrie Masjid intends to be located at 70 Conrad Drive, Blairgowrie, Randburg. A central beacon for the community, designed for accessibility and peace.
+              Our Musalla & Madressa is located at 70 Conrad Dr, Blairgowrie, Randburg, 2195. A central beacon for the community, designed for accessibility and peace.
             </p>
             <div className={styles.locationDetails}>
               <div className={styles.locationItem}>
                 <div className={styles.locationIcon}>
                   <span className="material-symbols-outlined" style={{ color: 'var(--accent)' }}>location_on</span>
                 </div>
-                <span>70 Conrad Drive, Blairgowrie, Randburg</span>
+                <span>70 Conrad Dr, Blairgowrie, Randburg, 2195</span>
               </div>
               <div className={styles.locationItem}>
                 <div className={styles.locationIcon}>
@@ -146,20 +146,38 @@ export default function Home() {
               </div>
             </div>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=70+Conrad+Drive+Blairgowrie+Randburg"
+              href="https://www.google.com/maps/dir/?api=1&destination=Sayyidina+Ubay+bin+Ka'b+(RA)+-+Musalla+%26+Madressa,+70+Conrad+Dr,+Blairgowrie,+Randburg,+2195,+South+Africa"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.directionsBtn}
             >
+              <span className="material-symbols-outlined" style={{ fontSize: '1rem' }}>directions</span>
               Get Directions
             </a>
           </div>
           <div className={styles.locationMap}>
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCisbYy4ge-uxr4bcSCxujBwg3Iv4VRQ6TJZRMDymAqk4STb5I4gte764xzDhTrxnJJ4c1GEmX8o_pvHaSLAtwKqZhlXTGUnW1YUA8nNZmQE1dG-8_KP1r6EmzILYaYlac4HDp96fn2vJPkyvtGO5HVwQaCHbGm6C5CHWyFwi5IrDtzXcdgO3pv04aBYi3B2CVRGYyNLHrcJh_rxu09JaKORxjOLpKhIyNwcWQTuwbFcEH7QfoChS_8uMSwzxv6uk8M8CX2W_GA4-5l"
-              alt="Map location"
-              className={styles.mapImg}
+            <iframe
+              src="https://maps.google.com/maps?q=Sayyidina+Ubay+bin+Ka'b+(RA)+-+Musalla+%26+Madressa,+70+Conrad+Dr,+Blairgowrie,+Randburg,+2195,+South+Africa&z=16&output=embed&hl=en"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: 'block' }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Sayyidina Ubay bin Ka'b (RA) - Musalla & Madressa Location"
             />
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=Sayyidina+Ubay+bin+Ka'b+(RA)+-+Musalla+%26+Madressa,+70+Conrad+Dr,+Blairgowrie,+Randburg,+2195,+South+Africa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapOverlay}
+              aria-label="Click to get directions in Google Maps"
+            >
+              <div className={styles.mapOverlayBadge}>
+                <span className="material-symbols-outlined">near_me</span>
+                Open in Google Maps
+              </div>
+            </a>
           </div>
         </div>
       </section>
