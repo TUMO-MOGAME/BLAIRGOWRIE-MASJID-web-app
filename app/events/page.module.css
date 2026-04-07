@@ -1,0 +1,71 @@
+.page {}
+
+.hero { position: relative; padding: 5rem 1.5rem 5rem; overflow: hidden; text-align: center; }
+.heroBg { position: absolute; inset: 0; z-index: 0; }
+.heroImg { width: 100%; height: 100%; object-fit: cover; opacity: 0.1; filter: grayscale(1); }
+.heroOverlay { position: absolute; inset: 0; background: linear-gradient(to bottom right, var(--primary), var(--primary-container)); opacity: 0.05; }
+.heroContent { position: relative; z-index: 1; max-width: 48rem; margin: 0 auto; }
+.heroTitle { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--primary); margin-bottom: 1rem; }
+.heroSub { font-size: 1.125rem; color: var(--on-surface-variant); max-width: 40rem; margin: 0 auto; line-height: 1.7; }
+
+.mainGrid { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem 6rem; display: grid; grid-template-columns: 1fr; gap: 3rem; }
+
+.eventsCol {}
+.eventsHeader { margin-bottom: 2rem; }
+.eventsLabel { color: var(--secondary); font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; display: block; margin-bottom: 0.5rem; }
+.eventsTitle { font-family: var(--font-serif); font-size: 2.5rem; color: var(--primary); }
+
+.featuredEvent { background: var(--surface-container-low); border-left: 4px solid var(--secondary); border-radius: 0.75rem; overflow: hidden; display: grid; grid-template-columns: 1fr; transition: transform 0.3s; margin-bottom: 1.5rem; }
+.featuredEvent:hover { transform: translateY(-4px); }
+.featuredImg { height: 16rem; overflow: hidden; }
+.featuredImg img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.featuredEvent:hover .featuredImg img { transform: scale(1.05); }
+.featuredContent { padding: 2rem; }
+.eventMeta { display: flex; align-items: center; gap: 0.5rem; color: var(--secondary); margin-bottom: 1rem; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; }
+.featuredTitle { font-family: var(--font-serif); font-size: 1.75rem; color: var(--primary); margin-bottom: 1rem; }
+.featuredDesc { color: var(--on-surface-variant); margin-bottom: 1.5rem; line-height: 1.7; }
+.featuredActions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.eventLocation { display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; color: var(--outline); font-weight: 500; }
+
+.smallEvents { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.smallCard { padding: 2rem; background: var(--surface-container-low); border-radius: 0.75rem; border-left: 4px solid var(--primary); transition: background 0.3s; }
+.smallCard:hover { background: var(--surface-container); }
+.smallCardHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+.smallCardIcon { background: rgba(0, 75, 62, 0.1); padding: 0.75rem; border-radius: 0.5rem; color: var(--primary); }
+.badge { padding: 0.25rem 0.75rem; background: var(--secondary-container); color: var(--on-secondary-container); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 100px; }
+.badgeGrey { padding: 0.25rem 0.75rem; background: var(--surface-container-highest); color: var(--outline); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 100px; }
+.smallCardTitle { font-family: var(--font-serif); font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem; }
+.smallCardDesc { color: var(--on-surface-variant); font-size: 0.875rem; margin-bottom: 1.5rem; }
+.smallCardLink { color: var(--secondary); font-weight: 700; font-size: 0.875rem; display: flex; align-items: center; gap: 0.25rem; }
+
+/* Sidebar */
+.sidebar {}
+.calendarCard { background: var(--surface-container-lowest); padding: 2rem; border-radius: 0.75rem; border: 1px solid rgba(191, 201, 196, 0.3); margin-bottom: 2rem; }
+.calendarTitle { font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary); display: flex; align-items: center; margin-bottom: 1.5rem; }
+.calendarList { display: flex; flex-direction: column; gap: 1.5rem; }
+.calendarItem { display: flex; gap: 1rem; align-items: center; }
+.calendarDate { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 0.5rem; background: var(--surface-container); color: var(--primary); font-weight: 700; flex-shrink: 0; }
+.calendarDateHighlight { background: var(--primary); color: var(--on-primary); }
+.calendarMonth { font-size: 0.625rem; text-transform: uppercase; line-height: 1; }
+.calendarDay { font-size: 1.125rem; line-height: 1.2; }
+.calendarEventTitle { font-weight: 700; font-size: 0.875rem; color: var(--on-surface); }
+.calendarEventTime { font-size: 0.75rem; color: var(--outline); }
+.downloadBtn { width: 100%; margin-top: 2rem; padding: 0.75rem; font-size: 0.875rem; font-weight: 500; color: var(--primary); border: 1px solid rgba(0, 50, 41, 0.2); background: transparent; border-radius: 0.25rem; cursor: pointer; transition: background 0.3s; }
+.downloadBtn:hover { background: rgba(0, 50, 41, 0.05); }
+
+.hostCard { background: var(--primary); color: var(--on-primary); padding: 2rem; border-radius: 0.75rem; position: relative; overflow: hidden; }
+.hostGhost { position: absolute; right: -1rem; bottom: -1rem; }
+.hostTitle { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem; }
+.hostDesc { color: var(--on-primary-container); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.hostBtn { display: block; width: 100%; padding: 1rem; background: var(--secondary); color: var(--on-secondary); border-radius: 0.25rem; font-weight: 700; font-size: 0.875rem; text-align: center; letter-spacing: 0.03em; transition: opacity 0.3s; }
+.hostBtn:hover { opacity: 0.9; }
+
+@media (min-width: 768px) {
+  .smallEvents { grid-template-columns: repeat(2, 1fr); }
+  .featuredEvent { grid-template-columns: 2fr 3fr; }
+  .featuredImg { height: auto; }
+}
+@media (min-width: 1024px) {
+  .mainGrid { grid-template-columns: 8fr 4fr; align-items: start; }
+  .sidebar { position: sticky; top: 7rem; }
+}

@@ -1,0 +1,48 @@
+.page {}
+
+.hero { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem 1.5rem; min-height: 25rem; background: var(--primary-container); border-radius: 0 0 0.75rem 0.75rem; max-width: 80rem; margin: 0 auto; }
+.heroBg { position: absolute; inset: 0; opacity: 0.4; }
+.heroImg { width: 100%; height: 100%; object-fit: cover; }
+.heroContent { position: relative; z-index: 1; max-width: 48rem; }
+.heroTitle { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--on-primary); margin-bottom: 1.5rem; }
+.heroSub { font-family: var(--font-sans); font-size: 1.125rem; color: var(--on-primary-container); line-height: 1.7; }
+
+.message { max-width: 80rem; margin: 0 auto; padding: 5rem 1.5rem; }
+.messageGrid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+.messageText {}
+.messageQuote { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.5rem); color: var(--primary); font-style: italic; margin-bottom: 2rem; }
+.messageBody { display: flex; flex-direction: column; gap: 1.5rem; color: var(--on-surface-variant); font-size: 1.0625rem; line-height: 1.8; }
+.messageImgWrap { display: flex; justify-content: center; }
+.messageImg { border-radius: 50%; box-shadow: var(--shadow-editorial); border: 8px solid var(--surface-container); width: min(100%, 400px); aspect-ratio: 1; object-fit: cover; }
+
+.methods { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+.methodsGrid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.eftCard { background: var(--surface-container-low); border-radius: 0.75rem; padding: 2.5rem; box-shadow: var(--shadow-editorial); }
+.eftHeader { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem; }
+.eftIcon { width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: var(--on-primary); flex-shrink: 0; }
+.eftTitle { font-family: var(--font-serif); font-size: 1.75rem; color: var(--primary); margin-bottom: 0.5rem; }
+.eftSub { color: var(--on-surface-variant); }
+.bankDetails { background: var(--surface-container-lowest); padding: 2rem; border-radius: 0.5rem; border-left: 4px solid var(--secondary); display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.bankRow label { display: block; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--outline); margin-bottom: 0.5rem; }
+.bankValue { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+.bankValueGold { font-size: 1.5rem; font-weight: 700; color: var(--secondary); }
+.copyBtn { background: none; border: none; padding: 0.5rem; cursor: pointer; color: var(--outline); border-radius: 50%; transition: background 0.3s; }
+.copyBtn:hover { background: var(--surface-container); }
+
+.cashCard { background: var(--primary); color: var(--on-primary); border-radius: 0.75rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+.cashIcon { width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--secondary-container); display: flex; align-items: center; justify-content: center; color: var(--on-secondary-container); margin-bottom: 2rem; }
+.cashTitle { font-family: var(--font-serif); font-size: 1.75rem; color: var(--secondary-fixed); margin-bottom: 1rem; }
+.cashDesc { color: var(--on-primary-container); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem; }
+.cashNote { display: flex; align-items: center; gap: 1rem; padding-top: 2rem; border-top: 1px solid var(--primary-container); }
+.cashNoteText { font-size: 0.875rem; font-weight: 500; font-style: italic; }
+
+.bottom { max-width: 80rem; margin: 0 auto; padding: 6rem 1.5rem; text-align: center; }
+.bottomDivider { height: 2px; width: 33%; margin: 0 auto 5rem; background: var(--surface-container); }
+.bottomTitle { font-family: var(--font-serif); font-size: 1.5rem; color: var(--primary); font-style: italic; margin-bottom: 1rem; }
+.bottomText { color: var(--on-surface-variant); }
+
+@media (min-width: 768px) {
+  .messageGrid { grid-template-columns: 7fr 5fr; }
+  .methodsGrid { grid-template-columns: 2fr 1fr; }
+  .bankDetails { grid-template-columns: 1fr 1fr; }
+}

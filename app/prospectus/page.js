@@ -1,0 +1,85 @@
+import styles from './page.module.css';
+import Link from 'next/link';
+
+export const metadata = { title: 'Prospectus', description: 'Explore the Blairgowrie Masjid prospectus — our visionary roadmap for faith, education, and community unity.' };
+
+export default function ProspectusPage() {
+  return (
+    <div className={styles.page}>
+      {/* Hero */}
+      <header className={styles.hero}>
+        <div className={styles.heroBg} />
+        <div className={styles.heroGradient} />
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>Our Prospectus</h1>
+          <p className={styles.heroSub}>A visionary roadmap for the spiritual heart of Blairgowrie. Building a legacy of faith, education, and community unity.</p>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <section className={styles.main}>
+        <div className={styles.mainGrid}>
+          <div className={styles.textCol}>
+            <span className={styles.label}>Foundation &amp; Future</span>
+            <h2 className={styles.sectionTitle}>A Sanctuary for Generations</h2>
+            <div className={styles.textBody}>
+              <p className={styles.dropCap}>The Blairgowrie Masjid project represents more than just a place of prayer; it is a meticulously planned ecosystem designed to serve the spiritual, social, and educational needs of our growing community. Our vision is to create a landmark of tranquility that honors Islamic tradition while embracing modern community dynamics.</p>
+              <div className={styles.quoteBlock}>
+                <p>&ldquo;To foster an environment where spiritual growth meets civic excellence, providing a beacon of light for all residents of Blairgowrie and beyond.&rdquo;</p>
+              </div>
+              <p>Our commitment extends beyond the physical structure. We are dedicated to establishing programs that empower the youth, support the elderly, and create a welcoming space for dialogue and learning. The prospectus outlines our phased development approach, ensuring fiscal responsibility and community transparency at every milestone.</p>
+            </div>
+          </div>
+          <div className={styles.cardsCol}>
+            {[
+              { icon: 'auto_stories', title: 'Educational Excellence', desc: 'Structured Madrasah programs and adult education seminars focusing on classical Islamic sciences and contemporary ethics.' },
+              { icon: 'diversity_1', title: 'Community Impact', desc: 'Welfare initiatives including food security programs, counseling services, and interfaith engagement platforms.' },
+              { icon: 'eco', title: 'Sustainable Design', desc: 'Implementing green energy solutions and water conservation systems to ensure our masjid serves as a steward of the earth.' },
+            ].map((c, i) => (
+              <div key={i} className={styles.initiativeCard}>
+                <span className="material-symbols-outlined" style={{ fontSize: '1.75rem', color: 'var(--secondary)' }}>{c.icon}</span>
+                <div>
+                  <h3 className={styles.initiativeTitle}>{c.title}</h3>
+                  <p className={styles.initiativeDesc}>{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Download CTA */}
+      <section className={styles.download}>
+        <div className={styles.downloadIcon}>
+          <span className="material-symbols-outlined" style={{ fontSize: '2.5rem', fontVariationSettings: "'FILL' 1" }}>picture_as_pdf</span>
+        </div>
+        <h2 className={styles.downloadTitle}>Explore the Complete Vision</h2>
+        <p className={styles.downloadDesc}>Our comprehensive prospectus provides in-depth details on architectural plans, financial projections, governance structures, and the five-year community roadmap.</p>
+        <div className={styles.downloadBtns}>
+          <button className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            Download our full Prospectus PDF <span className="material-symbols-outlined">download</span>
+          </button>
+          <a href="#" className={styles.printLink}>Request a Printed Copy</a>
+        </div>
+      </section>
+
+      {/* Architecture Preview */}
+      <section className={styles.architecture}>
+        <div className={styles.archGrid}>
+          <div className={styles.archImg}>
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbGFIQKT9Sd459LIQDGmTtxNJFvPeScYhYK2edHqo7p00LyjQwgrZC1bjesPaCOyH_aZ1n_brkZfhF0W83vlj6j6AoCy0zwhIbkN1bZd0ARfZf1cBdK0a6Pga0-EYqTrqSqWJq4Cvw19lAfnEdXkSyVBnbbTzQPANTuLYeGlAEkwnJDooKN5lqLCjYJ7_EP4mV2dckWUznxuNc-k__BnCJ1IQ5aADrDy_DrjKcRVodLKpZ1xuu2ifgehp8GXL4j-zn_BjkI9iz8nBK" alt="Masjid Concept" />
+          </div>
+          <div className={styles.archText}>
+            <h3 className={styles.archTitle}>The Blueprint of Serenity</h3>
+            <p className={styles.archDesc}>The architectural language of Blairgowrie Masjid balances classic proportions with contemporary clarity. Utilizing local materials and maximizing natural light, the design ensures that every visitor experiences an immediate sense of detachment from worldly noise upon entry.</p>
+            <ul className={styles.archList}>
+              <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> 800+ Musalli Capacity</li>
+              <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> Dedicated Women&apos;s Prayer &amp; Learning Center</li>
+              <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> Multi-purpose Community Hall</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

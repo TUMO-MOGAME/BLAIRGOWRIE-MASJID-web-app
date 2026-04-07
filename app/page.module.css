@@ -1,142 +1,426 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+/* ── Home Page ── */
 
-  --text-primary: #000;
-  --text-secondary: #666;
+.page { }
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 85vh;
   display: flex;
-  flex: 1;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  overflow: hidden;
 }
 
-.main {
-  display: flex;
-  flex: 1;
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #003229 0%, #004b3e 100%);
+  opacity: 0.95;
+  z-index: 1;
+}
+
+.heroImg {
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: overlay;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.heroContent {
+  position: relative;
+  z-index: 10;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
+.heroText {
+  max-width: 48rem;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
   font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.heroSubtitle {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--primary-fixed-dim);
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.heroBtns {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.ctas a {
+/* Prayer Strip */
+.prayerStrip {
+  position: relative;
+  z-index: 20;
+  margin-top: -3rem;
+  padding: 0 1.5rem;
+}
+
+.prayerStripInner {
+  max-width: 64rem;
+  margin: 0 auto;
+  background: var(--tertiary-container);
+  padding: 1.5rem 2rem;
+  border-radius: 100px;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prayerCurrent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.prayerLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--on-tertiary-container);
+}
+
+.prayerName {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.prayerTimes {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 0 1.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.prayerTimeItem {
+  text-align: center;
+}
+
+.prayerTimeLabel {
+  font-size: 0.6875rem;
+  color: rgba(181, 173, 153, 0.6);
+}
+
+.prayerTimeValue {
+  color: #fff;
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.prayerFullBtn {
+  background: var(--secondary-fixed);
+  color: var(--on-secondary-fixed);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+/* Mission */
+.mission {
+  padding: 6rem 1.5rem;
+  background: var(--surface);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+.missionGrid {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
+.missionImgWrap {
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+.missionGlow {
+  position: absolute;
+  top: -3rem;
+  left: -3rem;
+  width: 16rem;
+  height: 16rem;
+  background: rgba(119, 90, 25, 0.1);
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.missionImg {
+  position: relative;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-editorial);
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.missionText {}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.sectionSubtitle {
+  color: var(--on-surface-variant);
+}
+
+.bodyText {
+  color: var(--on-surface-variant);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pillarTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+}
+
+.pillarText {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+}
+
+/* News */
+.news {
+  padding: 6rem 1.5rem;
+  background: var(--surface-container-low);
+}
+
+.newsContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.newsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.viewAll {
+  color: var(--secondary);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.viewAll:hover {
+  gap: 0.75rem;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.newsCard {
+  background: var(--surface-container-lowest);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.newsCard:hover {
+  transform: translateY(-4px);
+}
+
+.newsCardCat {
+  color: var(--secondary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+
+.newsCardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+.newsCard:hover .newsCardTitle {
+  color: var(--secondary);
+}
+
+.newsCardDesc {
+  color: var(--on-surface-variant);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.newsCardDate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(64, 73, 69, 0.6);
+  font-size: 0.75rem;
+}
+
+/* Location */
+.location {
+  padding: 6rem 1.5rem;
+  background: var(--surface);
+}
+
+.locationGrid {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.locationInfo {
+  background: var(--primary);
+  padding: 3rem;
+  border-radius: 0.75rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.locationTitle {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.locationDesc {
+  color: var(--primary-fixed-dim);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.locationDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.locationItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.locationIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.directionsBtn {
+  display: inline-block;
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+  padding: 0.75rem 2rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  align-self: flex-start;
+  transition: all 0.3s;
+}
+
+.directionsBtn:hover {
+  filter: brightness(1.1);
+}
+
+.locationMap {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-editorial);
+  min-height: 400px;
+}
+
+.mapImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .missionGrid { grid-template-columns: 1fr 1fr; }
+  .newsGrid { grid-template-columns: repeat(3, 1fr); }
+  .locationGrid { grid-template-columns: 1fr 1fr; }
+  .newsHeader { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+}
+
+@media (max-width: 767px) {
+  .prayerTimes {
+    border: none;
+    padding: 0;
+    justify-content: center;
   }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .prayerStripInner {
+    border-radius: 1rem;
+    justify-content: center;
+    text-align: center;
+  }
+  .prayerFullBtn {
+    width: 100%;
+    text-align: center;
   }
 }

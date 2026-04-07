@@ -1,0 +1,58 @@
+.page {}
+
+.hero { max-width: 80rem; margin: 0 auto; padding: 3rem 1.5rem; text-align: center; }
+.heroTitle { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--primary); margin-bottom: 1rem; }
+.heroSubtitle { font-family: var(--font-sans); font-size: 1.125rem; color: var(--on-surface-variant); max-width: 40rem; margin: 0 auto; }
+
+/* Main Grid */
+.mainGrid { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+
+/* Active Prayer Card */
+.activeCard { background: var(--tertiary-container); color: var(--on-tertiary-container); padding: 2rem; border-radius: 0.75rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; min-height: 20rem; }
+.activeGhost { position: absolute; top: -2rem; right: -2rem; opacity: 0.1; }
+.activeTop { position: relative; z-index: 1; }
+.activeLabel { color: var(--on-tertiary); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.6875rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activeName { font-family: var(--font-serif); font-size: 3rem; color: var(--tertiary-fixed); }
+.activeBottom { position: relative; z-index: 1; }
+.activeTime { font-family: var(--font-sans); font-size: 4rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+.activeIqamah { color: rgba(181, 173, 153, 0.8); font-size: 0.875rem; font-style: italic; }
+
+/* Table */
+.tableWrap { background: var(--surface-container-low); border-radius: 0.75rem; overflow: hidden; }
+.tableContainer { overflow-x: auto; }
+.table { width: 100%; text-align: left; border-collapse: separate; border-spacing: 0 0.5rem; padding: 0.25rem 1rem; }
+.table thead tr { color: rgba(0, 50, 41, 0.6); }
+.table th { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; padding: 1rem 1.5rem; }
+.table tbody tr { background: var(--surface-container-lowest); transition: background 0.2s; }
+.table tbody tr:hover { background: #fff; }
+.prayerCell { font-family: var(--font-serif); font-size: 1.5rem; color: var(--primary); font-weight: 600; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.timeCell { padding: 1.25rem 1.5rem; color: var(--on-surface-variant); }
+.iqamahCell { padding: 1.25rem 1.5rem; color: var(--primary); font-weight: 700; }
+.currentRow { background: var(--surface-container) !important; border-left: 4px solid var(--secondary); border-radius: 0.25rem; }
+.jumuahRow { background: rgba(254, 212, 136, 0.2) !important; border-top: 1px solid var(--secondary-container); }
+.pulseGold { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--secondary); animation: pulse-gold 2s infinite; }
+
+/* Info */
+.info { max-width: 80rem; margin: 0 auto; padding: 4rem 1.5rem; }
+.infoGrid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.infoCard { background: var(--surface-container-high); padding: 2rem; border-radius: 0.75rem; border-left: 4px solid var(--primary); }
+.infoTitle { font-family: var(--font-serif); font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; }
+.infoText { color: var(--on-surface-variant); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; }
+.infoText strong { color: var(--primary); }
+.infoNotices { display: flex; flex-direction: column; gap: 1rem; }
+.notice { background: var(--surface); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--outline-variant); display: flex; align-items: flex-start; gap: 1rem; }
+.noticeTitle { font-weight: 700; color: var(--primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+.noticeText { color: var(--on-surface-variant); font-size: 0.75rem; }
+
+/* Quote */
+.quoteSection { max-width: 80rem; margin: 0 auto; padding: 5rem 1.5rem; text-align: center; }
+.quoteDivider { height: 1px; width: 6rem; background: var(--secondary); margin: 0 auto 2.5rem; }
+.quoteText { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2rem); font-style: italic; color: rgba(0, 50, 41, 0.8); max-width: 48rem; margin: 0 auto; line-height: 1.5; }
+.quoteSource { margin-top: 1rem; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--on-surface-variant); }
+
+@keyframes pulse-gold { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+@media (min-width: 1024px) {
+  .mainGrid { grid-template-columns: 4fr 8fr; }
+  .infoGrid { grid-template-columns: 1fr 1fr; }
+}

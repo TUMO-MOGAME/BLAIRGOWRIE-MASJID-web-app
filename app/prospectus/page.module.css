@@ -1,0 +1,50 @@
+.page {}
+
+.hero { position: relative; padding: 5rem 1.5rem 5rem; overflow: hidden; background: var(--primary); min-height: 20rem; display: flex; align-items: center; }
+.heroBg { position: absolute; inset: 0; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiZgKr6nLcu9D7IQUUJTUI0FwXogB7AJ1ybvB84WF55eNNKwvxgT3R2ogDHIO-xRuC47EwJG8qx1eTKL8GvK0IdrAo6EBWC2zS39Ooq1XzNEe5q0FbfZSoQ8ljXCQZdeEbsbR3PGTZUPwc-og7Ja-AcN1_5z0-oZmHSyd9vVqbThOcr5F6FFR1bsTzmFGq-lh4goxr_vdxghgpjAIYW1FBDf0r6_LIND8f3NxO4_C3f8H7xGTOfdVzRZ39p5ZUQqyKJVJ2PvqG56Wd'); background-size: cover; background-position: center; opacity: 0.2; }
+.heroGradient { position: absolute; inset: 0; background: linear-gradient(to bottom right, var(--primary), var(--primary-container)); opacity: 0.9; }
+.heroContent { position: relative; z-index: 1; max-width: 48rem; }
+.heroTitle { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--on-primary); margin-bottom: 1.5rem; }
+.heroSub { font-family: var(--font-sans); font-size: 1.125rem; color: var(--on-primary-container); font-weight: 300; line-height: 1.7; }
+
+.main { padding: 5rem 1.5rem; }
+.mainGrid { max-width: 80rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem; }
+.textCol {}
+.label { color: var(--secondary); font-weight: 700; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.2em; display: block; margin-bottom: 1rem; }
+.sectionTitle { font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--primary); margin-bottom: 2rem; }
+.textBody { display: flex; flex-direction: column; gap: 2rem; color: var(--on-surface-variant); font-size: 1.0625rem; line-height: 1.9; }
+.dropCap::first-letter { font-family: var(--font-serif); font-size: 3.5rem; float: left; margin-right: 0.75rem; color: var(--primary); line-height: 1; }
+.quoteBlock { background: var(--surface-container-low); padding: 2rem; border-radius: 0.75rem; border-left: 4px solid var(--secondary); box-shadow: var(--shadow-editorial); }
+.quoteBlock p { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; color: var(--primary); }
+
+.cardsCol { display: flex; flex-direction: column; gap: 1.5rem; }
+.initiativeCard { background: var(--surface-container-lowest); padding: 2rem; border-radius: 0.75rem; box-shadow: var(--shadow-editorial); display: flex; align-items: flex-start; gap: 1rem; transition: all 0.5s; }
+.initiativeCard:hover { background: var(--primary); }
+.initiativeCard:hover .initiativeTitle { color: #fff; }
+.initiativeCard:hover .initiativeDesc { color: rgba(180, 230, 210, 0.8); }
+.initiativeCard:hover .material-symbols-outlined { color: #f59e0b !important; }
+.initiativeTitle { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+.initiativeDesc { font-size: 0.875rem; color: var(--on-surface-variant); }
+
+.download { background: var(--surface-container-low); padding: 6rem 1.5rem; text-align: center; }
+.downloadIcon { display: inline-flex; align-items: center; justify-content: center; width: 5rem; height: 5rem; background: var(--secondary-container); color: var(--secondary); border-radius: 50%; margin-bottom: 2rem; }
+.downloadTitle { font-family: var(--font-serif); font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
+.downloadDesc { color: var(--on-surface-variant); max-width: 36rem; margin: 0 auto 2.5rem; line-height: 1.7; }
+.downloadBtns { display: flex; flex-direction: column; gap: 1rem; align-items: center; justify-content: center; }
+.printLink { color: var(--primary); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; padding: 1rem; }
+
+.architecture { padding: 8rem 1.5rem; }
+.archGrid { max-width: 80rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+.archImg { position: relative; }
+.archImg img { border-radius: 1rem; box-shadow: var(--shadow-editorial); width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.archText {}
+.archTitle { font-family: var(--font-serif); font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+.archDesc { color: var(--on-surface-variant); line-height: 1.9; margin-bottom: 2rem; }
+.archList { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.archList li { display: flex; align-items: center; gap: 0.75rem; color: var(--primary); font-weight: 500; }
+
+@media (min-width: 1024px) {
+  .mainGrid { grid-template-columns: 7fr 5fr; }
+  .archGrid { grid-template-columns: 1fr 1fr; }
+  .downloadBtns { flex-direction: row; }
+}
