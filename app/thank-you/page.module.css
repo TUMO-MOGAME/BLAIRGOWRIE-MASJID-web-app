@@ -4,13 +4,13 @@
 .title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); line-height: 0.92; margin-bottom: 2rem; letter-spacing: 0.03em; }
 .quoteWrap { position: relative; display: inline-block; margin-bottom: 3rem; }
 .quoteGlow { position: absolute; inset: 0; background: color-mix(in srgb, var(--accent) 10%, transparent); filter: blur(40px); border-radius: 50%; z-index: -1; }
-.quote { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); font-style: italic; line-height: 1.8; max-width: 40rem; margin: 0 auto; }
+.quote { font-family: var(--font-mono); font-size: 1.15rem; color: var(--accent); font-style: italic; line-height: 1.8; max-width: 40rem; margin: 0 auto; }
 .confirmCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); padding: 3rem 2rem; display: flex; flex-direction: column; align-items: center; max-width: 36rem; margin: 0 auto 3rem; }
 .confirmIcon { width: 4rem; height: 4rem; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--bg); margin-bottom: 1.5rem; }
 .confirmTitle { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; }
-.confirmDesc { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; font-size: 0.78rem; }
+.confirmDesc { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; font-size: 1.15rem; }
 .confirmDivider { height: var(--hairline); width: 3.125rem; background: var(--accent); opacity: 0.3; margin-bottom: 2rem; }
-.homeBtn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: var(--bg); padding: 0.6rem 1.5rem; border-radius: 0.125rem; font-family: var(--font-mono); font-weight: 400; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
+.homeBtn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: var(--bg); padding: 0.6rem 1.5rem; border-radius: 0.125rem; font-family: var(--font-mono); font-weight: 400; font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
 .homeBtn:hover { opacity: 0.85; }
 .imageGrid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 48rem; margin: 0 auto; }
 .imageCard { border-radius: var(--card-radius); overflow: hidden; position: relative; aspect-ratio: 16/9; }

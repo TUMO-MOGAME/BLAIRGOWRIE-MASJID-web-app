@@ -133,26 +133,26 @@ h5 {
 }
 
 h1 {
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(3.5rem, 8vw, 7rem);
 }
 
 h2 {
-  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, 3rem);
 }
 
 p {
-  font-size: 0.8rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   color: color-mix(in srgb, var(--fg) 55%, transparent);
 }
 
 /* ── Tags / Labels ── */
 .tag {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--accent);
@@ -184,7 +184,7 @@ p {
   border: var(--hairline) solid var(--accent);
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.77rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
@@ -205,7 +205,7 @@ p {
   border: none;
   border-radius: 0.25rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -307,4 +307,11 @@ p {
     top: 1rem !important;
     right: 1rem !important;
   }
+}
+
+/* ── Properties for Image Blur Gallery ── */
+@property --sgn {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
 }

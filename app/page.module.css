@@ -58,7 +58,7 @@
 
 .heroSubtitle {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 1.15rem;
   color: var(--accent);
   opacity: 1;
   margin-bottom: 2.5rem;
@@ -93,7 +93,7 @@
 }
 
 .prayerStripInner {
-  max-width: 64rem;
+  max-width: 76rem;
   margin: 0 auto;
   background: var(--card-bg);
   backdrop-filter: blur(14px) saturate(130%);
@@ -116,28 +116,28 @@
 }
 
 .prayerLabel {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 400;
-  color: var(--muted);
+  color: #ffffff;
 }
 
 .prayerName {
   font-family: var(--font-display);
   font-size: 1.8rem;
-  color: var(--fg);
+  color: var(--accent);
   letter-spacing: 0.03em;
 }
 
 .prayerTimes {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
   padding: 0 1.5rem;
   border-left: var(--hairline) solid var(--card-border);
   border-right: var(--hairline) solid var(--card-border);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .prayerTimeItem {
@@ -145,15 +145,15 @@
 }
 
 .prayerTimeLabel {
-  font-size: 0.6rem;
-  color: var(--muted);
+  font-size: 0.9rem;
+  color: var(--accent);
   letter-spacing: 0.1em;
 }
 
 .prayerTimeValue {
   color: var(--fg);
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 1.15rem;
 }
 
 .prayerFullBtn {
@@ -162,7 +162,7 @@
   padding: 0.6rem 1.25rem;
   border-radius: 0.125rem;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 400;
   white-space: nowrap;
   letter-spacing: 0.15em;
@@ -216,8 +216,8 @@
 }
 
 .bodyText {
-  color: color-mix(in srgb, var(--fg) 75%, transparent);
-  font-size: 0.85rem;
+  color: #000000;
+  font-size: 1.25rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
@@ -238,15 +238,15 @@
 
 .pillarTitle {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 2.0rem;
   color: var(--accent);
   margin-bottom: 0.5rem;
   letter-spacing: 0.03em;
 }
 
 .pillarText {
-  font-size: 0.75rem;
-  color: color-mix(in srgb, var(--fg) 70%, transparent);
+  font-size: 1.05rem;
+  color: #000000;
 }
 
 /* News */
@@ -272,7 +272,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.65rem;
+  font-size: 0.95rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -299,7 +299,7 @@
 
 .newsCardCat {
   color: var(--accent);
-  font-size: 0.65rem;
+  font-size: 0.95rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.25em;
@@ -320,8 +320,8 @@
 }
 
 .newsCardDesc {
-  color: color-mix(in srgb, var(--fg) 65%, transparent);
-  font-size: 0.75rem;
+  color: #ffffff;
+  font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
 }
@@ -331,7 +331,7 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--muted);
-  font-size: 0.6rem;
+  font-size: 0.95rem;
   letter-spacing: 0.1em;
 }
 
@@ -370,8 +370,8 @@
 }
 
 .locationDesc {
-  color: var(--muted);
-  font-size: 0.78rem;
+  color: #ffffff;
+  font-size: 1.15rem;
   line-height: 1.7;
   margin-bottom: 2rem;
 }
@@ -387,7 +387,7 @@
   align-items: center;
   gap: 1rem;
   color: var(--fg);
-  font-size: 0.75rem;
+  font-size: 1.15rem;
 }
 
 .locationIcon {
@@ -411,7 +411,7 @@
   padding: 0.6rem 1.5rem;
   border-radius: 0.125rem;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 1.0rem;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -465,7 +465,7 @@
   color: #0a0a0f;
   border-radius: 2rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
@@ -535,18 +535,18 @@
   .bodyText {
     font-size: 0.95rem;
     line-height: 1.7;
-    color: var(--fg);
+    color: #000000;
     opacity: 1;
   }
 
   .pillarText {
-    font-size: 0.8rem;
-    color: color-mix(in srgb, var(--fg) 85%, transparent);
+    font-size: 0.95rem;
+    color: #000000;
   }
 
   .newsCardDesc {
     font-size: 0.85rem;
-    color: var(--fg);
+    color: #ffffff;
   }
 
   .directionsBtn {

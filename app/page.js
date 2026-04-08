@@ -1,7 +1,78 @@
+'use client';
 import styles from './page.module.css';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  const [times, setTimes] = useState(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [nextPrayer, setNextPrayer] = useState({ name: 'Loading...', time: '' });
+
+  useEffect(() => {
+    async function fetchTimes() {
+      try {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear();
+        const res = await fetch(
+          `https://api.aladhan.com/v1/timings/${dd}-${mm}-${yyyy}?latitude=-26.1076&longitude=28.0075&method=2`
+        );
+        const data = await res.json();
+        if (data.code === 200) {
+          setTimes(data.data.timings);
+        }
+      } catch (err) {
+        console.error('Failed to fetch prayer times:', err);
+      }
+    }
+    fetchTimes();
+
+    const timer = setInterval(() => setCurrentTime(new Date()), 30000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!times) return;
+    const prayers = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    const now = currentTime;
+    for (const p of prayers) {
+      if(p === 'Sunrise') continue; // We usually calculate next prayer based on obligatory prayers
+      const [h, m] = times[p].split(':').map(Number);
+      const prayerDate = new Date(now);
+      prayerDate.setHours(h, m, 0);
+      if (prayerDate > now) {
+        setNextPrayer({ name: p, time: formatTime(times[p]) });
+        return;
+      }
+    }
+    setNextPrayer({ name: 'Fajr', time: formatTime(times.Fajr) });
+  }, [times, currentTime]);
+
+  function formatTime(t) {
+    if (!t) return '';
+    const [h, m] = t.split(':').map(Number);
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const h12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
+    return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
+  }
+
+  const displayPrayers = times ? [
+    { name: 'Fajr', time: formatTime(times.Fajr) },
+    { name: 'Sunrise', time: formatTime(times.Sunrise) },
+    { name: 'Dhuhr', time: formatTime(times.Dhuhr) },
+    { name: 'Asr', time: formatTime(times.Asr) },
+    { name: 'Maghrib', time: formatTime(times.Maghrib) },
+    { name: 'Isha', time: formatTime(times.Isha) },
+  ] : [
+    { name: 'Fajr', time: '...' },
+    { name: 'Sunrise', time: '...' },
+    { name: 'Dhuhr', time: '...' },
+    { name: 'Asr', time: '...' },
+    { name: 'Maghrib', time: '...' },
+    { name: 'Isha', time: '...' },
+  ];
+
   return (
     <div className={styles.page}>
       {/* Hero Section */}
@@ -36,18 +107,12 @@ export default function Home() {
           <div className={styles.prayerCurrent}>
             <span className="material-symbols-outlined" style={{ color: 'var(--accent)', fontSize: '1.75rem' }}>schedule</span>
             <div>
-              <p className={styles.prayerLabel}>Current Prayer</p>
-              <h3 className={styles.prayerName}>Dhuhr</h3>
+              <p className={styles.prayerLabel}>Next Prayer</p>
+              <h3 className={styles.prayerName}>{nextPrayer.name}</h3>
             </div>
           </div>
           <div className={styles.prayerTimes}>
-            {[
-              { name: 'Fajr', time: '04:15' },
-              { name: 'Sunrise', time: '05:42' },
-              { name: 'Asr', time: '15:45' },
-              { name: 'Maghrib', time: '18:22' },
-              { name: 'Isha', time: '19:45' },
-            ].map(p => (
+            {displayPrayers.map(p => (
               <div key={p.name} className={styles.prayerTimeItem}>
                 <p className={styles.prayerTimeLabel}>{p.name}</p>
                 <p className={styles.prayerTimeValue}>{p.time}</p>
@@ -64,7 +129,7 @@ export default function Home() {
           <div className={styles.missionImgWrap}>
             <div className={styles.missionGlow} />
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM2KuOxXVsDq-vdscdD8AxUZC06xHtH9LQtiaOGuqLsf9VSYsFm4FHgaRpknLfVCFyEkdJ34hdbIxuxmQFvMMPjBOmW7t_9beE7bvGFvbyUA5svBNSiXd-XDaL-C-DIFweEIeGCbMXoP3uNjbwagBYRggyggbuy4cUbdYf13c6G3pOXgdqGYyrkur71r72xTYMJKlzCfL5IaAu73lYLTdPOc0_T2PxQipUjfaPCDwJYIPZ1-6v1y0HeTNeGdrwSSWo9cnAmJmXKzIN"
+              src="/pictures/home.png"
               alt="Community gathering"
               className={styles.missionImg}
             />
