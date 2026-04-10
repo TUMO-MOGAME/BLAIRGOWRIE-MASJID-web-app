@@ -29,19 +29,19 @@ export default function EventsPage() {
           {/* Featured Event */}
           <div className={styles.featuredEvent}>
             <div className={styles.featuredImg}>
-              <img src="/pictures/salah.png" alt="Ramadan event" />
+              <img src="/pictures/The%20History%20of%20Ramadan%20%26%20Eid_D.jpg" alt="Ramadan event" />
             </div>
             <div className={styles.featuredContent}>
               <div className={styles.eventMeta}>
                 <span className="material-symbols-outlined" style={{fontSize:'0.875rem'}}>calendar_today</span>
-                <span>March 2024</span>
+                <span>March 2026</span>
               </div>
-              <h3 className={styles.featuredTitle}>Ramadan 2024: Spiritual Excellence</h3>
+              <h3 className={styles.featuredTitle}>Ramadan 2026: Spiritual Excellence</h3>
               <p className={styles.featuredDesc}>Join our community for Taraweeh prayers, weekend Iftars, and nightly lectures throughout the holy month.</p>
               <div className={styles.featuredActions}>
                 <button className="btn-filled">View Schedule</button>
                 <span className={styles.eventLocation}>
-                  <span className="material-symbols-outlined" style={{fontSize:'1rem'}}>location_on</span> Main Prayer Hall
+                  <span className="material-symbols-outlined" style={{fontSize:'1rem'}}>location_on</span> BLAIRGOWRIE MASJID
                 </span>
               </div>
             </div>
