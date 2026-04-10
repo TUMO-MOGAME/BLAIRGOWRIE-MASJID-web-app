@@ -23,11 +23,11 @@ export default function ProspectusPage() {
             <span className={styles.label}>Foundation &amp; Future</span>
             <h2 className={styles.sectionTitle}>A Sanctuary for Generations</h2>
             <div className={styles.textBody}>
-              <p className={styles.dropCap}>The Blairgowrie Masjid project represents more than just a place of prayer; it is a meticulously planned ecosystem designed to serve the spiritual, social, and educational needs of our growing community. Our vision is to create a landmark of tranquility that honors Islamic tradition while embracing modern community dynamics.</p>
+              <p className={`${styles.dropCap} ${styles.veryWhiteText}`}>The Blairgowrie Masjid project represents more than just a place of prayer; it is a meticulously planned ecosystem designed to serve the spiritual, social, and educational needs of our growing community. Our vision is to create a landmark of tranquility that honors Islamic tradition while embracing modern community dynamics.</p>
               <div className={styles.quoteBlock}>
                 <p>&ldquo;To foster an environment where spiritual growth meets civic excellence, providing a beacon of light for all residents of Blairgowrie and beyond.&rdquo;</p>
               </div>
-              <p>Our commitment extends beyond the physical structure. We are dedicated to establishing programs that empower the youth, support the elderly, and create a welcoming space for dialogue and learning. The prospectus outlines our phased development approach, ensuring fiscal responsibility and community transparency at every milestone.</p>
+              <p className={styles.veryWhiteText}>Our commitment extends beyond the physical structure. We are dedicated to establishing programs that empower the youth, support the elderly, and create a welcoming space for dialogue and learning. The prospectus outlines our phased development approach, ensuring fiscal responsibility and community transparency at every milestone.</p>
             </div>
           </div>
           <div className={styles.cardsCol}>
@@ -67,7 +67,7 @@ export default function ProspectusPage() {
       <section className={styles.architecture}>
         <div className={styles.archGrid}>
           <div className={styles.archImg}>
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbGFIQKT9Sd459LIQDGmTtxNJFvPeScYhYK2edHqo7p00LyjQwgrZC1bjesPaCOyH_aZ1n_brkZfhF0W83vlj6j6AoCy0zwhIbkN1bZd0ARfZf1cBdK0a6Pga0-EYqTrqSqWJq4Cvw19lAfnEdXkSyVBnbbTzQPANTuLYeGlAEkwnJDooKN5lqLCjYJ7_EP4mV2dckWUznxuNc-k__BnCJ1IQ5aADrDy_DrjKcRVodLKpZ1xuu2ifgehp8GXL4j-zn_BjkI9iz8nBK" alt="Masjid Concept" />
+            <img src="/pictures/prospectues.png" alt="Masjid Concept" />
           </div>
           <div className={styles.archText}>
             <h3 className={styles.archTitle}>The Blueprint of Serenity</h3>
