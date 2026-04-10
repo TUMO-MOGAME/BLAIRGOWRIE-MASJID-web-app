@@ -37,7 +37,7 @@ export default function Home() {
     const prayers = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
     const now = currentTime;
     for (const p of prayers) {
-      if(p === 'Sunrise') continue; // We usually calculate next prayer based on obligatory prayers
+      if (p === 'Sunrise') continue; // We usually calculate next prayer based on obligatory prayers
       const [h, m] = times[p].split(':').map(Number);
       const prayerDate = new Date(now);
       prayerDate.setHours(h, m, 0);
@@ -129,7 +129,7 @@ export default function Home() {
           <div className={styles.missionImgWrap}>
             <div className={styles.missionGlow} />
             <img
-              src="/pictures/salah.png"
+              src="/pictures/home.png"
               alt="Community gathering"
               className={styles.missionImg}
             />
@@ -162,7 +162,7 @@ export default function Home() {
           <div className={styles.newsHeader}>
             <div>
               <h2 className={styles.sectionTitle}>News &amp; Community Updates</h2>
-              <p style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>Stay connected with the latest happenings at our Masjid.</p>
+              <p style={{ color: 'var(--accent)', fontSize: '0.78rem' }}>Stay connected with the latest happenings at our Masjid.</p>
             </div>
             <a href="#" className={styles.viewAll}>
               View All News <span className="material-symbols-outlined">arrow_forward</span>
