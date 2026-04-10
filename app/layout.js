@@ -25,7 +25,6 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <WebGLBackground />
-        <ThemeToggle />
         <div className="scroll-content">
           <Navbar />
           <main>

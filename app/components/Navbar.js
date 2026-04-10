@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
+import ThemeToggle from './ThemeToggle';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -45,6 +46,7 @@ export default function Navbar() {
 
           <div className={styles.actions}>
             <Link href="/donate" className={styles.donateBtn}>DONATE</Link>
+            <ThemeToggle />
             <button className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
               <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span>
             </button>
