@@ -76,8 +76,8 @@
   transition: all 0.2s ease;
 }
 
-.link:hover {
-  color: var(--fg);
+.link:hover, .active {
+  color: var(--accent);
   transform: translateX(4px);
 }
 

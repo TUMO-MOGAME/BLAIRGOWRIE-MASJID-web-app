@@ -1,7 +1,21 @@
+'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: '/', label: 'Home', styleClass: styles.link },
+    { href: '/about', label: 'About', styleClass: styles.link },
+    { href: '/salah-times', label: 'Salah Times', styleClass: styles.link },
+    { href: '/events', label: 'Events', styleClass: styles.link },
+    { href: '/contact', label: 'Contact', styleClass: styles.link },
+    { href: '/prospectus', label: 'Prospectus →', styleClass: styles.linkGold },
+    { href: '/donate', label: 'Donate →', styleClass: styles.linkGold },
+  ];
+
   return (
     <footer className={styles.footer}>
       <div className={styles.grid}>
@@ -15,13 +29,15 @@ export default function Footer() {
         <div>
           <h3 className={styles.colTitle}>NAVIGATE</h3>
           <div className={styles.links}>
-            <Link href="/" className={styles.link}>Home</Link>
-            <Link href="/about" className={styles.link}>About</Link>
-            <Link href="/salah-times" className={styles.link}>Salah Times</Link>
-            <Link href="/events" className={styles.link}>Events</Link>
-            <Link href="/contact" className={styles.link}>Contact</Link>
-            <Link href="/prospectus" className={styles.linkGold}>Prospectus →</Link>
-            <Link href="/donate" className={styles.linkGold}>Donate →</Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${link.styleClass} ${pathname === link.href ? styles.active : ''}`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
 
