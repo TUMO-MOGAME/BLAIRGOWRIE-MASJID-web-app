@@ -16,7 +16,7 @@ export default function DonatePage() {
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroBg}>
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuActSVSu7fIQV3uRnzj-j5QwqcfwrGG73OTGqN3tQQSI5uegf1xqNSXVKFxYXjaMMYKpSRUjjAFjRyOWuOKepqs8XxcskPCW2V7ZOod3PcY1SdJWmHAggmFBfK1M03jNIhySMOWRI02fkvk1eve2dM2ozen9YGtvHbjQCeBGXJRZIUsdJJeRQLYgzhdVojBdHBUuteke4Z1bIory0vZ1QEA-62Y0gcRfQ8pD26eIdXPELfUsq69mg3ps00cvzoq3PRN775r5ZIWLPvQ" alt="" className={styles.heroImg} />
+          <img src="/pictures/download.png" alt="Quran" className={styles.heroImg} />
         </div>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>Make a Donation</h1>
@@ -35,7 +35,7 @@ export default function DonatePage() {
             </div>
           </div>
           <div className={styles.messageImgWrap}>
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM2dmKAocJ22RvisVM7MbxIxv3KjdEAiaCA_AoDnf78M4MsoRGF75-hXLzc6vFyycGvUewEPE4ZK5CaDSX--XJ91qMeNSRn8DpVFeB2miiuQv_VzPTea32OiJcPSUV8xIm7YjTAyNx7RqUDH1f6IY_omj_pW8iVFAiZUhw4lQbpwpVlTC_Zrd-zMOkxBKs_lf3y4c45_nkuQu7W8_zsBUdjrBj7U6xS0KCShE1u-fQf7UXEtvIX5ru20cAPKz4PDqIQs7AmNbVhEsC" alt="Mosque interior" className={styles.messageImg} />
+            <img src="/pictures/download%20(6).png" alt="Mosque interior" className={styles.messageImg} />
           </div>
         </div>
       </section>

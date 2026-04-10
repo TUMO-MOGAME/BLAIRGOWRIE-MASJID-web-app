@@ -80,7 +80,7 @@ export default function Home() {
         <div className={styles.heroBg}>
           <div className={styles.heroGradient} />
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnfefumQ3Ju1BweQZkOn715vW2EpvNv9EvGBsN-BqNGRBsHiqVNSZT32FwzXfHwc2t1T_8QFbWfj9npZmJ4EKR5iX2voIJRpwvcQaDm5Xvgt3t8cVtgY0Q3tjTF7MvT7xMnNE44OWJj17fhIao4bo8DpON03mv3HmLf6DqNnYmvRrNrndU7yHbgoM3gNpCbmmN9VvPNK9GPIoPxSZJuN_KU3l50rGj6gM0aB8ml2hdlQ1OtLkYtfiZR5HSpbkmAzTKEe3CKy9yF0QU"
+            src="/pictures/placeview2.png"
             alt="Masjid Architecture"
             className={styles.heroImg}
           />
@@ -129,7 +129,7 @@ export default function Home() {
           <div className={styles.missionImgWrap}>
             <div className={styles.missionGlow} />
             <img
-              src="/pictures/home.png"
+              src="/pictures/salah.png"
               alt="Community gathering"
               className={styles.missionImg}
             />

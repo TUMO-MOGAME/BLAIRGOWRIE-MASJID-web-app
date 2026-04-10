@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className={styles.hero}>
         <div className={styles.heroBg}>
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmZ8IEBCRSN2VoV0lvmoXJ4oMtNIqxoT9iHXFSbEE5vLVy1Lmyg86anA4cCMU4-xQ0303Ptak9V57klAVAHn1Xd2zT0MCP9WrJNyI8z-J1Sf1fijSDKbImqt_4-CxLn5gpFqs07JosqVLnPtVtgLMC3g774aFhSUu0mY-vrfYZziqc1Rwc0d078FfeULNdYsbaL-lseJTE5Giyzm57SY__qGwuOli5breLwNIw_tmjJXIphGMUS06jlWNzrkZdO5U3-gyDhh3QDdp_"
+            src="/pictures/placeview1.png"
             alt="Masjid Exterior"
             className={styles.heroImg}
           />

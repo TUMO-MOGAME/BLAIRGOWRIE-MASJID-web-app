@@ -9,7 +9,7 @@ export default function EventsPage() {
       {/* Hero */}
       <header className={styles.hero}>
         <div className={styles.heroBg}>
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjOGmkpMmSVsYKcZhLwuAtFeRx5T3e18wh-iOpndyNjtIn2k4z67lcvzpLrim5_XMGoO_M1HQEvQs59OX_SWk9-m7Ugo8HDNRlMQpRcI9ns_1gyKJTWdIyhk43gbmqbkKIwT9cMTRVnRxvDPNUXxAH4PPO7gmW7hclTh7cNG9zhgQhrAIlXwpAuOvBJOlD2lAdCxceE5dVxwXpNu6psqTAITqjrlhf0PvXhqfXQvxS05UwFpyJibuhf_TiscJfmctgsPUYF-oV8tpW" alt="" className={styles.heroImg} />
+          <img src="/pictures/download%20(6).png" alt="Events" className={styles.heroImg} />
           <div className={styles.heroOverlay} />
         </div>
         <div className={styles.heroContent}>
@@ -29,7 +29,7 @@ export default function EventsPage() {
           {/* Featured Event */}
           <div className={styles.featuredEvent}>
             <div className={styles.featuredImg}>
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnEtM1ZmUJoVeSKolAOjX3Dwxhn3QR27KGWiVh9eL-bhoAMFeMWAaJ3PHqhhd0mFt4DODEQxpucAbb-O_GT_vEd-V83Cv5ggQ8By-mwGBN8vptkl29u2kd8PrawK5MiMmQnLrj7eiv51FH8QzailMDWgrDz7qZsI2H73GPZi9hJlDVojzqH2fLDBdmpRsMatS7KqzjJv9mzlxmXx9FoIOb-xtfnPnEwQsw-6VueqPqeE8kbRXCgSjEduvjAVtNBI37jYyB1LpHHxog" alt="Ramadan event" />
+              <img src="/pictures/salah.png" alt="Ramadan event" />
             </div>
             <div className={styles.featuredContent}>
               <div className={styles.eventMeta}>
