@@ -32,9 +32,9 @@ export default function AboutPage() {
           <div className={styles.journeyText}>
             <h2 className={styles.sectionTitle}>Our Journey to Purchase</h2>
             <div className={styles.textBlock}>
-              <p>Blairgowrie Masjid is one of the first initiatives of the Blairgowrie Muslim Association. We are a non-profit organization located in Blairgowrie, Randburg.</p>
+              <p className={styles.blackText}>Blairgowrie Masjid is one of the first initiatives of the Blairgowrie Muslim Association. We are a non-profit organization located in Blairgowrie, Randburg.</p>
               <p className={styles.quote}>&ldquo;We have signed an offer to purchase for a property and we intend to turn this property into a masjid.&rdquo;</p>
-              <p>We are currently raising funds for the purchase price. The masjid aims to serve the Islamic needs of the community and teach Islamic education, creating a hub for spiritual growth and community cohesion.</p>
+              <p className={styles.blackText}>We are currently raising funds for the purchase price. The masjid aims to serve the Islamic needs of the community and teach Islamic education, creating a hub for spiritual growth and community cohesion.</p>
             </div>
           </div>
           <div className={styles.journeyCta}>

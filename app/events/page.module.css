@@ -5,7 +5,7 @@
 .heroOverlay { display: none; }
 .heroContent { position: relative; z-index: 1; max-width: 48rem; margin: 0 auto; }
 .heroTitle { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; line-height: 0.92; }
-.heroSub { font-size: 1.15rem; color: #ffffff; max-width: 40rem; margin: 0 auto; line-height: 1.8; }
+.heroSub { font-size: 1.25rem; color: #ffffff; max-width: 40rem; margin: 0 auto; line-height: 1.8; }
 .mainGrid { max-width: 80rem; margin: 0 auto; padding: 0 5rem 6rem; display: grid; grid-template-columns: 1fr; gap: 3rem; }
 
 .eventsHeader { margin-bottom: 2rem; }
@@ -19,7 +19,7 @@
 .featuredContent { padding: 2rem; }
 .eventMeta { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); margin-bottom: 1rem; font-size: 0.9rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.25em; }
 .featuredTitle { font-family: var(--font-display); font-size: 2rem; color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; }
-.featuredDesc { color: #ffffff; margin-bottom: 1.5rem; font-size: 1.0rem; line-height: 1.7; }
+.featuredDesc { color: #ffffff; margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.7; }
 .featuredActions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
 .eventLocation { display: flex; align-items: center; gap: 0.25rem; font-size: 0.95rem; color: #ffffff; }
 .smallEvents { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
@@ -30,7 +30,7 @@
 .badge { padding: 0.25rem 0.75rem; background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-size: 0.8rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 100px; }
 .badgeGrey { padding: 0.25rem 0.75rem; background: color-mix(in srgb, var(--muted) 15%, transparent); color: var(--muted); font-size: 0.8rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 100px; }
 .smallCardTitle { font-family: var(--font-display); font-size: 1.8rem; color: var(--fg); margin-bottom: 0.75rem; letter-spacing: 0.03em; }
-.smallCardDesc { color: #ffffff; font-size: 1.0rem; margin-bottom: 1.5rem; }
+.smallCardDesc { color: #ffffff; font-size: 1.05rem; margin-bottom: 1.5rem; }
 .smallCardLink { color: var(--accent); font-size: 0.95rem; display: flex; align-items: center; gap: 0.25rem; text-transform: uppercase; letter-spacing: 0.15em; }
 
 .calendarCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 2rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); margin-bottom: 2rem; }
@@ -47,8 +47,8 @@
 .downloadBtn:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .hostCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); border: var(--hairline) solid var(--card-border); color: var(--fg); padding: 2rem; border-radius: var(--card-radius); position: relative; overflow: hidden; }
 .hostGhost { position: absolute; right: -1rem; bottom: -1rem; color: var(--muted); }
-.hostTitle { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: 0.03em; }
-.hostDesc { color: #ffffff; font-size: 1.0rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.hostTitle { font-family: var(--font-display); font-size: 2.0rem; color: var(--accent); margin-bottom: 1rem; letter-spacing: 0.03em; }
+.hostDesc { color: #ffffff; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
 .hostBtn { display: block; width: 100%; padding: 0.75rem; background: var(--accent); color: var(--bg); border-radius: 0.125rem; font-family: var(--font-mono); font-weight: 400; font-size: 0.95rem; text-align: center; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
 .hostBtn:hover { opacity: 0.85; }
 @media (min-width: 768px) { .smallEvents { grid-template-columns: repeat(2, 1fr); } .featuredEvent { grid-template-columns: 2fr 3fr; } .featuredImg { height: auto; } }

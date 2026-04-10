@@ -20,7 +20,7 @@
 
 .heroSubtitle {
     font-family: var(--font-mono);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: #ffffff;
     max-width: 40rem;
     margin: 0 auto;
@@ -210,15 +210,15 @@
 
 .infoTitle {
     font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--fg);
+    font-size: 2.0rem;
+    color: var(--accent);
     margin-bottom: 1rem;
     letter-spacing: 0.03em;
 }
 
 .infoText {
     color: #ffffff;
-    font-size: 1.0rem;
+    font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 1rem;
 }
@@ -275,7 +275,7 @@
 
 .quoteText {
     font-family: var(--font-mono);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-style: italic;
     color: #ffffff;
     max-width: 48rem;
