@@ -126,11 +126,11 @@
 }
 
 .table th {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.15em;
     font-weight: 400;
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.75rem;
 }
 
 .table tbody tr {
@@ -144,10 +144,10 @@
 
 .prayerCell {
     font-family: var(--font-display);
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: var(--fg);
     font-weight: 400;
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -155,16 +155,18 @@
 }
 
 .timeCell {
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 0.75rem;
     color: #ffffff;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .iqamahCell {
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 0.75rem;
     color: var(--accent);
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .currentRow {
@@ -314,12 +316,19 @@
 }
 
 @media (max-width: 767px) {
+    .prayerCell {
+        font-size: 1.1rem;
+        padding: 0.75rem 0.5rem;
+    }
 
-    .hero,
-    .mainGrid,
-    .info,
-    .quoteSection {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+    .timeCell, .iqamahCell {
+        font-size: 0.85rem;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .table th {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
     }
 }

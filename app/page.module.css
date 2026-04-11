@@ -89,7 +89,7 @@
   position: relative;
   z-index: 20;
   margin-top: -3rem;
-  padding: 0 1.5rem;
+  padding: 0 var(--section-padding-h);
 }
 
 .prayerStripInner {
@@ -510,7 +510,7 @@
   }
 
   .prayerStrip {
-    padding: 0 0.75rem;
+    padding: 0 var(--section-padding-h);
   }
 
   .prayerStripInner {

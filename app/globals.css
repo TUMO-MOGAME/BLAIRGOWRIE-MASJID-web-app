@@ -56,10 +56,10 @@
   --z-ui: 10;
 
   /* Fluid Spacing tokens */
-  --section-padding-v: clamp(4rem, 8vh, 10rem);
-  --section-padding-h: clamp(1.25rem, 5vw, 5rem);
-  --fluid-gap: clamp(1.5rem, 4vw, 4rem);
-  --container-max: 82rem;
+  --section-padding-v: clamp(3.5rem, 8vh, 8rem);
+  --section-padding-h: clamp(0.75rem, 5vw, 5rem);
+  --fluid-gap: clamp(1rem, 4vw, 3rem);
+  --container-max: 82.5rem;
 }
 
 :root[data-theme="light"] {

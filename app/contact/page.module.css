@@ -406,16 +406,4 @@
     text-align: center;
     gap: 1.5rem;
   }
-  
-  .contactValue, .phoneNumber {
-    font-size: 1.5rem;
-  }
-  
-  .formTitle {
-    font-size: 2.5rem;
-  }
-  
-  .heroTitle {
-    font-size: 3.5rem;
-  }
 }
