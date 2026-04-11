@@ -405,6 +405,11 @@
   .mapCard, .formCard, .contactCard {
     padding: 2rem 1.5rem;
   }
+
+  .mapWrapper {
+    aspect-ratio: 4 / 3;
+    min-height: 280px;
+  }
   
   .contactCard {
     flex-direction: column;
