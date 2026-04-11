@@ -134,9 +134,11 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
     let smooth = 0;
 
     let qualityScale = 1.0;
-    const MAX_DPR = 1.5;
-    const MIN_QUALITY = 0.82;
-    const MAX_QUALITY = 1.0;
+    const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    const MAX_DPR = isMobile ? 1.0 : 1.5;
+    const MIN_QUALITY = isMobile ? 0.5 : 0.82;
+    const MAX_QUALITY = isMobile ? 0.75 : 1.0;
+    if (isMobile) qualityScale = 0.6;
 
     let lastViewportW = 0;
     let lastViewportH = 0;
@@ -248,8 +250,14 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
     };
 
     /* ── render loop ── */
+    let frameCount = 0;
     const frame = (now) => {
       rafId.current = requestAnimationFrame(frame);
+      frameCount++;
+
+      /* On mobile, skip every other frame to reduce GPU load */
+      if (isMobile && qualityScale < 0.65 && (frameCount % 2 !== 0)) return;
+
       const dt = Math.min((now - lastNow) / 1000, 0.05);
       lastNow = now;
       maybeAdjustQuality(dt);
@@ -281,7 +289,7 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
   return (
     <>
       <canvas ref={canvasRef} id="webgl_canvas" style={{
-        position: 'fixed', inset: 0, width: '100vw', height: '100vh',
+        position: 'fixed', inset: 0, width: '100%', height: '100%',
         zIndex: 0, pointerEvents: 'none',
       }} />
 

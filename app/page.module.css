@@ -137,7 +137,7 @@
   padding: 0 1.5rem;
   border-left: var(--hairline) solid var(--card-border);
   border-right: var(--hairline) solid var(--card-border);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .prayerTimeItem {
@@ -515,16 +515,44 @@
     padding: 4rem 1.25rem;
   }
 
-  .prayerTimes {
-    border: none;
-    padding: 0;
-    justify-content: center;
+  .prayerStrip {
+    padding: 0 0.75rem;
   }
 
   .prayerStripInner {
     border-radius: var(--card-radius);
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
     text-align: center;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
+
+  .prayerCurrent {
+    justify-content: center;
+  }
+
+  .prayerTimes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem 0.5rem;
+    border: none;
+    border-top: var(--hairline) solid var(--card-border);
+    border-bottom: var(--hairline) solid var(--card-border);
+    padding: 0.75rem 0;
+    width: 100%;
+  }
+
+  .prayerTimeItem {
+    text-align: center;
+  }
+
+  .prayerTimeLabel {
+    font-size: 0.7rem;
+  }
+
+  .prayerTimeValue {
+    font-size: 0.95rem;
   }
 
   .prayerFullBtn {

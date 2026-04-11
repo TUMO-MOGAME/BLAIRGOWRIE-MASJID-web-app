@@ -48,6 +48,7 @@ export default function Navbar() {
             <Link href="/donate" className={styles.donateBtn}>DONATE</Link>
             <ThemeToggle />
             <button className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+              <span className={styles.menuLabel}>MENU</span>
               <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>

@@ -4,8 +4,6 @@
    Theme: Ocean Dark/Light with glassmorphism
    =================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 /* ── Reset ── */
 *,
@@ -71,6 +69,8 @@
 /* ── Base ── */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -304,8 +304,9 @@ p {
   }
 
   #hud {
-    top: 1rem !important;
-    right: 1rem !important;
+    bottom: 1rem !important;
+    right: 1.25rem !important;
+    top: auto !important;
   }
 }
 
