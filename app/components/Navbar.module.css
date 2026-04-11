@@ -114,6 +114,7 @@
   gap: 0.5rem;
   justify-content: center;
   min-height: 2.75rem;
+  height: 2.75rem;
   border-radius: 2rem;
   transition: all 0.3s ease;
   margin-right: -0.25rem;

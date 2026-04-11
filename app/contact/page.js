@@ -24,10 +24,15 @@ export default function ContactPage() {
                 <h2 className={styles.mapTitle}>Our Future Home</h2>
                 <p className={styles.mapDesc}>Blairgowrie Masjid intends to be located at <strong>70 Conrad Drive, Blairgowrie, Randburg.</strong></p>
                 <div className={styles.mapWrapper}>
-                  <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd9F6N2YlLBzgtdkD2A9Ky3x2tiI0oB_F0rnhvmWUZCVGoC7a5TD2v2hGP1VHZq4Rck2USEVRC5bqg-3F1UbasAVgfC-iAZZh6DOG0_xpxYbNkOahs_Bq3Z_-6TyB-EhtiuCE2QXL3SWJAEY1xBthk1Gq95sL7KSnj-rAnoMr8JZc9_yvufRGRTmAAhVxrm_tNM9V3DRJMF3qzcUe3YOZtrKRhfGbCI-SDqOlfVMGEm8RmZ9uH2F42tGo7erImKmSbW2tW2yZtsO5O"
-                    alt="Map view"
-                    className={styles.mapImg}
+                  <iframe
+                    src="https://maps.google.com/maps?q=70+Conrad+Drive+Blairgowrie+South+Africa&z=16&output=embed&hl=en"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, display: 'block' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Blairgowrie Masjid Location"
                   />
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=70+Conrad+Drive+Blairgowrie+Randburg"
@@ -63,12 +68,12 @@ export default function ContactPage() {
                 <div>
                   <h4 className={styles.contactLabel}>Phone &amp; WhatsApp</h4>
                   <div className={styles.phoneList}>
-                    <div>
+                    <div className={styles.phoneEntry}>
                       <p className={styles.phoneName}>Hafidh Yaseen Waja</p>
                       <p className={styles.phoneNumber}>072 441 1651</p>
                     </div>
                     <hr className={styles.phoneDivider} />
-                    <div>
+                    <div className={styles.phoneEntry}>
                       <p className={styles.phoneName}>Brother Mohammed M Khan</p>
                       <p className={styles.phoneNumber}>079 879 7246</p>
                     </div>

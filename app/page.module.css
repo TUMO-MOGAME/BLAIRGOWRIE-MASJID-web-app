@@ -564,13 +564,14 @@
   .bodyText {
     font-size: 0.95rem;
     line-height: 1.7;
-    color: #000000;
-    opacity: 1;
+    color: var(--fg);
+    opacity: 0.8;
   }
 
   .pillarText {
     font-size: 0.95rem;
-    color: #000000;
+    color: var(--fg);
+    opacity: 0.8;
   }
 
   .newsCardDesc {

@@ -1,6 +1,6 @@
 .themeToggle {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border: none;
   background: color-mix(in srgb, var(--muted) 15%, transparent);
   border-radius: 50%;

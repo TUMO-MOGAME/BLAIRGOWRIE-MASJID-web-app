@@ -1,44 +1,426 @@
-.page { padding-top: 5rem; }
-.hero { max-width: 80rem; margin: 0 auto; padding: 5rem 5rem 3rem; text-align: center; }
-.heroTitle { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); margin-bottom: 1.5rem; letter-spacing: 0.03em; line-height: 0.92; }
-.heroSub { font-size: 1.15rem; color: var(--muted); max-width: 40rem; margin: 0 auto; line-height: 1.8; }
-.main { max-width: 80rem; margin: 0 auto; padding: 0 5rem 6rem; }
-.mainGrid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-.leftCol { display: flex; flex-direction: column; gap: 2rem; }
-.mapCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 2rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); position: relative; overflow: hidden; }
-.mapCardInner { position: relative; z-index: 1; }
-.mapGhost { position: absolute; top: 0; right: 0; padding: 2rem; color: var(--muted); }
-.mapTitle { font-family: var(--font-display); font-size: 2rem; color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; }
-.mapDesc { color: var(--muted); font-size: 1.15rem; line-height: 1.8; margin-bottom: 2rem; }
-.mapDesc strong { font-weight: 400; color: var(--fg); }
-.mapWrapper { position: relative; width: 100%; height: 20rem; border-radius: var(--card-radius); overflow: hidden; border: var(--hairline) solid var(--card-border); }
-.mapImg { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.5); opacity: 0.5; }
-.mapPin { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--accent); color: var(--bg); padding: 0.5rem 1rem; border-radius: 100px; display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; font-weight: 400; letter-spacing: 0.1em; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-.contactCards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-.contactCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 1.5rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); border-left: 2px solid var(--accent); display: flex; align-items: flex-start; gap: 1rem; }
-.contactIcon { background: color-mix(in srgb, var(--accent) 15%, transparent); padding: 0.75rem; border-radius: 0.5rem; color: var(--accent); }
-.contactLabel { font-weight: 400; color: var(--accent); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.25rem; }
-.contactValue { color: var(--fg); font-weight: 400; font-size: 1.15rem; }
-.phoneList { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
-.phoneName { font-size: 0.9rem; color: var(--muted); }
-.phoneNumber { color: var(--fg); font-size: 1.15rem; }
-.phoneDivider { border: none; border-top: var(--hairline) solid var(--card-border); }
-.rightCol {}
-.formCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 2.5rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); color: var(--fg); position: relative; overflow: hidden; }
-.formGhost { position: absolute; bottom: -2rem; right: -2rem; color: var(--muted); }
-.formTitle { font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 0.03em; }
-.formSub { color: var(--muted); margin-bottom: 2rem; font-size: 1.0rem; }
-.form { display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 1; }
-.formGroup { display: flex; flex-direction: column; gap: 0.5rem; }
-.formGroup label { font-size: 0.95rem; font-weight: 400; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
-.formGroup input, .formGroup textarea { background: color-mix(in srgb, var(--fg) 5%, transparent); border: var(--hairline) solid var(--card-border); border-radius: 0.25rem; padding: 1rem; color: var(--fg); font-size: 1.15rem; font-family: var(--font-mono); transition: border-color 0.3s; }
-.formGroup input::placeholder, .formGroup textarea::placeholder { color: var(--muted); }
-.formGroup input:focus, .formGroup textarea:focus { outline: none; border-color: var(--accent); }
-.submitBtn { width: 100%; background: var(--accent); color: var(--bg); font-weight: 400; padding: 0.75rem; border: none; border-radius: 0.125rem; font-size: 0.95rem; font-family: var(--font-mono); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
-.submitBtn:hover { opacity: 0.85; }
-.successMsg { text-align: center; padding: 3rem 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-.successMsg h3 { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.03em; }
-.successMsg p { color: var(--muted); font-size: 1.0rem; }
-@media (min-width: 768px) { .contactCards { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .mainGrid { grid-template-columns: 7fr 5fr; } }
-@media (max-width: 767px) { .hero, .main { padding-left: 1.25rem; padding-right: 1.25rem; } }
+.page {
+  padding-top: 5rem;
+}
+
+.hero {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 8rem 5rem 4rem;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 8rem);
+  color: var(--fg);
+  margin-bottom: 2rem;
+  letter-spacing: 0.03em;
+  line-height: 0.85;
+}
+
+.heroSub {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: var(--accent);
+  max-width: 42rem;
+  margin: 0 auto;
+  line-height: 1.8;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 5rem 10rem;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Map Card */
+.mapCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  padding: 3rem;
+  border-radius: var(--card-radius);
+  border: var(--hairline) solid var(--card-border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.mapCardInner {
+  position: relative;
+  z-index: 2;
+}
+
+.mapGhost {
+  position: absolute;
+  bottom: -2rem;
+  right: -1rem;
+  color: var(--accent);
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.mapTitle {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--fg);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+}
+
+.mapDesc {
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  max-width: 30rem;
+}
+
+.mapDesc strong {
+  font-weight: 400;
+  color: var(--fg);
+  border-bottom: 2px solid var(--accent);
+}
+
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  border: var(--hairline) solid var(--card-border);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mapCard:hover .mapWrapper {
+  transform: translateY(-5px);
+}
+
+.mapImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.7);
+  opacity: 0.8;
+  transition: filter 0.5s ease;
+}
+
+.mapCard:hover .mapImg {
+  filter: grayscale(0.2) brightness(0.9);
+}
+
+.mapPin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.mapPin:hover {
+  background: white;
+  color: black;
+  transform: translate(-50%, -55%);
+}
+
+/* Contact Cards */
+.contactCards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.contactCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  padding: 2.5rem;
+  border-radius: var(--card-radius);
+  border: var(--hairline) solid var(--card-border);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: all 0.4s ease;
+}
+
+.contactCard:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(10px);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.contactIcon {
+  width: 4rem;
+  height: 4rem;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+}
+
+.contactCard:hover .contactIcon {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.contactLabel {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.contactValue {
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.75rem;
+  letter-spacing: 0.05em;
+}
+
+.phoneList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.phoneEntry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.phoneName {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.phoneNumber {
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 0.05em;
+}
+
+.phoneDivider {
+  border: none;
+  border-top: var(--hairline) solid var(--card-border);
+  opacity: 0.3;
+}
+
+/* Right Column (Form) */
+.formCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  padding: 4rem;
+  border-radius: var(--card-radius);
+  border: var(--hairline) solid var(--card-border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.formGhost {
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  color: var(--accent);
+  opacity: 0.03;
+  transform: rotate(-15deg);
+}
+
+.formTitle {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+  color: var(--fg);
+}
+
+.formSub {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  margin-bottom: 4rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formGroup label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.formGroup input, 
+.formGroup textarea {
+  background: rgba(255, 255, 255, 0.02);
+  border: none;
+  border-bottom: var(--hairline) solid var(--card-border);
+  padding: 1rem 0;
+  color: var(--fg);
+  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+
+.formGroup input::placeholder, 
+.formGroup textarea::placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.formGroup input:focus, 
+.formGroup textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+  padding-left: 1rem;
+}
+
+.submitBtn {
+  width: 100%;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 500;
+  padding: 1.25rem;
+  border: none;
+  border-radius: 0.125rem;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.successMsg {
+  text-align: center;
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.successMsg h3 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.successMsg p {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 24rem;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 6rem 1.25rem 2rem;
+  }
+  
+  .main {
+    padding: 0 1.25rem 6rem;
+  }
+  
+  .mapCard, .formCard, .contactCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contactCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .contactValue, .phoneNumber {
+    font-size: 1.5rem;
+  }
+  
+  .formTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+}
