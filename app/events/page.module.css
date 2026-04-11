@@ -1,12 +1,12 @@
 .page { padding-top: 5rem; }
-.hero { position: relative; padding: 5rem 5rem; overflow: hidden; text-align: center; }
+.hero { position: relative; padding: 5rem var(--section-padding-h); overflow: hidden; text-align: center; }
 .heroBg { position: absolute; inset: 0; z-index: 0; }
 .heroImg { width: 100%; height: 100%; object-fit: cover; opacity: 0.06; mix-blend-mode: screen; }
 .heroOverlay { display: none; }
 .heroContent { position: relative; z-index: 1; max-width: 48rem; margin: 0 auto; }
 .heroTitle { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; line-height: 0.92; }
 .heroSub { font-size: 1.25rem; color: #ffffff; max-width: 40rem; margin: 0 auto; line-height: 1.8; }
-.mainGrid { max-width: 80rem; margin: 0 auto; padding: 0 5rem 6rem; display: grid; grid-template-columns: 1fr; gap: 3rem; }
+.mainGrid { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--section-padding-h) var(--section-padding-v); display: grid; grid-template-columns: 1fr; gap: 3rem; }
 
 .eventsHeader { margin-bottom: 2rem; }
 .eventsLabel { color: var(--accent); font-size: 0.9rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.25em; display: block; margin-bottom: 0.5rem; }
@@ -53,4 +53,4 @@
 .hostBtn:hover { opacity: 0.85; }
 @media (min-width: 768px) { .smallEvents { grid-template-columns: repeat(2, 1fr); } .featuredEvent { grid-template-columns: 2fr 3fr; } .featuredImg { height: auto; } }
 @media (min-width: 1024px) { .mainGrid { grid-template-columns: 8fr 4fr; align-items: start; } .sidebar { position: sticky; top: 7rem; } }
-@media (max-width: 767px) { .hero, .mainGrid { padding-left: 1.25rem; padding-right: 1.25rem; } }
+@media (max-width: 767px) { /* Fluid padding handled via tokens */ }

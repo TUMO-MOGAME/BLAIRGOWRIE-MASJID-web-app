@@ -3,9 +3,9 @@
 }
 
 .hero {
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 8rem 5rem 4rem;
+  padding: 8rem var(--section-padding-h) 4rem;
   text-align: center;
 }
 
@@ -30,9 +30,9 @@
 }
 
 .main {
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 5rem 10rem;
+  padding: 0 var(--section-padding-h) var(--section-padding-v);
 }
 
 .mainGrid {
@@ -394,21 +394,11 @@
 }
 
 @media (max-width: 767px) {
-  .hero {
-    padding: 6rem 1.25rem 2rem;
-  }
-  
-  .main {
-    padding: 0 1.25rem 6rem;
-  }
-  
-  .mapCard, .formCard, .contactCard {
-    padding: 2rem 1.5rem;
-  }
-
+  /* Fluid padding handled via tokens */
   .mapWrapper {
     aspect-ratio: 4 / 3;
-    min-height: 280px;
+    min-height: 220px;
+    width: 100%;
   }
   
   .contactCard {

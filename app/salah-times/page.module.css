@@ -3,9 +3,9 @@
 }
 
 .hero {
-    max-width: 80rem;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 3rem 5rem;
+    padding: 3rem var(--section-padding-h);
     text-align: center;
 }
 
@@ -28,9 +28,9 @@
 }
 
 .mainGrid {
-    max-width: 80rem;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 5rem;
+    padding: 0 var(--section-padding-h);
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -187,9 +187,9 @@
 }
 
 .info {
-    max-width: 80rem;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 4rem 5rem;
+    padding: var(--section-padding-v) var(--section-padding-h);
 }
 
 .infoGrid {
@@ -260,9 +260,9 @@
 }
 
 .quoteSection {
-    max-width: 80rem;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 5rem 5rem;
+    padding: var(--section-padding-v) var(--section-padding-h);
     text-align: center;
 }
 

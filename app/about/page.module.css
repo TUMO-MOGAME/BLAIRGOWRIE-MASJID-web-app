@@ -32,9 +32,9 @@
 .heroContent {
   position: relative;
   z-index: 10;
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 3rem 5rem;
+  padding: 3rem var(--section-padding-h);
   width: 100%;
 }
 
@@ -73,8 +73,8 @@
 }
 
 .journey {
-  padding: 6rem 5rem;
-  max-width: 80rem;
+  padding: var(--section-padding-v) var(--section-padding-h);
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -152,7 +152,7 @@
 
 .vision {
   background: transparent;
-  padding: 6rem 5rem;
+  padding: var(--section-padding-v) var(--section-padding-h);
 }
 
 .visionCenter {
@@ -185,7 +185,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -220,8 +220,8 @@
 }
 
 .history {
-  padding: 6rem 5rem;
-  max-width: 80rem;
+  padding: var(--section-padding-v) var(--section-padding-h);
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -303,8 +303,8 @@
 }
 
 .legacy {
-  padding: 0 5rem 6rem;
-  max-width: 80rem;
+  padding: 0 var(--section-padding-h) var(--section-padding-v);
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -375,15 +375,5 @@
 }
 
 @media (max-width: 767px) {
-  .heroContent {
-    padding: 3rem 1.25rem;
-  }
-
-  .journey,
-  .vision,
-  .history,
-  .legacy {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
+  /* Fluid padding handled via tokens */
 }

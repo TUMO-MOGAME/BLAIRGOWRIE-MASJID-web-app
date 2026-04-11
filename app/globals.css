@@ -46,7 +46,7 @@
   --font-display: 'Bebas Neue', sans-serif;
   --font-mono: 'DM Mono', monospace;
 
-  /* Layout */
+  /* Layout & Spacing (Fluid) */
   --hairline: 0.0625rem;
   --ui-inset: 2rem;
   --nav-x: calc(var(--ui-inset) + 0.125rem);
@@ -54,6 +54,12 @@
   --reveal-duration: 0.5s;
   --card-radius: 0.875rem;
   --z-ui: 10;
+
+  /* Fluid Spacing tokens */
+  --section-padding-v: clamp(4rem, 8vh, 10rem);
+  --section-padding-h: clamp(1.25rem, 5vw, 5rem);
+  --fluid-gap: clamp(1.5rem, 4vw, 4rem);
+  --container-max: 82rem;
 }
 
 :root[data-theme="light"] {
@@ -241,9 +247,9 @@ p {
 
 /* ── Layout ── */
 .container {
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--section-padding-h);
 }
 
 /* ── Scroll container (all page content) ── */
@@ -257,7 +263,7 @@ p {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 6rem 5rem;
+  padding: var(--section-padding-v) var(--section-padding-h);
 }
 
 /* ── Reveal animations ── */

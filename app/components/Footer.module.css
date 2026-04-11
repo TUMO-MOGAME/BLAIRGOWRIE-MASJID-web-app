@@ -14,12 +14,12 @@
 }
 
 .grid {
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  padding: 3rem 2rem;
+  padding: 3rem var(--section-padding-h);
 }
 
 .logo {
@@ -90,9 +90,9 @@
 .linkGold:hover { transform: translateX(4px); }
 
 .bottom {
-  max-width: 80rem;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem var(--section-padding-h);
   border-top: var(--hairline) solid var(--card-border);
 }
 

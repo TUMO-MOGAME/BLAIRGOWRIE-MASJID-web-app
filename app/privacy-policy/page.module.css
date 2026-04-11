@@ -1,5 +1,5 @@
 .page { padding-top: 5rem; }
-.container { max-width: 56rem; margin: 0 auto; padding: 4rem 5rem 6rem; }
+.container { max-width: 56rem; margin: 0 auto; padding: var(--section-padding-v) var(--section-padding-h); }
 .header { margin-bottom: 3rem; }
 .title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; line-height: 0.92; }
 .meta { display: flex; flex-wrap: wrap; gap: 0.5rem; color: var(--muted); font-weight: 400; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; }
@@ -10,7 +10,7 @@
 .decorOverlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg), transparent); }
 .content { display: flex; flex-direction: column; gap: 3rem; }
 .intro { font-family: var(--font-mono); font-size: 1.15rem; line-height: 1.8; color: var(--accent); font-style: italic; }
-.section {}
+
 .sectionHead { display: flex; align-items: flex-start; gap: 1.5rem; }
 .sectionNum { display: none; }
 .sectionTitle { font-family: var(--font-display); font-size: 2rem; color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; }
@@ -38,4 +38,4 @@
   .securitySection { flex-direction: row; }
   .contactRow { flex-direction: row; }
 }
-@media (max-width: 767px) { .container { padding-left: 1.25rem; padding-right: 1.25rem; } }
+@media (max-width: 767px) { /* Fluid padding handled via tokens */ }
