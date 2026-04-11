@@ -395,6 +395,11 @@
 
 @media (max-width: 767px) {
   /* Fluid padding handled via tokens */
+  
+  .mapCard {
+    padding: 1.5rem 1rem;
+  }
+
   .mapWrapper {
     aspect-ratio: 4 / 3;
     min-height: 220px;

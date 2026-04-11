@@ -572,8 +572,12 @@
     color: #ffffff;
   }
 
+  .locationGrid {
+    gap: 1.5rem;
+  }
+
   .locationInfo {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem;
     text-align: center;
   }
 
@@ -588,6 +592,7 @@
     width: 100%;
     max-width: 100%;
     height: auto;
+    border-radius: var(--card-radius);
   }
 
   .directionsBtn {
