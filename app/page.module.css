@@ -347,6 +347,7 @@
   grid-template-columns: 1fr;
   gap: 3rem;
   align-items: stretch;
+  width: 100%;
 }
 
 .locationInfo {
@@ -368,10 +369,12 @@
   color: var(--fg);
   letter-spacing: 0.03em;
   line-height: 1.1;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .locationDesc {
-  color: #ffffff;
+  color: var(--muted);
   font-size: 1.15rem;
   line-height: 1.7;
   margin-bottom: 2rem;
