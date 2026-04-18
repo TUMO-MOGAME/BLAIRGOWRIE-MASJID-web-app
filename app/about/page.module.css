@@ -106,13 +106,15 @@
 }
 
 .ctaCard {
-  background: var(--card-bg);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  background:
+    linear-gradient(rgba(10, 10, 15, 0.82), rgba(10, 10, 15, 0.92)),
+    url('/pictures/teamwork.webp') center/cover no-repeat;
   border-radius: var(--card-radius);
   padding: 2rem;
   border: var(--hairline) solid var(--card-border);
   border-left: 2px solid var(--accent);
+  position: relative;
+  overflow: hidden;
 }
 
 .ctaTitle {
@@ -232,9 +234,9 @@
 }
 
 .historyHero {
-  background: var(--card-bg);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  background:
+    linear-gradient(to top, rgba(10, 10, 15, 0.92) 0%, rgba(10, 10, 15, 0.55) 55%, rgba(10, 10, 15, 0.25) 100%),
+    url('/pictures/muslim-boy-dua.webp') center/cover no-repeat;
   color: var(--fg);
   padding: 3rem;
   border-radius: var(--card-radius);
@@ -309,13 +311,15 @@
 }
 
 .legacyInner {
-  background: var(--card-bg);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  background:
+    linear-gradient(rgba(10, 10, 15, 0.78), rgba(10, 10, 15, 0.88)),
+    url('/pictures/muslim-sujud.webp') center/cover no-repeat;
   border-radius: var(--card-radius);
   border: var(--hairline) solid var(--card-border);
   padding: 3rem 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .legacyTitle {

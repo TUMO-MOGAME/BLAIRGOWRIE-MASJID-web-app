@@ -351,15 +351,17 @@
 }
 
 .locationInfo {
-  background: var(--card-bg);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  background:
+    linear-gradient(rgba(10, 10, 15, 0.82), rgba(10, 10, 15, 0.92)),
+    url('/pictures/quran.webp') center/cover no-repeat;
   padding: 3rem;
   border-radius: var(--card-radius);
   border: var(--hairline) solid var(--card-border);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .locationTitle {
