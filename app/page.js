@@ -80,7 +80,7 @@ export default function Home() {
         <div className={styles.heroBg}>
           <div className={styles.heroGradient} />
           <img
-            src="/pictures/placeview2.png"
+            src="/pictures/placeview2.webp"
             alt="Masjid Architecture"
             className={styles.heroImg}
           />
@@ -129,7 +129,7 @@ export default function Home() {
           <div className={styles.missionImgWrap}>
             <div className={styles.missionGlow} />
             <img
-              src="/pictures/home.png"
+              src="/pictures/home.webp"
               alt="Community gathering"
               className={styles.missionImg}
             />

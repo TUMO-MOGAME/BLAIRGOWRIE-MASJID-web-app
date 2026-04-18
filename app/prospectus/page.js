@@ -67,7 +67,7 @@ export default function ProspectusPage() {
       <section className={styles.architecture}>
         <div className={styles.archGrid}>
           <div className={styles.archImg}>
-            <img src="/pictures/prospectus.png" alt="Masjid Concept" />
+            <img src="/pictures/prospectus.webp" alt="Masjid Concept" />
           </div>
           <div className={styles.archText}>
             <h3 className={styles.archTitle}>The Blueprint of Serenity</h3>
@@ -85,12 +85,12 @@ export default function ProspectusPage() {
         <h2 className={styles.sectionTitle} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>Design &amp; Views</h2>
         <div className={styles.galleryGrid}>
           {[
-            { src: '/pictures/placeview1.png', ratio: '16/9', alt: 'Place View 1' },
-            { src: '/pictures/placeview2.png', ratio: '16/9', alt: 'Place View 2' },
-            { src: '/pictures/designtemplate1.png', ratio: '3/4', alt: 'Design Template 1' },
-            { src: '/pictures/designtemplate2.png', ratio: '3/4', alt: 'Design Template 2' },
-            { src: '/pictures/design1.png', ratio: '3/2', alt: 'Design 1' },
-            { src: '/pictures/design2.png', ratio: '3/2', alt: 'Design 2' }
+            { src: '/pictures/placeview1.webp', ratio: '16/9', alt: 'Place View 1' },
+            { src: '/pictures/placeview2.webp', ratio: '16/9', alt: 'Place View 2' },
+            { src: '/pictures/designtemplate1.webp', ratio: '3/4', alt: 'Design Template 1' },
+            { src: '/pictures/designtemplate2.webp', ratio: '3/4', alt: 'Design Template 2' },
+            { src: '/pictures/design1.webp', ratio: '3/2', alt: 'Design 1' },
+            { src: '/pictures/design2.webp', ratio: '3/2', alt: 'Design 2' }
           ].map((img, i) => (
             <div key={i} className={styles.wrap} style={{ '--img': `url(${img.src})` }}>
               <img src={img.src} style={{ '--img-r': img.ratio }} alt={img.alt} />

@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className={styles.hero}>
         <div className={styles.heroBg}>
           <img
-            src="/pictures/placeview1.png"
+            src="/pictures/placeview1.webp"
             alt="Masjid Exterior"
             className={styles.heroImg}
           />

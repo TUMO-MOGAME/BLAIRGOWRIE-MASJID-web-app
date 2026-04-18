@@ -16,7 +16,7 @@ export default function DonatePage() {
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroBg}>
-          <img src="/pictures/download.png" alt="Quran" className={styles.heroImg} />
+          <img src="/pictures/mosque-interior.webp" alt="Mosque interior" className={styles.heroImg} />
         </div>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>Make a Donation</h1>
@@ -35,7 +35,7 @@ export default function DonatePage() {
             </div>
           </div>
           <div className={styles.messageImgWrap}>
-            <img src="/pictures/download%20(6).png" alt="Mosque interior" className={styles.messageImg} />
+            <img src="/pictures/mosque-interior.webp" alt="Mosque interior" className={styles.messageImg} />
           </div>
         </div>
       </section>

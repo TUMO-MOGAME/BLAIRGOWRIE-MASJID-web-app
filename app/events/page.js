@@ -9,7 +9,7 @@ export default function EventsPage() {
       {/* Hero */}
       <header className={styles.hero}>
         <div className={styles.heroBg}>
-          <img src="/pictures/download%20(6).png" alt="Events" className={styles.heroImg} />
+          <img src="/pictures/mosque-interior.webp" alt="Events" className={styles.heroImg} />
           <div className={styles.heroOverlay} />
         </div>
         <div className={styles.heroContent}>
@@ -29,7 +29,7 @@ export default function EventsPage() {
           {/* Featured Event */}
           <div className={styles.featuredEvent}>
             <div className={styles.featuredImg}>
-              <img src="/pictures/The%20History%20of%20Ramadan%20%26%20Eid_D.jpg" alt="Ramadan event" />
+              <img src="/pictures/ramadan-eid-history.webp" alt="Ramadan event" />
             </div>
             <div className={styles.featuredContent}>
               <div className={styles.eventMeta}>
