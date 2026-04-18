@@ -20,21 +20,21 @@
 
   /* Dark palette */
   --dark-bg: #0a0a0f;
-  --dark-fg: #e8e4d9;
-  --dark-muted: #6a6a7e;
+  --dark-fg: #f2efe6;
+  --dark-muted: #a8a8bc;
   --dark-accent: #c8ff47;
   --dark-secondary: #ffb347;
-  --dark-card-bg: rgba(10, 10, 15, 0.16);
-  --dark-card-border: rgba(200, 255, 71, 0.18);
+  --dark-card-bg: rgba(18, 18, 26, 0.72);
+  --dark-card-border: rgba(200, 255, 71, 0.22);
 
   /* Light palette */
   --light-bg: #eef4ff;
   --light-fg: #0b141a;
-  --light-muted: #6c8296;
+  --light-muted: #3d556a;
   --light-accent: #1b7ed6;
-  --light-secondary: #d97706;
-  --light-card-bg: rgba(245, 249, 255, 0.82);
-  --light-card-border: rgba(27, 126, 214, 0.22);
+  --light-secondary: #b45309;
+  --light-card-bg: rgba(245, 249, 255, 0.92);
+  --light-card-border: rgba(27, 126, 214, 0.28);
 
   /* Active (dark default) */
   --bg: var(--dark-bg);
@@ -163,7 +163,7 @@ h3 {
 p {
   font-size: 1.15rem;
   line-height: 1.8;
-  color: color-mix(in srgb, var(--fg) 55%, transparent);
+  color: var(--fg);
 }
 
 /* ── Tags / Labels ── */

@@ -120,7 +120,7 @@
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 400;
-  color: #ffffff;
+  color: var(--fg);
 }
 
 .prayerName {
@@ -216,7 +216,7 @@
 }
 
 .bodyText {
-  color: #000000;
+  color: var(--fg);
   font-size: 1.25rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
@@ -246,7 +246,7 @@
 
 .pillarText {
   font-size: 1.05rem;
-  color: #000000;
+  color: var(--fg);
 }
 
 /* News */
@@ -320,7 +320,7 @@
 }
 
 .newsCardDesc {
-  color: #ffffff;
+  color: var(--fg);
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
@@ -587,7 +587,7 @@
 
   .newsCardDesc {
     font-size: 0.85rem;
-    color: #ffffff;
+    color: var(--fg);
   }
 
   .locationGrid {

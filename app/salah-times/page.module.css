@@ -21,7 +21,7 @@
 .heroSubtitle {
     font-family: var(--font-mono);
     font-size: 1.25rem;
-    color: #ffffff;
+    color: var(--fg);
     max-width: 40rem;
     margin: 0 auto;
     line-height: 1.8;
@@ -95,7 +95,7 @@
 }
 
 .activeIqamah {
-    color: #ffffff;
+    color: var(--fg);
     font-size: 1.0rem;
     font-style: italic;
 }
@@ -122,7 +122,7 @@
 }
 
 .table thead tr {
-    color: #000000;
+    color: var(--accent);
 }
 
 .table th {
@@ -156,7 +156,7 @@
 
 .timeCell {
     padding: 1rem 0.75rem;
-    color: #ffffff;
+    color: var(--fg);
     font-size: 1rem;
     white-space: nowrap;
 }
@@ -219,7 +219,7 @@
 }
 
 .infoText {
-    color: #ffffff;
+    color: var(--fg);
     font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 1rem;
@@ -257,7 +257,7 @@
 }
 
 .noticeText {
-    color: #ffffff;
+    color: var(--fg);
     font-size: 0.95rem;
 }
 
@@ -279,7 +279,7 @@
     font-family: var(--font-mono);
     font-size: 1.25rem;
     font-style: italic;
-    color: #ffffff;
+    color: var(--fg);
     max-width: 48rem;
     margin: 0 auto;
     line-height: 1.8;

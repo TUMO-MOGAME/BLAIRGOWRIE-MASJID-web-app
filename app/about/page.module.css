@@ -95,7 +95,7 @@
 }
 
 .journeyText .blackText {
-  color: #000000 !important;
+  color: var(--fg) !important;
 }
 
 .quote {
@@ -125,7 +125,7 @@
 }
 
 .ctaDesc {
-  color: #ffffff;
+  color: var(--fg);
   font-size: 1.05rem;
   margin-bottom: 1.5rem;
 }
@@ -176,7 +176,7 @@
 .visionQuote {
   font-family: var(--font-mono);
   font-size: 1.15rem;
-  color: #ffffff;
+  color: var(--fg);
   font-style: italic;
   line-height: 1.8;
 }
@@ -215,7 +215,7 @@
 }
 
 .pillarDesc {
-  color: #ffffff;
+  color: var(--fg);
   font-size: 1.05rem;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .historyDesc {
-  color: #ffffff;
+  color: var(--fg);
   position: relative;
   z-index: 1;
   font-size: 1.15rem;
@@ -298,7 +298,7 @@
 }
 
 .historyCardText {
-  color: #ffffff;
+  color: var(--fg);
   font-size: 1.05rem;
 }
 
@@ -328,7 +328,7 @@
 }
 
 .legacyDesc {
-  color: #ffffff;
+  color: var(--fg);
   font-size: 1.15rem;
   margin-bottom: 2.5rem;
   max-width: 36rem;

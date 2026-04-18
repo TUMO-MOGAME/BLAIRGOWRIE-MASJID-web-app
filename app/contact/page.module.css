@@ -325,12 +325,12 @@
   text-transform: uppercase;
 }
 
-.formGroup input, 
+.formGroup input,
 .formGroup textarea {
-  background: rgba(255, 255, 255, 0.02);
+  background: color-mix(in srgb, var(--fg) 4%, transparent);
   border: none;
   border-bottom: var(--hairline) solid var(--card-border);
-  padding: 1rem 0;
+  padding: 1rem 0.75rem;
   color: var(--fg);
   font-size: 1.25rem;
   font-family: var(--font-mono);
@@ -338,16 +338,16 @@
   border-radius: 0;
 }
 
-.formGroup input::placeholder, 
+.formGroup input::placeholder,
 .formGroup textarea::placeholder {
-  color: rgba(255, 255, 255, 0.15);
+  color: color-mix(in srgb, var(--fg) 45%, transparent);
 }
 
-.formGroup input:focus, 
+.formGroup input:focus,
 .formGroup textarea:focus {
   outline: none;
   border-bottom-color: var(--accent);
-  background: rgba(255, 255, 255, 0.04);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
   padding-left: 1rem;
 }
 
