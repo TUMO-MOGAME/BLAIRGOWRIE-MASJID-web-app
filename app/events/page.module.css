@@ -53,4 +53,20 @@
 .hostBtn:hover { opacity: 0.85; }
 @media (min-width: 768px) { .smallEvents { grid-template-columns: repeat(2, 1fr); } .featuredEvent { grid-template-columns: 2fr 3fr; } .featuredImg { height: auto; } }
 @media (min-width: 1024px) { .mainGrid { grid-template-columns: 8fr 4fr; align-items: start; } .sidebar { position: sticky; top: 7rem; } }
-@media (max-width: 767px) { /* Fluid padding handled via tokens */ }
+@media (max-width: 767px) {
+  .eventsTitle { font-size: 2.25rem; }
+  .featuredContent, .smallCard, .calendarCard, .hostCard { padding: 1.75rem 1.25rem; }
+  .featuredImg { height: 13rem; }
+  .featuredTitle { font-size: 1.75rem; }
+  .smallCardTitle { font-size: 1.5rem; }
+  .hostTitle { font-size: 1.75rem; }
+  .featuredActions { gap: 0.75rem; }
+  .featuredActions .btn, .featuredActions .btn-filled { width: 100%; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .featuredContent, .smallCard, .calendarCard, .hostCard { padding: 1.5rem 1rem; }
+  .featuredImg { height: 11rem; }
+  .calendarDate { width: 2.5rem; height: 2.5rem; }
+  .calendarDay { font-size: 1rem; }
+  .calendarMonth { font-size: 0.7rem; }
+}

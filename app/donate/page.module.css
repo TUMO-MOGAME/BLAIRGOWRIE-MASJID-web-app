@@ -36,4 +36,20 @@
 .bottomTitle { font-family: var(--font-display); font-size: 2rem; color: var(--fg); font-style: normal; margin-bottom: 1rem; letter-spacing: 0.03em; }
 .bottomText { color: #ffffff; font-size: 1.1rem; }
 @media (min-width: 768px) { .messageGrid { grid-template-columns: 7fr 5fr; } .methodsGrid { grid-template-columns: 2fr 1fr; } .bankDetails { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 767px) { /* Fluid padding handled via tokens */ }
+@media (max-width: 767px) {
+  .eftCard, .cashCard { padding: 1.75rem 1.25rem; }
+  .eftHeader { gap: 1rem; margin-bottom: 1.5rem; }
+  .eftTitle { font-size: 1.75rem; }
+  .bankDetails { padding: 1.5rem 1rem; gap: 1.5rem; }
+  .bankValue { font-size: 1.05rem; word-break: break-all; }
+  .bankValueGold { font-size: 1.5rem; word-break: break-all; }
+  .cashTitle { font-size: 1.75rem; }
+  .messageQuote { font-size: 1rem; }
+  .messageBody { font-size: 1.05rem; }
+  .blackText { font-size: 1.05rem !important; }
+}
+@media (max-width: 400px) {
+  .eftCard, .cashCard { padding: 1.5rem 1rem; }
+  .bankDetails { padding: 1.25rem 0.875rem; }
+  .eftIcon, .cashIcon { width: 2.75rem; height: 2.75rem; }
+}

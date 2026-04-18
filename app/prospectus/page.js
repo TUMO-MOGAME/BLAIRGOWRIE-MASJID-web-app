@@ -67,7 +67,7 @@ export default function ProspectusPage() {
       <section className={styles.architecture}>
         <div className={styles.archGrid}>
           <div className={styles.archImg}>
-            <img src="/pictures/prospectues.png" alt="Masjid Concept" />
+            <img src="/pictures/prospectus.png" alt="Masjid Concept" />
           </div>
           <div className={styles.archText}>
             <h3 className={styles.archTitle}>The Blueprint of Serenity</h3>

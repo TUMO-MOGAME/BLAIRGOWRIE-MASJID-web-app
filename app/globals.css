@@ -23,6 +23,7 @@
   --dark-fg: #e8e4d9;
   --dark-muted: #6a6a7e;
   --dark-accent: #c8ff47;
+  --dark-secondary: #ffb347;
   --dark-card-bg: rgba(10, 10, 15, 0.16);
   --dark-card-border: rgba(200, 255, 71, 0.18);
 
@@ -31,6 +32,7 @@
   --light-fg: #0b141a;
   --light-muted: #6c8296;
   --light-accent: #1b7ed6;
+  --light-secondary: #d97706;
   --light-card-bg: rgba(245, 249, 255, 0.82);
   --light-card-border: rgba(27, 126, 214, 0.22);
 
@@ -39,6 +41,8 @@
   --fg: var(--dark-fg);
   --muted: var(--dark-muted);
   --accent: var(--dark-accent);
+  --secondary: var(--dark-secondary);
+  --secondary-fixed: var(--dark-secondary);
   --card-bg: var(--dark-card-bg);
   --card-border: var(--dark-card-border);
 
@@ -68,6 +72,7 @@
   --fg: var(--light-fg);
   --muted: var(--light-muted);
   --accent: var(--light-accent);
+  --secondary: var(--light-secondary);
   --card-bg: var(--light-card-bg);
   --card-border: var(--light-card-border);
 }
@@ -98,6 +103,11 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+iframe {
+  max-width: 100%;
+  border: 0;
 }
 
 a {

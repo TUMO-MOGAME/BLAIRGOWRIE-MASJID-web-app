@@ -17,4 +17,12 @@
 .imageCard img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
 .imageOverlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg), transparent); }
 @media (min-width: 768px) { .imageGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 767px) { /* Fluid padding handled via tokens */ }
+@media (max-width: 767px) {
+  .page { padding: 6rem 1.25rem 3rem; }
+  .confirmCard { padding: 2rem 1.25rem; }
+  .confirmDesc, .quote { font-size: 1rem; }
+}
+@media (max-width: 400px) {
+  .confirmCard { padding: 1.75rem 1rem; }
+  .confirmIcon { width: 3.25rem; height: 3.25rem; }
+}

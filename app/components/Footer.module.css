@@ -59,6 +59,8 @@
   font-size: 1.0rem;
   color: var(--muted);
   transition: color 0.2s ease;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .listItem:hover { color: var(--fg); }
@@ -105,4 +107,10 @@
 
 @media (min-width: 768px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .grid { padding: 2.5rem 1rem; gap: 1.75rem; }
+  .bottom { padding: 1.25rem 1rem; }
+  .listItem, .link, .linkGold { font-size: 0.9rem; }
 }

@@ -38,4 +38,16 @@
   .securitySection { flex-direction: row; }
   .contactRow { flex-direction: row; }
 }
-@media (max-width: 767px) { /* Fluid padding handled via tokens */ }
+@media (max-width: 767px) {
+  .sectionTitle { font-size: 1.6rem; }
+  .sectionText, .bulletList li, .securityText { font-size: 1rem; line-height: 1.7; }
+  .securitySection { padding: 1.75rem 1.25rem; }
+  .securityTitle { font-size: 1.5rem; }
+  .purposeCard, .contactSection, .highlightSection { padding: 1.5rem 1.25rem; }
+  .contactItem { font-size: 1rem; word-break: break-word; }
+  .decorImg { height: 12rem; }
+}
+@media (max-width: 400px) {
+  .contactItem { font-size: 0.95rem; }
+  .sectionHead { gap: 1rem; }
+}
