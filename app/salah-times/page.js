@@ -1,14 +1,11 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './page.module.css';
 import { supabase } from '../lib/supabase';
 
-const PRAYER_LABELS = {
-  fajr: 'Fajr', dhuhr: 'Dhuhr', asr: 'Asr',
-  maghrib: 'Maghrib', isha: 'Isha', jumuah: "Jumu'ah",
-};
+// ── Helpers ─────────────────────────────────────────────────────
 
-function formatChangeTime(t24) {
+function to12h(t24) {
   if (!t24) return '';
   const [hStr, mStr] = t24.split(':');
   const h = parseInt(hStr, 10);
@@ -18,11 +15,49 @@ function formatChangeTime(t24) {
   return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
 }
 
-function formatEffectiveDate(iso) {
-  return new Date(iso).toLocaleDateString(undefined, {
-    weekday: 'long', month: 'long', day: 'numeric',
-  });
+function addMinutes24(t24, mins) {
+  if (!t24) return null;
+  const [h, m] = t24.split(':').map(Number);
+  const d = new Date();
+  d.setHours(h, m + mins, 0);
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
+
+function toLocalDateIso(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+function formatShortDate(iso) {
+  return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
+// Postgres `time` comes back as "HH:MM:SS" — trim to "HH:MM" for our helpers
+function timeDbTo24(t) {
+  return t ? t.slice(0, 5) : null;
+}
+
+function ChangeCell({ change, styles }) {
+  if (!change) return <span className={styles.changeEmpty}>—</span>;
+  return (
+    <div className={styles.changeCellInner}>
+      {change.new_adhan_time && (
+        <span className={styles.changeLine}>
+          <span className={styles.changeKind}>Adhan</span>
+          <span className={styles.changeVal}>{to12h(timeDbTo24(change.new_adhan_time))}</span>
+        </span>
+      )}
+      {change.new_iqamah_time && (
+        <span className={styles.changeLine}>
+          <span className={styles.changeKind}>Iqamah</span>
+          <span className={styles.changeVal}>{to12h(timeDbTo24(change.new_iqamah_time))}</span>
+        </span>
+      )}
+      <span className={styles.changeFrom}>from {formatShortDate(change.effective_from)}</span>
+    </div>
+  );
+}
+
+// ── Page ─────────────────────────────────────────────────────────
 
 export default function SalahTimesPage() {
   const [times, setTimes] = useState(null);
@@ -30,11 +65,12 @@ export default function SalahTimesPage() {
   const [nextPrayer, setNextPrayer] = useState({ name: 'Loading...', time: '' });
   const [salahChanges, setSalahChanges] = useState([]);
 
-  // Iqamah offsets (minutes after adhan)
-  const iqamahOffsets = { Fajr: 30, Dhuhr: 15, Asr: 15, Maghrib: 5, Isha: 15 };
-  const jumuahAdhan = '12:15 PM';
-  const jumuahIqamah = '01:00 PM';
+  // Default Iqamah offsets (applied when no admin override exists)
+  const iqamahOffsets = { fajr: 30, dhuhr: 15, asr: 15, maghrib: 5, isha: 15 };
+  const jumuahDefaultAdhan24  = '12:15';
+  const jumuahDefaultIqamah24 = '13:00';
 
+  // Fetch today's prayer times from Aladhan API
   useEffect(() => {
     async function fetchTimes() {
       try {
@@ -42,14 +78,11 @@ export default function SalahTimesPage() {
         const dd = String(today.getDate()).padStart(2, '0');
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
-        // Blairgowrie, Randburg coordinates
         const res = await fetch(
           `https://api.aladhan.com/v1/timings/${dd}-${mm}-${yyyy}?latitude=-26.1076&longitude=28.0075&method=2`
         );
         const data = await res.json();
-        if (data.code === 200) {
-          setTimes(data.data.timings);
-        }
+        if (data.code === 200) setTimes(data.data.timings);
       } catch (err) {
         console.error('Failed to fetch prayer times:', err);
       }
@@ -60,19 +93,14 @@ export default function SalahTimesPage() {
     return () => clearInterval(timer);
   }, []);
 
-  // Load upcoming + recent salah time changes from Supabase
+  // Fetch ALL active salah changes (past + future). We partition them below.
   useEffect(() => {
     async function loadChanges() {
       try {
-        const today = new Date();
-        const cutoff = new Date(today);
-        cutoff.setDate(cutoff.getDate() - 14); // also show recently-effective changes for 14 days
-        const cutoffStr = cutoff.toISOString().slice(0, 10);
         const { data, error } = await supabase
           .from('salah_changes')
           .select('id, prayer, new_adhan_time, new_iqamah_time, effective_from, note')
           .eq('is_active', true)
-          .gte('effective_from', cutoffStr)
           .order('effective_from', { ascending: true });
         if (error) {
           console.warn('[salah-changes] load failed:', error.message);
@@ -86,47 +114,84 @@ export default function SalahTimesPage() {
     loadChanges();
   }, []);
 
+  // Partition changes into:
+  //   currentOverride[prayer] → latest change where effective_from <= today (acts as current)
+  //   upcomingChange[prayer]  → earliest change where effective_from >  today (shown in column)
+  const { currentOverride, upcomingChange } = useMemo(() => {
+    const current = {};
+    const upcoming = {};
+    const todayStr = toLocalDateIso(new Date());
+    salahChanges.forEach(c => {
+      if (c.effective_from <= todayStr) {
+        const existing = current[c.prayer];
+        if (!existing || existing.effective_from < c.effective_from) current[c.prayer] = c;
+      } else {
+        const existing = upcoming[c.prayer];
+        if (!existing || existing.effective_from > c.effective_from) upcoming[c.prayer] = c;
+      }
+    });
+    return { currentOverride: current, upcomingChange: upcoming };
+  }, [salahChanges]);
+
+  // Effective times (admin override takes precedence over API/calculated)
+  function effectiveAdhan24(prayerKey, apiName) {
+    const ov = currentOverride[prayerKey];
+    if (ov?.new_adhan_time) return timeDbTo24(ov.new_adhan_time);
+    if (!times) return null;
+    return times[apiName];
+  }
+
+  function effectiveIqamah24(prayerKey, apiName, offset) {
+    const ov = currentOverride[prayerKey];
+    if (ov?.new_iqamah_time) return timeDbTo24(ov.new_iqamah_time);
+    return addMinutes24(effectiveAdhan24(prayerKey, apiName), offset);
+  }
+
+  // Recompute "next prayer" whenever the effective adhan times change
   useEffect(() => {
     if (!times) return;
-    const prayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    const sequence = [
+      { key: 'fajr',    apiName: 'Fajr' },
+      { key: 'dhuhr',   apiName: 'Dhuhr' },
+      { key: 'asr',     apiName: 'Asr' },
+      { key: 'maghrib', apiName: 'Maghrib' },
+      { key: 'isha',    apiName: 'Isha' },
+    ];
     const now = currentTime;
-    for (const p of prayers) {
-      const [h, m] = times[p].split(':').map(Number);
+    for (const p of sequence) {
+      const t24 = effectiveAdhan24(p.key, p.apiName);
+      if (!t24) continue;
+      const [h, m] = t24.split(':').map(Number);
       const prayerDate = new Date(now);
       prayerDate.setHours(h, m, 0);
       if (prayerDate > now) {
-        setNextPrayer({ name: p, time: formatTime(times[p]) });
+        setNextPrayer({ name: p.apiName, time: to12h(t24) });
         return;
       }
     }
-    setNextPrayer({ name: 'Fajr', time: formatTime(times.Fajr) });
-  }, [times, currentTime]);
+    // All prayers today have passed — next is tomorrow's Fajr
+    const fajr24 = effectiveAdhan24('fajr', 'Fajr');
+    setNextPrayer({ name: 'Fajr', time: to12h(fajr24) });
+  }, [times, currentTime, currentOverride]);
 
-  function formatTime(t) {
-    if (!t) return '';
-    const [h, m] = t.split(':').map(Number);
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const h12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
-    return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
-  }
-
-  function addMinutes(t, mins) {
-    if (!t) return '';
-    const [h, m] = t.split(':').map(Number);
-    const d = new Date();
-    d.setHours(h, m + mins, 0);
-    const ampm = d.getHours() >= 12 ? 'PM' : 'AM';
-    const h12 = d.getHours() > 12 ? d.getHours() - 12 : d.getHours() === 0 ? 12 : d.getHours();
-    return `${String(h12).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')} ${ampm}`;
-  }
-
+  // Build table rows using effective times
   const prayerRows = times ? [
-    { name: 'Fajr', adhan: formatTime(times.Fajr), iqamah: addMinutes(times.Fajr, iqamahOffsets.Fajr), current: nextPrayer.name === 'Fajr' },
-    { name: 'Dhuhr', adhan: formatTime(times.Dhuhr), iqamah: addMinutes(times.Dhuhr, iqamahOffsets.Dhuhr), current: nextPrayer.name === 'Dhuhr' },
-    { name: 'Asr', adhan: formatTime(times.Asr), iqamah: addMinutes(times.Asr, iqamahOffsets.Asr), current: nextPrayer.name === 'Asr' },
-    { name: 'Maghrib', adhan: formatTime(times.Maghrib), iqamah: addMinutes(times.Maghrib, iqamahOffsets.Maghrib), current: nextPrayer.name === 'Maghrib' },
-    { name: 'Isha', adhan: formatTime(times.Isha), iqamah: addMinutes(times.Isha, iqamahOffsets.Isha), current: nextPrayer.name === 'Isha' },
-  ] : [];
+    { key: 'fajr',    name: 'Fajr',    adhan24: effectiveAdhan24('fajr', 'Fajr'),       iqamah24: effectiveIqamah24('fajr', 'Fajr', iqamahOffsets.fajr) },
+    { key: 'dhuhr',   name: 'Dhuhr',   adhan24: effectiveAdhan24('dhuhr', 'Dhuhr'),     iqamah24: effectiveIqamah24('dhuhr', 'Dhuhr', iqamahOffsets.dhuhr) },
+    { key: 'asr',     name: 'Asr',     adhan24: effectiveAdhan24('asr', 'Asr'),         iqamah24: effectiveIqamah24('asr', 'Asr', iqamahOffsets.asr) },
+    { key: 'maghrib', name: 'Maghrib', adhan24: effectiveAdhan24('maghrib', 'Maghrib'), iqamah24: effectiveIqamah24('maghrib', 'Maghrib', iqamahOffsets.maghrib) },
+    { key: 'isha',    name: 'Isha',    adhan24: effectiveAdhan24('isha', 'Isha'),       iqamah24: effectiveIqamah24('isha', 'Isha', iqamahOffsets.isha) },
+  ].map(p => ({
+    ...p,
+    adhan: to12h(p.adhan24),
+    iqamah: to12h(p.iqamah24),
+    current: nextPrayer.name === p.name,
+  })) : [];
+
+  // Jumu'ah with overrides
+  const jumuahOv = currentOverride['jumuah'];
+  const jumuahAdhan = to12h(jumuahOv?.new_adhan_time ? timeDbTo24(jumuahOv.new_adhan_time) : jumuahDefaultAdhan24);
+  const jumuahIqamah = to12h(jumuahOv?.new_iqamah_time ? timeDbTo24(jumuahOv.new_iqamah_time) : jumuahDefaultIqamah24);
 
   const currentTimeStr = currentTime.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit', hour12: false });
 
@@ -142,7 +207,6 @@ export default function SalahTimesPage() {
 
       {/* Main Grid */}
       <section className={styles.mainGrid}>
-        {/* Active Prayer Card */}
         <div className={styles.activeCard}>
           <div className={styles.activeGhost}>
             <span className="material-symbols-outlined" style={{ fontSize: '12rem' }}>schedule</span>
@@ -154,7 +218,9 @@ export default function SalahTimesPage() {
           <div className={styles.activeBottom}>
             <div className={styles.activeTime}>{currentTimeStr}</div>
             <p className={styles.activeIqamah}>
-              {nextPrayer.name !== 'Loading...' && times ? `Iqamah will be at ${prayerRows.find(p => p.name === nextPrayer.name)?.iqamah || ''}` : 'Loading times...'}
+              {nextPrayer.name !== 'Loading...' && times
+                ? `Iqamah will be at ${prayerRows.find(p => p.name === nextPrayer.name)?.iqamah || ''}`
+                : 'Loading times...'}
             </p>
           </div>
         </div>
@@ -168,6 +234,7 @@ export default function SalahTimesPage() {
                   <th>Prayer</th>
                   <th>Adhan</th>
                   <th>Iqamah</th>
+                  <th>Upcoming Change</th>
                 </tr>
               </thead>
               <tbody>
@@ -179,71 +246,24 @@ export default function SalahTimesPage() {
                     </td>
                     <td className={styles.timeCell}>{p.adhan}</td>
                     <td className={styles.iqamahCell}>{p.iqamah}</td>
+                    <td className={styles.changeCell}>
+                      <ChangeCell change={upcomingChange[p.key]} styles={styles} />
+                    </td>
                   </tr>
                 ))}
                 <tr className={styles.jumuahRow}>
                   <td className={styles.prayerCell} style={{ color: 'var(--secondary)' }}>Jumu&apos;ah</td>
                   <td className={styles.timeCell}>{jumuahAdhan}</td>
                   <td className={styles.iqamahCell} style={{ color: 'var(--secondary)' }}>{jumuahIqamah}</td>
+                  <td className={styles.changeCell}>
+                    <ChangeCell change={upcomingChange['jumuah']} styles={styles} />
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </section>
-
-      {/* Upcoming Salah Time Changes */}
-      {salahChanges.length > 0 && (
-        <section className={styles.changesSection}>
-          <div className={styles.changesHeader}>
-            <span className={styles.changesLabel}>
-              <span className="material-symbols-outlined" aria-hidden="true">schedule</span>
-              Iqamah Time Changes
-            </span>
-            <h2 className={styles.changesTitle}>What&apos;s changing</h2>
-          </div>
-          <div className={styles.changesList}>
-            {salahChanges.map((change) => {
-              const effDate = new Date(change.effective_from);
-              const today = new Date(new Date().toDateString());
-              const inEffect = effDate <= today;
-              return (
-                <div
-                  key={change.id}
-                  className={`${styles.changeRow} ${inEffect ? styles.changeInEffect : styles.changeUpcoming}`}
-                >
-                  <div className={styles.changePillar}>
-                    <span className={styles.changeStatus}>
-                      {inEffect ? 'In effect' : 'Upcoming'}
-                    </span>
-                    <span className={styles.changeDate}>{formatEffectiveDate(change.effective_from)}</span>
-                  </div>
-                  <div className={styles.changeBody}>
-                    <h3 className={styles.changePrayer}>
-                      {PRAYER_LABELS[change.prayer] || change.prayer}
-                    </h3>
-                    <div className={styles.changeTimes}>
-                      {change.new_adhan_time && (
-                        <div className={styles.changeTimeRow}>
-                          <span className={styles.changeTimeLabel}>Adhan</span>
-                          <span className={styles.changeNewTime}>{formatChangeTime(change.new_adhan_time)}</span>
-                        </div>
-                      )}
-                      {change.new_iqamah_time && (
-                        <div className={styles.changeTimeRow}>
-                          <span className={styles.changeTimeLabel}>Iqamah</span>
-                          <span className={styles.changeNewTime}>{formatChangeTime(change.new_iqamah_time)}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  {change.note && <p className={styles.changeNote}>{change.note}</p>}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
 
       {/* Info Cards */}
       <section className={styles.info}>
