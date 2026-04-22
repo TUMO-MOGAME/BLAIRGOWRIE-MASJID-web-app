@@ -5,12 +5,14 @@ import { supabase } from '../lib/supabase';
 import AnnouncementsSection from './sections/AnnouncementsSection';
 import EventsSection from './sections/EventsSection';
 import KhutbahSection from './sections/KhutbahSection';
+import SalahChangesSection from './sections/SalahChangesSection';
 import styles from './admin.module.css';
 
 const TABS = [
   { id: 'announcements', label: 'Announcements', icon: 'campaign' },
   { id: 'events',        label: 'Events',        icon: 'event' },
   { id: 'khutbah',       label: 'Friday Khutbah',icon: 'mosque' },
+  { id: 'salah',         label: 'Salah Times',   icon: 'schedule' },
 ];
 
 export default function AdminPanel({ session }) {
@@ -56,6 +58,7 @@ export default function AdminPanel({ session }) {
         {activeTab === 'announcements' && <AnnouncementsSection />}
         {activeTab === 'events' && <EventsSection />}
         {activeTab === 'khutbah' && <KhutbahSection />}
+        {activeTab === 'salah' && <SalahChangesSection />}
       </div>
     </section>
   );

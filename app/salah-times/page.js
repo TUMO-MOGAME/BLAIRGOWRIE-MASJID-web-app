@@ -1,11 +1,34 @@
 'use client';
 import { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { supabase } from '../lib/supabase';
+
+const PRAYER_LABELS = {
+  fajr: 'Fajr', dhuhr: 'Dhuhr', asr: 'Asr',
+  maghrib: 'Maghrib', isha: 'Isha', jumuah: "Jumu'ah",
+};
+
+function formatChangeTime(t24) {
+  if (!t24) return '';
+  const [hStr, mStr] = t24.split(':');
+  const h = parseInt(hStr, 10);
+  const m = parseInt(mStr, 10);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  const h12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
+  return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
+}
+
+function formatEffectiveDate(iso) {
+  return new Date(iso).toLocaleDateString(undefined, {
+    weekday: 'long', month: 'long', day: 'numeric',
+  });
+}
 
 export default function SalahTimesPage() {
   const [times, setTimes] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [nextPrayer, setNextPrayer] = useState({ name: 'Loading...', time: '' });
+  const [salahChanges, setSalahChanges] = useState([]);
 
   // Iqamah offsets (minutes after adhan)
   const iqamahOffsets = { Fajr: 30, Dhuhr: 15, Asr: 15, Maghrib: 5, Isha: 15 };
@@ -35,6 +58,32 @@ export default function SalahTimesPage() {
 
     const timer = setInterval(() => setCurrentTime(new Date()), 30000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Load upcoming + recent salah time changes from Supabase
+  useEffect(() => {
+    async function loadChanges() {
+      try {
+        const today = new Date();
+        const cutoff = new Date(today);
+        cutoff.setDate(cutoff.getDate() - 14); // also show recently-effective changes for 14 days
+        const cutoffStr = cutoff.toISOString().slice(0, 10);
+        const { data, error } = await supabase
+          .from('salah_changes')
+          .select('id, prayer, new_time, effective_from, note')
+          .eq('is_active', true)
+          .gte('effective_from', cutoffStr)
+          .order('effective_from', { ascending: true });
+        if (error) {
+          console.warn('[salah-changes] load failed:', error.message);
+          return;
+        }
+        setSalahChanges(data || []);
+      } catch (err) {
+        console.warn('[salah-changes] load failed:', err?.message || err);
+      }
+    }
+    loadChanges();
   }, []);
 
   useEffect(() => {
@@ -142,6 +191,48 @@ export default function SalahTimesPage() {
           </div>
         </div>
       </section>
+
+      {/* Upcoming Salah Time Changes */}
+      {salahChanges.length > 0 && (
+        <section className={styles.changesSection}>
+          <div className={styles.changesHeader}>
+            <span className={styles.changesLabel}>
+              <span className="material-symbols-outlined" aria-hidden="true">schedule</span>
+              Iqamah Time Changes
+            </span>
+            <h2 className={styles.changesTitle}>What&apos;s changing</h2>
+          </div>
+          <div className={styles.changesList}>
+            {salahChanges.map((change) => {
+              const effDate = new Date(change.effective_from);
+              const today = new Date(new Date().toDateString());
+              const inEffect = effDate <= today;
+              return (
+                <div
+                  key={change.id}
+                  className={`${styles.changeRow} ${inEffect ? styles.changeInEffect : styles.changeUpcoming}`}
+                >
+                  <div className={styles.changePillar}>
+                    <span className={styles.changeStatus}>
+                      {inEffect ? 'In effect' : 'Upcoming'}
+                    </span>
+                    <span className={styles.changeDate}>{formatEffectiveDate(change.effective_from)}</span>
+                  </div>
+                  <div className={styles.changeBody}>
+                    <h3 className={styles.changePrayer}>
+                      {PRAYER_LABELS[change.prayer] || change.prayer} Iqamah
+                    </h3>
+                    <div className={styles.changeArrow}>
+                      <span className={styles.changeNewTime}>{formatChangeTime(change.new_time)}</span>
+                    </div>
+                  </div>
+                  {change.note && <p className={styles.changeNote}>{change.note}</p>}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Info Cards */}
       <section className={styles.info}>
