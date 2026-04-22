@@ -266,6 +266,15 @@
   margin-bottom: 3rem;
 }
 
+.newsSubtitle {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
 .viewAll {
   color: var(--accent);
   font-weight: 400;
@@ -554,11 +563,11 @@
   }
 
   .prayerTimeLabel {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
   }
 
   .prayerTimeValue {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .prayerFullBtn {

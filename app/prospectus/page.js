@@ -59,7 +59,7 @@ export default function ProspectusPage() {
           <button className="btn-filled" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             Download our full Prospectus PDF <span className="material-symbols-outlined">download</span>
           </button>
-          <a href="#" className={styles.printLink}>Request a Printed Copy</a>
+          <Link href="/contact" className={styles.printLink}>Request a Printed Copy</Link>
         </div>
       </section>
 

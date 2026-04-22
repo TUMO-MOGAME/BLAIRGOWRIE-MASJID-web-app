@@ -222,11 +222,11 @@ export default function Home() {
           <div className={styles.newsHeader}>
             <div>
               <h2 className={styles.sectionTitle}>News &amp; Community Updates</h2>
-              <p style={{ color: 'var(--accent)', fontSize: '0.78rem' }}>Stay connected with the latest happenings at our Masjid.</p>
+              <p className={styles.newsSubtitle}>Stay connected with the latest happenings at our Masjid.</p>
             </div>
-            <a href="#" className={styles.viewAll}>
-              View All News <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
+            <Link href="/events" className={styles.viewAll}>
+              View All Events <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
           </div>
           <div className={styles.newsGrid}>
             {news.length === 0 ? (
