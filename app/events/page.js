@@ -1,58 +1,95 @@
-import styles from './page.module.css';
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { supabaseServer } from '../lib/supabaseServer';
+import styles from './page.module.css';
+import { supabase } from '../lib/supabase';
 
-export const metadata = { title: 'Events', description: 'Join community events at Blairgowrie Masjid. Spiritual growth, education, and shared experiences.' };
+// How often the featured card rotates between close-together events
+const ROTATION_MS = 15000;
+// Events within this window rotate as featured; events further apart stay as "next up"
+const CLOSE_WINDOW_DAYS = 7;
 
-// Revalidate the page every 60 seconds so admin changes reflect quickly without hammering the DB.
-export const revalidate = 60;
-
-function todayIsoDate() {
-  const d = new Date();
+function toLocalDateIso(d) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
-function formatMonth(dateStr) {
-  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short' });
+function daysBetween(a, b) {
+  const ms = Math.abs(new Date(a).getTime() - new Date(b).getTime());
+  return Math.floor(ms / (1000 * 60 * 60 * 24));
 }
 
-function formatDay(dateStr) {
-  return new Date(dateStr).getDate();
+function formatMonth(dateStr) { return new Date(dateStr).toLocaleDateString('en-US', { month: 'short' }); }
+function formatDay(dateStr)   { return new Date(dateStr).getDate(); }
+function formatLongDate(dateStr) {
+  return new Date(dateStr).toLocaleDateString(undefined, {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
+  });
 }
 
-function formatFullDate(dateStr) {
-  return new Date(dateStr).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-}
+export default function EventsPage() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [featuredIdx, setFeaturedIdx] = useState(0);
 
-async function loadEvents() {
-  try {
-    const supabase = supabaseServer();
-    const today = todayIsoDate();
-    const { data, error } = await supabase
-      .from('events')
-      .select('*')
-      .eq('is_active', true)
-      .gte('event_date', today)
-      .order('event_date', { ascending: true });
-
-    if (error) {
-      console.error('[events] Supabase error:', error.message);
-      return [];
+  useEffect(() => {
+    let mounted = true;
+    async function load() {
+      const todayStr = toLocalDateIso(new Date());
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('is_active', true)
+        .gte('event_date', todayStr)
+        .order('event_date', { ascending: true })
+        .order('created_at', { ascending: true });
+      if (!mounted) return;
+      if (error) console.error('[events] load failed:', error.message);
+      setEvents(data || []);
+      setLoading(false);
     }
-    return data || [];
-  } catch (e) {
-    // Missing env vars at build time, network issues, etc. — render an
-    // empty page rather than failing the whole build.
-    console.error('[events] load failed:', e.message);
-    return [];
-  }
-}
+    load();
+    return () => { mounted = false; };
+  }, []);
 
-export default async function EventsPage() {
-  const events = await loadEvents();
+  // Events eligible for the rotating "featured" spot: the nearest one plus
+  // anything else within 7 days of it. Further-out events stay in the calendar.
+  const rotationSet = useMemo(() => {
+    if (events.length === 0) return [];
+    const anchor = events[0].event_date;
+    return events.filter(e => daysBetween(e.event_date, anchor) <= CLOSE_WINDOW_DAYS);
+  }, [events]);
 
-  const featured = events.find((e) => e.is_featured) || events[0] || null;
-  const smallEvents = events.filter((e) => e.id !== featured?.id).slice(0, 4);
+  // Rotate the featured index only if there are 2+ close-together events.
+  useEffect(() => {
+    if (rotationSet.length < 2) {
+      setFeaturedIdx(0);
+      return;
+    }
+    const id = setInterval(() => {
+      setFeaturedIdx(i => (i + 1) % rotationSet.length);
+    }, ROTATION_MS);
+    return () => clearInterval(id);
+  }, [rotationSet.length]);
+
+  const featured = rotationSet[featuredIdx] || null;
+
+  // Group all upcoming events by date for the "All upcoming" section below.
+  const dayGroups = useMemo(() => {
+    const groups = [];
+    const byDate = new Map();
+    events.forEach(e => {
+      if (!byDate.has(e.event_date)) {
+        const group = { date: e.event_date, items: [] };
+        byDate.set(e.event_date, group);
+        groups.push(group);
+      }
+      byDate.get(e.event_date).items.push(e);
+    });
+    return groups;
+  }, [events]);
+
+  // Sidebar calendar — up to 5 nearest events
   const calendarEvents = events.slice(0, 5);
 
   return (
@@ -70,19 +107,20 @@ export default async function EventsPage() {
       </header>
 
       <div className={styles.mainGrid}>
-        {/* Events Column */}
         <div className={styles.eventsCol}>
           <div className={styles.eventsHeader}>
             <span className={styles.eventsLabel}>The Calendar</span>
             <h2 className={styles.eventsTitle}>Upcoming Gatherings</h2>
           </div>
 
-          {!featured ? (
+          {loading ? (
+            <p style={{ color: 'var(--muted)' }}>Loading events…</p>
+          ) : !featured ? (
             <EmptyEvents />
           ) : (
             <>
-              {/* Featured Event */}
-              <div className={styles.featuredEvent}>
+              {/* Featured event — rotates if multiple events fall within 7 days */}
+              <div className={styles.featuredEvent} key={featured.id}>
                 <div className={styles.featuredImg}>
                   <img
                     src={featured.image_url || '/pictures/ramadan-eid-history.webp'}
@@ -92,7 +130,7 @@ export default async function EventsPage() {
                 <div className={styles.featuredContent}>
                   <div className={styles.eventMeta}>
                     <span className="material-symbols-outlined" style={{ fontSize: '0.875rem' }}>calendar_today</span>
-                    <span>{formatFullDate(featured.event_date)}{featured.event_time ? ` · ${featured.event_time}` : ''}</span>
+                    <span>{formatLongDate(featured.event_date)}{featured.event_time ? ` · ${featured.event_time}` : ''}</span>
                   </div>
                   <h3 className={styles.featuredTitle}>{featured.title}</h3>
                   {featured.description && <p className={styles.featuredDesc}>{featured.description}</p>}
@@ -107,27 +145,74 @@ export default async function EventsPage() {
                 </div>
               </div>
 
-              {/* Small Event Cards */}
-              {smallEvents.length > 0 && (
-                <div className={styles.smallEvents}>
-                  {smallEvents.map((ev) => (
-                    <div key={ev.id} className={styles.smallCard}>
-                      <div className={styles.smallCardHeader}>
-                        <div className={styles.smallCardIcon}>
-                          <span className="material-symbols-outlined">event</span>
-                        </div>
-                        <span className={styles.badge}>
-                          {new Date(ev.event_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                        </span>
+              {/* Rotation indicator — only shown when we're rotating */}
+              {rotationSet.length > 1 && (
+                <div style={{
+                  display: 'flex', gap: '0.5rem', justifyContent: 'center',
+                  margin: '-0.5rem 0 1.5rem', fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem', color: 'var(--muted)', letterSpacing: '0.1em',
+                }}>
+                  <span>{featuredIdx + 1} / {rotationSet.length} · this week</span>
+                  <span style={{ display: 'flex', gap: '0.3rem', alignItems: 'center' }}>
+                    {rotationSet.map((_, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          width: i === featuredIdx ? '1.1rem' : '0.45rem',
+                          height: '0.45rem',
+                          background: i === featuredIdx ? 'var(--accent)' : 'var(--muted)',
+                          borderRadius: '999px',
+                          opacity: i === featuredIdx ? 1 : 0.4,
+                          transition: 'all 0.3s',
+                        }}
+                      />
+                    ))}
+                  </span>
+                </div>
+              )}
+
+              {/* All upcoming events, grouped by day */}
+              {dayGroups.length > 0 && (
+                <div>
+                  {dayGroups.map((group) => (
+                    <div key={group.date} style={{ marginBottom: '2rem' }}>
+                      <h4 style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.8rem',
+                        letterSpacing: '0.2em',
+                        textTransform: 'uppercase',
+                        color: 'var(--muted)',
+                        marginBottom: '1rem',
+                        borderBottom: '1px solid var(--card-border)',
+                        paddingBottom: '0.5rem',
+                      }}>
+                        {formatLongDate(group.date)}
+                        {group.items.length > 1 && (
+                          <span style={{ color: 'var(--accent)', marginLeft: '0.75rem' }}>
+                            · {group.items.length} events
+                          </span>
+                        )}
+                      </h4>
+                      <div className={styles.smallEvents}>
+                        {group.items.map((ev) => (
+                          <div key={ev.id} className={styles.smallCard}>
+                            <div className={styles.smallCardHeader}>
+                              <div className={styles.smallCardIcon}>
+                                <span className="material-symbols-outlined">event</span>
+                              </div>
+                              {ev.event_time && <span className={styles.badge}>{ev.event_time}</span>}
+                            </div>
+                            <h3 className={styles.smallCardTitle}>{ev.title}</h3>
+                            {ev.description && <p className={styles.smallCardDesc}>{ev.description}</p>}
+                            {ev.location && (
+                              <span className={styles.smallCardLink}>
+                                <span className="material-symbols-outlined" style={{ fontSize: '0.875rem' }}>location_on</span>
+                                {ev.location}
+                              </span>
+                            )}
+                          </div>
+                        ))}
                       </div>
-                      <h3 className={styles.smallCardTitle}>{ev.title}</h3>
-                      {ev.description && <p className={styles.smallCardDesc}>{ev.description}</p>}
-                      {ev.event_time && (
-                        <span className={styles.smallCardLink}>
-                          <span className="material-symbols-outlined" style={{ fontSize: '0.875rem' }}>schedule</span>
-                          {ev.event_time}
-                        </span>
-                      )}
                     </div>
                   ))}
                 </div>
@@ -138,16 +223,13 @@ export default async function EventsPage() {
 
         {/* Sidebar */}
         <aside className={styles.sidebar}>
-          {/* Calendar */}
           <div className={styles.calendarCard}>
             <h3 className={styles.calendarTitle}>
               <span className="material-symbols-outlined" style={{ marginRight: '0.5rem' }}>event</span> Quick Calendar
             </h3>
             <div className={styles.calendarList}>
               {calendarEvents.length === 0 ? (
-                <p style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>
-                  No upcoming events posted yet.
-                </p>
+                <p style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>No upcoming events posted yet.</p>
               ) : (
                 calendarEvents.map((e, i) => (
                   <div key={e.id} className={styles.calendarItem}>
@@ -165,7 +247,6 @@ export default async function EventsPage() {
             </div>
           </div>
 
-          {/* Host CTA */}
           <div className={styles.hostCard}>
             <div className={styles.hostGhost}>
               <span className="material-symbols-outlined" style={{ fontSize: '6rem', opacity: 0.1 }}>volunteer_activism</span>
