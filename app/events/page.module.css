@@ -11,15 +11,57 @@
 .eventsHeader { margin-bottom: 2rem; }
 .eventsLabel { color: var(--accent); font-size: 0.9rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.25em; display: block; margin-bottom: 0.5rem; }
 .eventsTitle { font-family: var(--font-display); font-size: 3rem; color: var(--fg); letter-spacing: 0.03em; }
-.featuredEvent { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); border-left: 2px solid var(--accent); border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); overflow: hidden; display: grid; grid-template-columns: 1fr; transition: transform 0.3s; margin-bottom: 1.5rem; }
+.featuredEvent {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--card-radius);
+  border: var(--hairline) solid var(--card-border);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: transform 0.3s;
+  margin-bottom: 1.5rem;
+  /* Fixed total card height so dimensions stay consistent across events */
+  height: 22rem;
+}
 .featuredEvent:hover { transform: translateY(-4px); }
-.featuredImg { height: 16rem; overflow: hidden; }
+.featuredImg { height: 9rem; overflow: hidden; }
 .featuredImg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: transform 0.5s; }
 .featuredEvent:hover .featuredImg img { transform: scale(1.05); }
-.featuredContent { padding: 2rem; }
-.eventMeta { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); margin-bottom: 1rem; font-size: 0.9rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.25em; }
-.featuredTitle { font-family: var(--font-display); font-size: 2rem; color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; }
-.featuredDesc { color: var(--fg); margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.7; }
+.featuredContent {
+  padding: 1.25rem 1.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.eventMeta { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.2em; }
+.featuredTitle {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--fg);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.featuredDesc {
+  color: var(--fg);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+}
 .featuredActions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
 .eventLocation { display: flex; align-items: center; gap: 0.25rem; font-size: 0.95rem; color: var(--fg); }
 .smallEvents { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
@@ -115,21 +157,29 @@
 .hostDesc { color: var(--fg); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
 .hostBtn { display: block; width: 100%; padding: 0.75rem; background: var(--accent); color: var(--bg); border-radius: 0.125rem; font-family: var(--font-mono); font-weight: 400; font-size: 0.95rem; text-align: center; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
 .hostBtn:hover { opacity: 0.85; }
-@media (min-width: 768px) { .smallEvents { grid-template-columns: repeat(2, 1fr); } .featuredEvent { grid-template-columns: 2fr 3fr; } .featuredImg { height: auto; } }
+@media (min-width: 768px) {
+  .smallEvents { grid-template-columns: repeat(2, 1fr); }
+  .featuredEvent {
+    grid-template-columns: 2fr 3fr;
+    height: 15rem; /* shorter on desktop — image and content side-by-side */
+  }
+  .featuredImg { height: 100%; } /* fills the grid cell vertically */
+  .featuredContent { padding: 1.5rem 2rem; }
+  .featuredDesc { -webkit-line-clamp: 2; } /* tighter on desktop to fit the shorter card */
+}
 @media (min-width: 1024px) { .mainGrid { grid-template-columns: 8fr 4fr; align-items: start; } .sidebar { position: sticky; top: 7rem; } }
 @media (max-width: 767px) {
   .eventsTitle { font-size: 2.25rem; }
-  .featuredContent, .smallCard, .calendarCard, .hostCard { padding: 1.75rem 1.25rem; }
-  .featuredImg { height: 13rem; }
-  .featuredTitle { font-size: 1.75rem; }
+  .smallCard, .calendarCard, .hostCard { padding: 1.75rem 1.25rem; }
+  .featuredTitle { font-size: 1.5rem; }
   .smallCardTitle { font-size: 1.5rem; }
   .hostTitle { font-size: 1.75rem; }
   .featuredActions { gap: 0.75rem; }
   .featuredActions .btn, .featuredActions .btn-filled { width: 100%; justify-content: center; }
 }
 @media (max-width: 400px) {
-  .featuredContent, .smallCard, .calendarCard, .hostCard { padding: 1.5rem 1rem; }
-  .featuredImg { height: 11rem; }
+  .smallCard, .calendarCard, .hostCard { padding: 1.5rem 1rem; }
+  .featuredContent { padding: 1rem 1.25rem; }
   .calendarDate { width: 2.5rem; height: 2.5rem; }
   .calendarDay { font-size: 1rem; }
   .calendarMonth { font-size: 0.7rem; }
