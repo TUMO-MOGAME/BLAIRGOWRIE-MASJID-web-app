@@ -474,23 +474,45 @@
 .changeBody {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
     gap: 1rem;
 }
 
 .changePrayer {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     color: var(--fg);
     letter-spacing: 0.02em;
     line-height: 1.1;
+    flex-shrink: 0;
 }
 
-.changeArrow { display: inline-flex; align-items: baseline; gap: 0.4rem; }
+.changeTimes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.changeTimeRow {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1;
+}
+
+.changeTimeLabel {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
 
 .changeNewTime {
     font-family: var(--font-display);
-    font-size: 1.65rem;
+    font-size: 1.55rem;
     color: var(--accent);
     letter-spacing: 0.02em;
     line-height: 1;
@@ -508,6 +530,7 @@
 
 @media (max-width: 767px) {
     .changeRow { padding: 1rem 1.25rem; }
-    .changePrayer { font-size: 1.2rem; }
-    .changeNewTime { font-size: 1.45rem; }
+    .changePrayer { font-size: 1.25rem; }
+    .changeNewTime { font-size: 1.35rem; }
+    .changeTimeLabel { font-size: 0.65rem; }
 }

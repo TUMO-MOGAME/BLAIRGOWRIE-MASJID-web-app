@@ -29,7 +29,7 @@ function formatDate(iso) {
   });
 }
 
-const EMPTY = { prayer: 'fajr', new_time: '', effective_from: '', note: '' };
+const EMPTY = { prayer: 'fajr', new_adhan_time: '', new_iqamah_time: '', effective_from: '', note: '' };
 
 export default function SalahChangesSection() {
   const [items, setItems] = useState([]);
@@ -58,13 +58,18 @@ export default function SalahChangesSection() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!form.prayer || !form.new_time || !form.effective_from) return;
+    if (!form.prayer || !form.effective_from) return;
+    if (!form.new_adhan_time && !form.new_iqamah_time) {
+      setError('Enter a new Adhan time, a new Iqamah time, or both.');
+      return;
+    }
     setSaving(true);
     setError('');
 
     const payload = {
       prayer: form.prayer,
-      new_time: form.new_time,            // 'HH:MM' from time input
+      new_adhan_time: form.new_adhan_time || null,
+      new_iqamah_time: form.new_iqamah_time || null,
       effective_from: form.effective_from,
       note: form.note.trim() || null,
     };
@@ -101,7 +106,8 @@ export default function SalahChangesSection() {
       <form onSubmit={handleSubmit} className={styles.formCard}>
         <h2 className={styles.formTitle}>New salah time change</h2>
         <p className={styles.formHint}>
-          Announces an upcoming Iqamah time change on the public Salah Times page.
+          Announces an upcoming Adhan and/or Iqamah change on the public Salah Times page.
+          Fill in one or both — leave a field blank if it&apos;s not changing.
         </p>
 
         <div className={styles.formRow}>
@@ -119,25 +125,43 @@ export default function SalahChangesSection() {
             </select>
           </div>
           <div>
-            <label className={styles.label}>New Iqamah time</label>
+            <label className={styles.label}>Effective from (date)</label>
             <input
-              type="time"
+              type="date"
               className={styles.input}
-              value={form.new_time}
-              onChange={(e) => setForm({ ...form, new_time: e.target.value })}
+              value={form.effective_from}
+              onChange={(e) => setForm({ ...form, effective_from: e.target.value })}
               required
             />
           </div>
         </div>
 
-        <label className={styles.label}>Effective from (date)</label>
-        <input
-          type="date"
-          className={styles.input}
-          value={form.effective_from}
-          onChange={(e) => setForm({ ...form, effective_from: e.target.value })}
-          required
-        />
+        <div className={styles.formRow}>
+          <div>
+            <label className={styles.label}>New Adhan time</label>
+            <input
+              type="time"
+              className={styles.input}
+              value={form.new_adhan_time}
+              onChange={(e) => setForm({ ...form, new_adhan_time: e.target.value })}
+            />
+            <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '0.3rem' }}>
+              Leave blank if Adhan time isn&apos;t changing.
+            </p>
+          </div>
+          <div>
+            <label className={styles.label}>New Iqamah time</label>
+            <input
+              type="time"
+              className={styles.input}
+              value={form.new_iqamah_time}
+              onChange={(e) => setForm({ ...form, new_iqamah_time: e.target.value })}
+            />
+            <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '0.3rem' }}>
+              Leave blank if Iqamah time isn&apos;t changing.
+            </p>
+          </div>
+        </div>
 
         <label className={styles.label}>Note (optional)</label>
         <textarea
@@ -185,8 +209,13 @@ export default function SalahChangesSection() {
                     </span>
                   </div>
                   <h3 className={styles.itemTitle}>
-                    {prayerLabel} Iqamah → {formatTime(item.new_time)}
+                    {prayerLabel}
                   </h3>
+                  <p className={styles.itemMessage} style={{ margin: 0 }}>
+                    {item.new_adhan_time && <>Adhan → <strong>{formatTime(item.new_adhan_time)}</strong></>}
+                    {item.new_adhan_time && item.new_iqamah_time && <> &nbsp;·&nbsp; </>}
+                    {item.new_iqamah_time && <>Iqamah → <strong>{formatTime(item.new_iqamah_time)}</strong></>}
+                  </p>
                   {item.note && <p className={styles.itemMessage}>{item.note}</p>}
                 </div>
                 <div className={styles.itemActions}>

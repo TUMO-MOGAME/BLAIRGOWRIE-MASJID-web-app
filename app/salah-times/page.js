@@ -70,7 +70,7 @@ export default function SalahTimesPage() {
         const cutoffStr = cutoff.toISOString().slice(0, 10);
         const { data, error } = await supabase
           .from('salah_changes')
-          .select('id, prayer, new_time, effective_from, note')
+          .select('id, prayer, new_adhan_time, new_iqamah_time, effective_from, note')
           .eq('is_active', true)
           .gte('effective_from', cutoffStr)
           .order('effective_from', { ascending: true });
@@ -220,10 +220,21 @@ export default function SalahTimesPage() {
                   </div>
                   <div className={styles.changeBody}>
                     <h3 className={styles.changePrayer}>
-                      {PRAYER_LABELS[change.prayer] || change.prayer} Iqamah
+                      {PRAYER_LABELS[change.prayer] || change.prayer}
                     </h3>
-                    <div className={styles.changeArrow}>
-                      <span className={styles.changeNewTime}>{formatChangeTime(change.new_time)}</span>
+                    <div className={styles.changeTimes}>
+                      {change.new_adhan_time && (
+                        <div className={styles.changeTimeRow}>
+                          <span className={styles.changeTimeLabel}>Adhan</span>
+                          <span className={styles.changeNewTime}>{formatChangeTime(change.new_adhan_time)}</span>
+                        </div>
+                      )}
+                      {change.new_iqamah_time && (
+                        <div className={styles.changeTimeRow}>
+                          <span className={styles.changeTimeLabel}>Iqamah</span>
+                          <span className={styles.changeNewTime}>{formatChangeTime(change.new_iqamah_time)}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   {change.note && <p className={styles.changeNote}>{change.note}</p>}
