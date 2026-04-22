@@ -27,6 +27,7 @@ export default function AnnouncementsSection() {
   const [form, setForm] = useState({
     message: '',
     category: 'general',
+    event_at: '',
     expires_at: '',
   });
   const [saving, setSaving] = useState(false);
@@ -59,6 +60,7 @@ export default function AnnouncementsSection() {
     const payload = {
       message: form.message.trim(),
       category: form.category,
+      event_at: form.event_at ? new Date(form.event_at).toISOString() : null,
       expires_at: form.expires_at ? new Date(form.expires_at).toISOString() : null,
     };
 
@@ -68,7 +70,7 @@ export default function AnnouncementsSection() {
     if (dbError) {
       setError(dbError.message);
     } else {
-      setForm({ message: '', category: 'general', expires_at: '' });
+      setForm({ message: '', category: 'general', event_at: '', expires_at: '' });
       load();
     }
   }
@@ -119,14 +121,30 @@ export default function AnnouncementsSection() {
           </div>
 
           <div>
-            <label className={styles.label}>Expires at (optional)</label>
+            <label className={styles.label}>Happens at (optional)</label>
             <input
               type="datetime-local"
               className={styles.input}
-              value={form.expires_at}
-              onChange={(e) => setForm({ ...form, expires_at: e.target.value })}
+              value={form.event_at}
+              onChange={(e) => setForm({ ...form, event_at: e.target.value })}
             />
+            <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '0.3rem' }}>
+              When the thing is happening (e.g. meeting time). Leave blank if not time-specific.
+            </p>
           </div>
+        </div>
+
+        <div>
+          <label className={styles.label}>Expires at (optional)</label>
+          <input
+            type="datetime-local"
+            className={styles.input}
+            value={form.expires_at}
+            onChange={(e) => setForm({ ...form, expires_at: e.target.value })}
+          />
+          <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '0.3rem' }}>
+            When to stop showing this announcement. Leave blank to show indefinitely.
+          </p>
         </div>
 
         {error && <p className={styles.errorText}>{error}</p>}
@@ -162,7 +180,9 @@ export default function AnnouncementsSection() {
                     {expired && <span className={styles.badgeMuted}>EXPIRED</span>}
                     {!item.is_active && <span className={styles.badgeMuted}>HIDDEN</span>}
                     <span className={styles.metaDate}>
-                      Posted {new Date(item.created_at).toLocaleDateString()}
+                      {item.event_at
+                        ? `📅 ${new Date(item.event_at).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`
+                        : `Posted ${new Date(item.created_at).toLocaleDateString()}`}
                       {item.expires_at && ` · expires ${new Date(item.expires_at).toLocaleDateString()}`}
                     </span>
                   </div>

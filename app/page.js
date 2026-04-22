@@ -2,11 +2,13 @@
 import styles from './page.module.css';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { supabase } from './lib/supabase';
 
 export default function Home() {
   const [times, setTimes] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [nextPrayer, setNextPrayer] = useState({ name: 'Loading...', time: '' });
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
     async function fetchTimes() {
@@ -30,6 +32,64 @@ export default function Home() {
 
     const timer = setInterval(() => setCurrentTime(new Date()), 30000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Load real announcements + events for the News section
+  useEffect(() => {
+    async function loadNews() {
+      try {
+        const nowIso = new Date().toISOString();
+        const today = new Date();
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+        const [annRes, evtRes] = await Promise.all([
+          supabase
+            .from('announcements')
+            .select('id, message, category, event_at, created_at')
+            .eq('is_active', true)
+            .lte('starts_at', nowIso)
+            .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
+            .order('created_at', { ascending: false })
+            .limit(3),
+          supabase
+            .from('events')
+            .select('id, title, description, event_date, event_time')
+            .eq('is_active', true)
+            .gte('event_date', todayStr)
+            .order('event_date', { ascending: true })
+            .limit(3),
+        ]);
+
+        const items = [];
+        (annRes.data || []).forEach((a) => {
+          const when = a.event_at ? new Date(a.event_at) : new Date(a.created_at);
+          items.push({
+            id: `a-${a.id}`,
+            cat: a.category,
+            title: a.message,
+            desc: '',
+            sortDate: when,
+            displayDate: when.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }),
+          });
+        });
+        (evtRes.data || []).forEach((e) => {
+          const when = new Date(e.event_date);
+          items.push({
+            id: `e-${e.id}`,
+            cat: 'Event',
+            title: e.title,
+            desc: e.description || '',
+            sortDate: when,
+            displayDate: when.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + (e.event_time ? ` · ${e.event_time}` : ''),
+          });
+        });
+        items.sort((a, b) => b.sortDate - a.sortDate);
+        setNews(items.slice(0, 3));
+      } catch (err) {
+        console.error('[news] load failed:', err.message);
+      }
+    }
+    loadNews();
   }, []);
 
   useEffect(() => {
@@ -169,21 +229,26 @@ export default function Home() {
             </a>
           </div>
           <div className={styles.newsGrid}>
-            {[
-              { cat: 'Event', title: 'Ramadan Preparation Workshop', desc: 'Join us this Saturday for a comprehensive guide on preparing spiritually and physically for the holy month.', date: 'Oct 24, 2024' },
-              { cat: 'Education', title: 'Evening Madrasah Enrollment', desc: 'Registration is now open for the new term. Limited spots available for the primary and intermediate levels.', date: 'Oct 20, 2024' },
-              { cat: 'Announcement', title: 'Fundraising Drive: New Library', desc: 'Help us build a state-of-the-art community library. Contribution goals and progress updates inside.', date: 'Oct 15, 2024' },
-            ].map((item, i) => (
-              <div key={i} className={styles.newsCard}>
-                <div className={styles.newsCardCat}>{item.cat}</div>
-                <h3 className={styles.newsCardTitle}>{item.title}</h3>
-                <p className={styles.newsCardDesc}>{item.desc}</p>
-                <div className={styles.newsCardDate}>
-                  <span className="material-symbols-outlined" style={{ fontSize: '0.875rem' }}>calendar_today</span>
-                  {item.date}
-                </div>
+            {news.length === 0 ? (
+              <div className={styles.newsCard} style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
+                <h3 className={styles.newsCardTitle}>Nothing new just yet</h3>
+                <p className={styles.newsCardDesc}>
+                  No announcements or upcoming events posted right now. Check back soon, insha&apos;Allah.
+                </p>
               </div>
-            ))}
+            ) : (
+              news.map((item) => (
+                <div key={item.id} className={styles.newsCard}>
+                  <div className={styles.newsCardCat}>{item.cat}</div>
+                  <h3 className={styles.newsCardTitle}>{item.title}</h3>
+                  {item.desc && <p className={styles.newsCardDesc}>{item.desc}</p>}
+                  <div className={styles.newsCardDate}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '0.875rem' }}>calendar_today</span>
+                    {item.displayDate}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
