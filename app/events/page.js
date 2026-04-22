@@ -25,20 +25,27 @@ function formatFullDate(dateStr) {
 }
 
 async function loadEvents() {
-  const supabase = supabaseServer();
-  const today = todayIsoDate();
-  const { data, error } = await supabase
-    .from('events')
-    .select('*')
-    .eq('is_active', true)
-    .gte('event_date', today)
-    .order('event_date', { ascending: true });
+  try {
+    const supabase = supabaseServer();
+    const today = todayIsoDate();
+    const { data, error } = await supabase
+      .from('events')
+      .select('*')
+      .eq('is_active', true)
+      .gte('event_date', today)
+      .order('event_date', { ascending: true });
 
-  if (error) {
-    console.error('[events] Supabase error:', error.message);
+    if (error) {
+      console.error('[events] Supabase error:', error.message);
+      return [];
+    }
+    return data || [];
+  } catch (e) {
+    // Missing env vars at build time, network issues, etc. — render an
+    // empty page rather than failing the whole build.
+    console.error('[events] load failed:', e.message);
     return [];
   }
-  return data || [];
 }
 
 export default async function EventsPage() {
