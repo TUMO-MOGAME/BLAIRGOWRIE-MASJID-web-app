@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
 import { supabase } from '../lib/supabase';
@@ -19,12 +19,16 @@ function daysBetween(a, b) {
   return Math.floor(ms / (1000 * 60 * 60 * 24));
 }
 
-function formatMonth(dateStr) { return new Date(dateStr).toLocaleDateString('en-US', { month: 'short' }); }
-function formatDay(dateStr)   { return new Date(dateStr).getDate(); }
+function formatMonth(dateStr)   { return new Date(dateStr).toLocaleDateString('en-US', { month: 'short' }); }
+function formatDay(dateStr)     { return new Date(dateStr).getDate(); }
+function formatWeekday(dateStr) { return new Date(dateStr).toLocaleDateString(undefined, { weekday: 'short' }); }
 function formatLongDate(dateStr) {
   return new Date(dateStr).toLocaleDateString(undefined, {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   });
+}
+function isToday(dateStr) {
+  return dateStr === toLocalDateIso(new Date());
 }
 
 export default function EventsPage() {
@@ -73,6 +77,16 @@ export default function EventsPage() {
   }, [rotationSet.length]);
 
   const featured = rotationSet[featuredIdx] || null;
+
+  // Horizontal scroller refs/handlers for the "All upcoming" section
+  const scrollerRef = useRef(null);
+  function scrollByColumns(direction) {
+    const el = scrollerRef.current;
+    if (!el) return;
+    // Jump roughly one column-width at a time (19rem column + 1rem gap)
+    const amount = 20 * 16 * direction;
+    el.scrollBy({ left: amount, behavior: 'smooth' });
+  }
 
   // Group all upcoming events by date for the "All upcoming" section below.
   const dayGroups = useMemo(() => {
@@ -171,51 +185,69 @@ export default function EventsPage() {
                 </div>
               )}
 
-              {/* All upcoming events, grouped by day */}
+              {/* Horizontal scroller — all upcoming days as columns */}
               {dayGroups.length > 0 && (
-                <div>
-                  {dayGroups.map((group) => (
-                    <div key={group.date} style={{ marginBottom: '2rem' }}>
-                      <h4 style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.8rem',
-                        letterSpacing: '0.2em',
-                        textTransform: 'uppercase',
-                        color: 'var(--muted)',
-                        marginBottom: '1rem',
-                        borderBottom: '1px solid var(--card-border)',
-                        paddingBottom: '0.5rem',
-                      }}>
-                        {formatLongDate(group.date)}
-                        {group.items.length > 1 && (
-                          <span style={{ color: 'var(--accent)', marginLeft: '0.75rem' }}>
-                            · {group.items.length} events
-                          </span>
-                        )}
-                      </h4>
-                      <div className={styles.smallEvents}>
-                        {group.items.map((ev) => (
-                          <div key={ev.id} className={styles.smallCard}>
-                            <div className={styles.smallCardHeader}>
-                              <div className={styles.smallCardIcon}>
-                                <span className="material-symbols-outlined">event</span>
-                              </div>
-                              {ev.event_time && <span className={styles.badge}>{ev.event_time}</span>}
-                            </div>
-                            <h3 className={styles.smallCardTitle}>{ev.title}</h3>
-                            {ev.description && <p className={styles.smallCardDesc}>{ev.description}</p>}
-                            {ev.location && (
-                              <span className={styles.smallCardLink}>
-                                <span className="material-symbols-outlined" style={{ fontSize: '0.875rem' }}>location_on</span>
-                                {ev.location}
-                              </span>
-                            )}
-                          </div>
-                        ))}
-                      </div>
+                <section className={styles.daySection}>
+                  <div className={styles.daySectionHeader}>
+                    <span className={styles.daySectionTitle}>All Upcoming · scroll to see more</span>
+                    <div className={styles.scrollNav}>
+                      <button
+                        type="button"
+                        className={styles.scrollBtn}
+                        onClick={() => scrollByColumns(-1)}
+                        aria-label="Scroll left"
+                      >
+                        <span className="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.scrollBtn}
+                        onClick={() => scrollByColumns(1)}
+                        aria-label="Scroll right"
+                      >
+                        <span className="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                      </button>
                     </div>
-                  ))}
-                </div>
+                  </div>
+
+                  <div className={styles.dayScroller} ref={scrollerRef}>
+                    {dayGroups.map((group) => (
+                      <div
+                        key={group.date}
+                        className={`${styles.dayColumn} ${isToday(group.date) ? styles.dayColumnToday : ''}`}
+                      >
+                        <div className={styles.dayColHeader}>
+                          <div className={styles.dayColDate}>
+                            <span className={styles.dayColMonth}>{formatMonth(group.date)}</span>
+                            <span className={styles.dayColDay}>{formatDay(group.date)}</span>
+                            <span className={styles.dayColWeekday}>
+                              {isToday(group.date) ? 'Today' : formatWeekday(group.date)}
+                            </span>
+                          </div>
+                          {group.items.length > 1 && (
+                            <span className={styles.dayColCount}>{group.items.length} events</span>
+                          )}
+                        </div>
+
+                        <div className={styles.dayColEvents}>
+                          {group.items.map((ev) => (
+                            <div key={ev.id} className={styles.dayEvent}>
+                              {ev.event_time && <div className={styles.dayEventTime}>{ev.event_time}</div>}
+                              <div className={styles.dayEventTitle}>{ev.title}</div>
+                              {ev.description && <div className={styles.dayEventDesc}>{ev.description}</div>}
+                              {ev.location && (
+                                <div className={styles.dayEventLoc}>
+                                  <span className="material-symbols-outlined" aria-hidden="true">location_on</span>
+                                  {ev.location}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
               )}
             </>
           )}
