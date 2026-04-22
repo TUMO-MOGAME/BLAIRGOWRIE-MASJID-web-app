@@ -36,14 +36,26 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  gap: 0.5rem;
 }
-.eventMeta { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.2em; }
+.eventMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+.eventMeta .material-symbols-outlined { font-size: 0.95rem; }
 .featuredTitle {
   font-family: var(--font-display);
   font-size: 1.75rem;
   color: var(--fg);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   line-height: 1.1;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -52,19 +64,76 @@
 }
 .featuredDesc {
   color: var(--fg);
-  margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.55;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  flex: 1;
-  min-height: 0;
+  opacity: 0.82;
 }
+.featuredActions {
+  margin-top: auto;  /* push to bottom of the card */
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--card-border);
+}
+.eventLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.eventLocation .material-symbols-outlined { font-size: 1rem; color: var(--accent); }
 .featuredActions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
 .eventLocation { display: flex; align-items: center; gap: 0.25rem; font-size: 0.95rem; color: var(--fg); }
 .smallEvents { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+/* ── Featured entrance/crossfade (triggers on every rotation swap via key={featured.id}) ── */
+.featuredEvent {
+  animation: featuredFadeIn 0.5s ease-out;
+}
+@keyframes featuredFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Rotation progress indicator ── */
+.rotationIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: -0.25rem 0 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rotationCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.rotationCount strong { color: var(--accent); font-weight: 400; }
+.rotationDots { display: inline-flex; align-items: center; gap: 0.4rem; }
+.rotationDot {
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--muted);
+  border-radius: 999px;
+  opacity: 0.35;
+  transition: width 0.35s ease, opacity 0.35s ease, background 0.35s ease;
+}
+.rotationDotActive {
+  width: 1.25rem;
+  background: var(--accent);
+  opacity: 1;
+}
 
 /* ── Horizontal day-scroller (all upcoming events) ── */
 .daySection { margin-top: 2rem; }
@@ -117,14 +186,62 @@
 .dayColWeekday { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
 .dayColCount { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.25rem 0.5rem; background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 999px; }
 
-.dayColEvents { display: flex; flex-direction: column; gap: 0.75rem; }
-.dayEvent { padding: 0.9rem 1rem; background: color-mix(in srgb, var(--fg) 3%, transparent); border-radius: 0.55rem; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; }
-.dayEvent:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
-.dayEventTime { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
-.dayEventTitle { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.2; letter-spacing: 0.02em; color: var(--fg); margin-bottom: 0.25rem; }
-.dayEventDesc { font-size: 0.85rem; line-height: 1.5; color: var(--muted); margin-bottom: 0.35rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.dayEventLoc { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; color: var(--muted); }
-.dayEventLoc .material-symbols-outlined { font-size: 0.9rem; }
+.dayColEvents { display: flex; flex-direction: column; gap: 0.65rem; }
+.dayEvent {
+  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--fg) 3%, transparent);
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.dayEvent:hover {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  transform: translateY(-1px);
+}
+.dayEventTime {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1;
+}
+.dayEventTitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dayEventDesc {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dayEventLoc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+.dayEventLoc .material-symbols-outlined { font-size: 0.9rem; color: var(--accent); }
 
 @media (max-width: 767px) {
   .dayColumn { flex-basis: 85vw; max-width: 20rem; }
@@ -139,24 +256,75 @@
 .smallCardDesc { color: var(--fg); font-size: 1.05rem; margin-bottom: 1.5rem; }
 .smallCardLink { color: var(--accent); font-size: 0.95rem; display: flex; align-items: center; gap: 0.25rem; text-transform: uppercase; letter-spacing: 0.15em; }
 
-.calendarCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); padding: 2rem; border-radius: var(--card-radius); border: var(--hairline) solid var(--card-border); margin-bottom: 2rem; }
-.calendarTitle { font-family: var(--font-display); font-size: 1.3rem; color: var(--fg); display: flex; align-items: center; margin-bottom: 1.5rem; letter-spacing: 0.03em; }
-.calendarList { display: flex; flex-direction: column; gap: 1.5rem; }
-.calendarItem { display: flex; gap: 1rem; align-items: center; }
-.calendarDate { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 0.5rem; background: color-mix(in srgb, var(--fg) 5%, transparent); color: var(--fg); font-weight: 400; flex-shrink: 0; }
+.calendarCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  padding: 1.5rem;
+  border-radius: var(--card-radius);
+  border: var(--hairline) solid var(--card-border);
+  margin-bottom: 1.5rem;
+}
+.calendarTitle {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--card-border);
+}
+.calendarTitle .material-symbols-outlined { font-size: 1rem; color: var(--accent); }
+.calendarList { display: flex; flex-direction: column; gap: 0.9rem; }
+.calendarItem {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.calendarItem:not(:last-child) { border-bottom: 1px solid color-mix(in srgb, var(--card-border) 60%, transparent); padding-bottom: 0.9rem; }
+.calendarDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--fg) 5%, transparent);
+  color: var(--fg);
+  font-weight: 400;
+  flex-shrink: 0;
+}
 .calendarDateHighlight { background: var(--accent); color: var(--bg); }
-.calendarMonth { font-size: 0.8rem; text-transform: uppercase; line-height: 1; }
-.calendarDay { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.2; }
-.calendarEventTitle { font-weight: 400; font-size: 1.0rem; color: var(--fg); }
-.calendarEventTime { font-size: 0.9rem; color: var(--fg); }
-.downloadBtn { width: 100%; margin-top: 2rem; padding: 0.6rem; font-size: 0.95rem; color: var(--fg); border: var(--hairline) solid var(--card-border); background: transparent; border-radius: 0.125rem; cursor: pointer; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-mono); transition: background 0.3s; }
+.calendarMonth { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1; }
+.calendarDay { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.1; margin-top: 0.1rem; }
+.calendarEventTitle { font-family: var(--font-display); font-weight: 400; font-size: 1rem; letter-spacing: 0.02em; color: var(--fg); line-height: 1.2; margin-bottom: 0.15rem; }
+.calendarEventTime { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.downloadBtn { width: 100%; margin-top: 1.25rem; padding: 0.6rem; font-size: 0.95rem; color: var(--fg); border: var(--hairline) solid var(--card-border); background: transparent; border-radius: 0.125rem; cursor: pointer; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-mono); transition: background 0.3s; }
 .downloadBtn:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
-.hostCard { background: var(--card-bg); backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%); border: var(--hairline) solid var(--card-border); color: var(--fg); padding: 2rem; border-radius: var(--card-radius); position: relative; overflow: hidden; }
+
+.hostCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: var(--hairline) solid var(--card-border);
+  color: var(--fg);
+  padding: 1.5rem;
+  border-radius: var(--card-radius);
+  position: relative;
+  overflow: hidden;
+}
 .hostGhost { position: absolute; right: -1rem; bottom: -1rem; color: var(--muted); }
-.hostTitle { font-family: var(--font-display); font-size: 2.0rem; color: var(--accent); margin-bottom: 1rem; letter-spacing: 0.03em; }
-.hostDesc { color: var(--fg); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
-.hostBtn { display: block; width: 100%; padding: 0.75rem; background: var(--accent); color: var(--bg); border-radius: 0.125rem; font-family: var(--font-mono); font-weight: 400; font-size: 0.95rem; text-align: center; letter-spacing: 0.15em; text-transform: uppercase; transition: opacity 0.3s; }
-.hostBtn:hover { opacity: 0.85; }
+.hostTitle { font-family: var(--font-display); font-size: 1.55rem; color: var(--accent); margin-bottom: 0.75rem; letter-spacing: 0.03em; line-height: 1.1; }
+.hostDesc { color: var(--fg); font-size: 0.95rem; line-height: 1.55; margin-bottom: 1.25rem; opacity: 0.82; }
+.hostBtn { display: block; width: 100%; padding: 0.7rem; background: var(--accent); color: var(--bg); border-radius: 0.4rem; font-family: var(--font-mono); font-weight: 400; font-size: 0.85rem; text-align: center; letter-spacing: 0.2em; text-transform: uppercase; transition: opacity 0.2s, transform 0.2s; }
+.hostBtn:hover { opacity: 0.9; transform: translateY(-1px); }
 @media (min-width: 768px) {
   .smallEvents { grid-template-columns: repeat(2, 1fr); }
   .featuredEvent {

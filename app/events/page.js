@@ -103,8 +103,8 @@ export default function EventsPage() {
     return groups;
   }, [events]);
 
-  // Sidebar calendar — up to 5 nearest events
-  const calendarEvents = events.slice(0, 5);
+  // Sidebar calendar — keep compact so it aligns with the featured card
+  const calendarEvents = events.slice(0, 3);
 
   return (
     <div className={styles.page}>
@@ -161,24 +161,15 @@ export default function EventsPage() {
 
               {/* Rotation indicator — only shown when we're rotating */}
               {rotationSet.length > 1 && (
-                <div style={{
-                  display: 'flex', gap: '0.5rem', justifyContent: 'center',
-                  margin: '-0.5rem 0 1.5rem', fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem', color: 'var(--muted)', letterSpacing: '0.1em',
-                }}>
-                  <span>{featuredIdx + 1} / {rotationSet.length} · this week</span>
-                  <span style={{ display: 'flex', gap: '0.3rem', alignItems: 'center' }}>
+                <div className={styles.rotationIndicator}>
+                  <span className={styles.rotationCount}>
+                    <strong>{featuredIdx + 1}</strong> / {rotationSet.length} · this week
+                  </span>
+                  <span className={styles.rotationDots}>
                     {rotationSet.map((_, i) => (
                       <span
                         key={i}
-                        style={{
-                          width: i === featuredIdx ? '1.1rem' : '0.45rem',
-                          height: '0.45rem',
-                          background: i === featuredIdx ? 'var(--accent)' : 'var(--muted)',
-                          borderRadius: '999px',
-                          opacity: i === featuredIdx ? 1 : 0.4,
-                          transition: 'all 0.3s',
-                        }}
+                        className={`${styles.rotationDot} ${i === featuredIdx ? styles.rotationDotActive : ''}`}
                       />
                     ))}
                   </span>
