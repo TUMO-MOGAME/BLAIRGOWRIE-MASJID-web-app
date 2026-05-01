@@ -409,6 +409,21 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
+  color: var(--on-dark-fg);
+}
+
+.locationInfo .locationTitle,
+.locationInfo .locationItem,
+.locationInfo span {
+  color: var(--on-dark-fg);
+}
+
+.locationInfo .locationDesc {
+  color: var(--on-dark-muted);
+}
+
+.locationInfo .locationIcon span {
+  color: var(--on-dark-accent);
 }
 
 .locationTitle {

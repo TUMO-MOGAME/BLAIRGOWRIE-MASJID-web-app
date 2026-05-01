@@ -28,13 +28,13 @@
   --dark-card-border: rgba(200, 255, 71, 0.22);
 
   /* Light palette */
-  --light-bg: #eef4ff;
-  --light-fg: #0b141a;
-  --light-muted: #3d556a;
-  --light-accent: #1b7ed6;
-  --light-secondary: #b45309;
-  --light-card-bg: rgba(245, 249, 255, 0.92);
-  --light-card-border: rgba(27, 126, 214, 0.28);
+  --light-bg: #14140f;
+  --light-fg: #f5f0d8;
+  --light-muted: #b8b09a;
+  --light-accent: #FFFF00;
+  --light-secondary: #ea580c;
+  --light-card-bg: rgba(28, 28, 22, 0.78);
+  --light-card-border: rgba(255, 255, 0, 0.32);
 
   /* Active (dark default) */
   --bg: var(--dark-bg);
@@ -82,6 +82,14 @@
   --secondary: var(--light-secondary);
   --card-bg: var(--light-card-bg);
   --card-border: var(--light-card-border);
+}
+
+/* Always-light tokens for cards with hardcoded dark image overlays —
+   keep text legible regardless of theme. */
+:root {
+  --on-dark-fg: #f2efe6;
+  --on-dark-muted: #d3d3d3;
+  --on-dark-accent: #c8ff47;
 }
 
 /* ── Base ── */

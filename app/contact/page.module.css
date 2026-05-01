@@ -198,6 +198,7 @@
     url('/pictures/email.webp') center/cover no-repeat;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  color: var(--on-dark-fg);
 }
 
 .contactCardCall {
@@ -206,6 +207,28 @@
     url('/pictures/callPicture.webp') center/cover no-repeat;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  color: var(--on-dark-fg);
+}
+
+.contactCardEmail .contactLabel,
+.contactCardCall .contactLabel {
+  color: var(--on-dark-accent);
+}
+
+.contactCardEmail .contactValue,
+.contactCardCall .contactValue,
+.contactCardCall .phoneNumber {
+  color: var(--on-dark-fg);
+}
+
+.contactCardCall .phoneName {
+  color: var(--on-dark-muted);
+}
+
+.contactCardEmail .contactIcon,
+.contactCardCall .contactIcon {
+  background: rgba(200, 255, 71, 0.18);
+  color: var(--on-dark-accent);
 }
 
 .contactCardEmail:hover,

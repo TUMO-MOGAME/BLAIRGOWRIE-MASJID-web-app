@@ -115,6 +115,12 @@
   border-left: 2px solid var(--accent);
   position: relative;
   overflow: hidden;
+  color: var(--on-dark-fg);
+}
+
+.ctaCard .ctaTitle,
+.ctaCard .ctaDesc {
+  color: var(--on-dark-fg);
 }
 
 .ctaTitle {
@@ -237,7 +243,7 @@
   background:
     linear-gradient(to top, rgba(10, 10, 15, 0.92) 0%, rgba(10, 10, 15, 0.55) 55%, rgba(10, 10, 15, 0.25) 100%),
     url('/pictures/muslim-boy-dua.webp') center/cover no-repeat;
-  color: var(--fg);
+  color: var(--on-dark-fg);
   padding: 3rem;
   border-radius: var(--card-radius);
   border: var(--hairline) solid var(--card-border);
@@ -247,6 +253,14 @@
   min-height: 25rem;
   position: relative;
   overflow: hidden;
+}
+
+.historyHero .historyTitle {
+  color: var(--on-dark-accent);
+}
+
+.historyHero .historyDesc {
+  color: var(--on-dark-fg);
 }
 
 .historyGhost {
@@ -320,6 +334,12 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  color: var(--on-dark-fg);
+}
+
+.legacyInner .legacyTitle,
+.legacyInner .legacyDesc {
+  color: var(--on-dark-fg);
 }
 
 .legacyTitle {
