@@ -120,6 +120,10 @@
   padding: 0 var(--section-padding-h);
 }
 
+.prayerBoard {
+  display: none;
+}
+
 .prayerStripInner {
   max-width: 76rem;
   margin: 0 auto;
@@ -601,12 +605,40 @@
   }
 
   .prayerStripInner {
+    display: none;
+  }
+
+  .prayerBoard {
+    display: block;
+    position: relative;
+    max-width: 76rem;
+    margin: 0 auto;
+    background: var(--card-bg);
     border-radius: var(--card-radius);
-    flex-direction: column;
-    align-items: stretch;
+    border: var(--hairline) solid var(--card-border);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .prayerBoardFrame {
+    display: block;
+    width: 100%;
+    height: 70vh;
+    min-height: 26rem;
+    border: 0;
+    background: var(--card-bg);
+  }
+
+  .prayerBoardLink {
+    display: block;
     text-align: center;
-    padding: 1.25rem 1rem;
-    gap: 1rem;
+    padding: 0.6rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-top: var(--hairline) solid var(--card-border);
   }
 
   .prayerCurrent {
@@ -725,6 +757,13 @@
     margin-top: 0.6rem;
     letter-spacing: 0.08em;
     gap: 0.3rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.85rem;
   }
 
   .heroBadge {

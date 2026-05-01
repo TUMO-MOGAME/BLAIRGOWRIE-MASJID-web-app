@@ -182,6 +182,25 @@ export default function Home() {
           </div>
           <Link href="/salah-times" className={styles.prayerFullBtn}>Full Schedule</Link>
         </div>
+
+        {/* Phone-only: live Masjid Board iframe replacing the strip */}
+        <div className={styles.prayerBoard}>
+          <iframe
+            src="https://masjidboardlive.com/boards/?id=blairgowrie-ubay-bin-kab"
+            title="Masjid Times — Live Board"
+            className={styles.prayerBoardFrame}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <a
+            href="https://masjidboardlive.com/boards/?id=blairgowrie-ubay-bin-kab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.prayerBoardLink}
+          >
+            Open Masjid Board ↗
+          </a>
+        </div>
       </section>
 
       {/* Mission Section */}
