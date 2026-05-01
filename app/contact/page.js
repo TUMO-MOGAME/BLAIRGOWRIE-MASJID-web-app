@@ -52,7 +52,7 @@ export default function ContactPage() {
 
             {/* Contact Cards */}
             <div className={styles.contactCards}>
-              <div className={styles.contactCard}>
+              <div className={`${styles.contactCard} ${styles.contactCardEmail}`}>
                 <div className={styles.contactIcon}>
                   <span className="material-symbols-outlined">mail</span>
                 </div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                   <p className={styles.contactValue}>blairgowriemasjid@gmail.com</p>
                 </div>
               </div>
-              <div className={styles.contactCard}>
+              <div className={`${styles.contactCard} ${styles.contactCardCall}`}>
                 <div className={styles.contactIcon}>
                   <span className="material-symbols-outlined">chat</span>
                 </div>
