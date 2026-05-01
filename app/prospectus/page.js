@@ -66,18 +66,18 @@ export default function ProspectusPage() {
       {/* Architecture Preview */}
       <section className={styles.architecture}>
         <div className={styles.archGrid}>
-          <div className={styles.archImg}>
-            <img src="/pictures/prospectus.webp" alt="Masjid Concept" />
-          </div>
-          <div className={styles.archText}>
-            <h3 className={styles.archTitle}>The Blueprint of Serenity</h3>
+          <h3 className={styles.archTitle}>The Blueprint of Serenity</h3>
+          <div className={styles.archFlow}>
+            <div className={styles.archImg}>
+              <img src="/pictures/prospectus.webp" alt="Masjid Concept" />
+            </div>
             <p className={styles.archDesc}>The architectural language of Blairgowrie Masjid balances classic proportions with contemporary clarity. Utilizing local materials and maximizing natural light, the design ensures that every visitor experiences an immediate sense of detachment from worldly noise upon entry.</p>
-            <ul className={styles.archList}>
-              <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> 800+ Musalli Capacity</li>
-              <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> Dedicated Women&apos;s Prayer &amp; Learning Center</li>
-              <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> Multi-purpose Community Hall</li>
-            </ul>
           </div>
+          <ul className={styles.archList}>
+            <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> 800+ Musalli Capacity</li>
+            <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> Dedicated Women&apos;s Prayer &amp; Learning Center</li>
+            <li><span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>check_circle</span> Multi-purpose Community Hall</li>
+          </ul>
         </div>
       </section>
       {/* Design & Concept Gallery */}
