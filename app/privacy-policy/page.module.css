@@ -39,13 +39,24 @@
   .contactRow { flex-direction: row; }
 }
 @media (max-width: 767px) {
-  .sectionTitle { font-size: 1.6rem; }
-  .sectionText, .bulletList li, .securityText { font-size: 1rem; line-height: 1.7; }
-  .securitySection { padding: 1.75rem 1.25rem; }
-  .securityTitle { font-size: 1.5rem; }
-  .purposeCard, .contactSection, .highlightSection { padding: 1.5rem 1.25rem; }
-  .contactItem { font-size: 1rem; word-break: break-word; }
-  .decorImg { height: 12rem; }
+  .page { padding-top: 5.5rem; }
+  .header { margin-bottom: 1rem; }
+  .title { font-size: clamp(2rem, 8vw, 3rem); line-height: 1; margin-bottom: 0.5rem; }
+  .meta { font-size: 0.7rem; }
+  .decorImg { height: 8rem; margin-bottom: 1.25rem; }
+  .content { gap: 1.25rem; }
+  .intro { font-size: 0.95rem; line-height: 1.65; }
+  .sectionTitle { font-size: 1.3rem; margin-bottom: 0.6rem; }
+  .sectionText, .bulletList li, .securityText { font-size: 0.9rem; line-height: 1.65; }
+  .bulletList { gap: 0.5rem; }
+  .securitySection { padding: 1.25rem 1rem; gap: 1rem; }
+  .securityTitle { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .purposeCard, .contactSection, .highlightSection { padding: 1.25rem 1rem; }
+  .purposeTitle { font-size: 0.95rem; }
+  .purposeDesc { font-size: 0.9rem; }
+  .twoCol { gap: 1.25rem; padding-top: 1.25rem; }
+  .contactRow { gap: 1rem; margin-top: 0.5rem; }
+  .contactItem { font-size: 0.9rem; word-break: break-word; gap: 0.6rem; }
 }
 @media (max-width: 400px) {
   .contactItem { font-size: 0.95rem; }

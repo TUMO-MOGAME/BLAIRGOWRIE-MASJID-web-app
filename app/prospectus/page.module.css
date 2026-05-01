@@ -38,13 +38,23 @@
 .archList li { display: flex; align-items: center; gap: 0.75rem; color: var(--fg); font-weight: 400; font-size: 1rem; }
 @media (min-width: 1024px) { .mainGrid { grid-template-columns: 7fr 5fr; } .archGrid { grid-template-columns: 1fr 1fr; } .downloadBtns { flex-direction: row; } }
 @media (max-width: 767px) {
-  .textBody, .veryWhiteText, .archDesc { font-size: 0.95rem !important; line-height: 1.7; }
+  .page { padding-top: 5.5rem; }
+  .hero { padding: 1rem var(--section-padding-h); }
+  .heroTitle { font-size: clamp(2rem, 8vw, 3rem); line-height: 1; margin-bottom: 0.85rem; }
+  .heroSub { font-size: 0.95rem; line-height: 1.55; }
+  .mainGrid { gap: 1.25rem; }
+  .archGrid { gap: 1.25rem; }
+  .cardsCol { gap: 0.85rem; }
+  .textBody, .veryWhiteText, .archDesc { font-size: 0.95rem !important; line-height: 1.65; }
   .quoteBlock, .initiativeCard { padding: 1.25rem 1rem; }
   .initiativeTitle { font-size: 1.2rem; }
-  .downloadTitle { font-size: 1.6rem; }
-  .downloadDesc { font-size: 0.95rem; }
+  .downloadIcon { width: 3rem; height: 3rem; margin-bottom: 1rem; }
+  .downloadTitle { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .downloadDesc { font-size: 0.95rem; margin-bottom: 1.25rem; }
   .downloadBtns .btn, .downloadBtns .btn-filled { width: 100%; justify-content: center; }
-  .archTitle { font-size: 1.5rem; }
+  .archTitle { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .archDesc { margin-bottom: 1rem; }
+  .archList { gap: 0.5rem; }
   .archList li { font-size: 0.95rem; }
   .dropCap::first-letter { font-size: 2.25rem; }
 }

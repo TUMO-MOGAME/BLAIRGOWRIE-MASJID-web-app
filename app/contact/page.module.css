@@ -5,7 +5,7 @@
 .hero {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 8rem var(--section-padding-h) 4rem;
+  padding: 4rem var(--section-padding-h) 2.5rem;
   text-align: center;
 }
 
@@ -403,8 +403,39 @@
 }
 
 @media (max-width: 767px) {
+  .page {
+    padding-top: 5.5rem;
+  }
+
+  .hero {
+    padding: 1rem var(--section-padding-h) 1rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+  }
+
+  .heroSub {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .mainGrid {
+    gap: 1.25rem;
+  }
+
+  .leftCol {
+    gap: 1.25rem;
+  }
+
+  .contactCards {
+    gap: 0.85rem;
+  }
+
   .mapCard {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 1rem;
   }
 
   .mapWrapper {

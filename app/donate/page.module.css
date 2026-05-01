@@ -37,16 +37,33 @@
 .bottomText { color: var(--fg); font-size: 1.1rem; }
 @media (min-width: 768px) { .messageGrid { grid-template-columns: 7fr 5fr; } .methodsGrid { grid-template-columns: 2fr 1fr; } .bankDetails { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 767px) {
-  .eftCard, .cashCard { padding: 1.75rem 1.25rem; }
-  .eftHeader { gap: 1rem; margin-bottom: 1.5rem; }
-  .eftTitle { font-size: 1.75rem; }
-  .bankDetails { padding: 1.5rem 1rem; gap: 1.5rem; }
-  .bankValue { font-size: 1.05rem; word-break: break-all; }
-  .bankValueGold { font-size: 1.5rem; word-break: break-all; }
-  .cashTitle { font-size: 1.75rem; }
-  .messageQuote { font-size: 1rem; }
-  .messageBody { font-size: 1.05rem; }
-  .blackText { font-size: 1.05rem !important; }
+  .page { padding-top: 5.5rem; }
+  .hero { padding: 1rem var(--section-padding-h); min-height: 0; }
+  .heroTitle { font-size: clamp(2rem, 8vw, 3rem); line-height: 1; margin-bottom: 0.85rem; }
+  .heroSub { font-size: 0.95rem; line-height: 1.55; }
+  .messageGrid { gap: 1.25rem; }
+  .messageQuote { font-size: 0.95rem; line-height: 1.55; margin-bottom: 1rem; }
+  .messageBody { font-size: 0.95rem; line-height: 1.65; gap: 1rem; }
+  .blackText { font-size: 0.95rem !important; }
+  .messageImg { width: min(100%, 220px); }
+  .methodsGrid { gap: 1rem; }
+  .eftCard, .cashCard { padding: 1.25rem 1rem; }
+  .eftHeader { gap: 0.85rem; margin-bottom: 1rem; }
+  .eftIcon, .cashIcon { width: 2.5rem; height: 2.5rem; }
+  .cashIcon { margin-bottom: 1rem; }
+  .eftTitle { font-size: 1.4rem; }
+  .eftSub { font-size: 0.9rem; }
+  .bankDetails { padding: 1rem 0.85rem; gap: 1rem; }
+  .bankRow label { font-size: 0.75rem; margin-bottom: 0.3rem; }
+  .bankValue { font-size: 0.95rem; word-break: break-all; }
+  .bankValueGold { font-size: 1.3rem; word-break: break-all; }
+  .cashTitle { font-size: 1.4rem; margin-bottom: 0.6rem; }
+  .cashDesc { font-size: 0.95rem; line-height: 1.65; margin-bottom: 1rem; }
+  .cashNote { padding-top: 1rem; gap: 0.6rem; }
+  .cashNoteText { font-size: 0.9rem; }
+  .bottomDivider { margin: 0 auto 1.5rem; }
+  .bottomTitle { font-size: 1.4rem; margin-bottom: 0.6rem; }
+  .bottomText { font-size: 0.95rem; }
 }
 @media (max-width: 400px) {
   .eftCard, .cashCard { padding: 1.5rem 1rem; }

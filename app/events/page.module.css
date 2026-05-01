@@ -345,11 +345,24 @@
 }
 @media (min-width: 1024px) { .mainGrid { grid-template-columns: 8fr 4fr; align-items: start; } .sidebar { position: sticky; top: 7rem; } }
 @media (max-width: 767px) {
-  .eventsTitle { font-size: 2.25rem; }
-  .smallCard, .calendarCard, .hostCard { padding: 1.75rem 1.25rem; }
-  .featuredTitle { font-size: 1.5rem; }
-  .smallCardTitle { font-size: 1.5rem; }
-  .hostTitle { font-size: 1.75rem; }
+  .page { padding-top: 5.5rem; }
+  .hero { padding: 1rem var(--section-padding-h); }
+  .heroTitle { font-size: clamp(2rem, 8vw, 3rem); line-height: 1; margin-bottom: 0.6rem; }
+  .heroSub { font-size: 0.95rem; line-height: 1.55; }
+  .mainGrid { gap: 1.25rem; }
+  .eventsHeader { margin-bottom: 1rem; }
+  .eventsLabel { font-size: 0.75rem; margin-bottom: 0.35rem; }
+  .eventsTitle { font-size: 1.5rem; }
+  .smallEvents { gap: 0.85rem; }
+  .smallCard, .calendarCard, .hostCard { padding: 1.25rem 1rem; }
+  .featuredTitle { font-size: 1.3rem; }
+  .featuredDesc { font-size: 0.9rem; }
+  .smallCardHeader { margin-bottom: 0.85rem; }
+  .smallCardTitle { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .smallCardDesc { font-size: 0.9rem; margin-bottom: 1rem; }
+  .hostTitle { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .hostDesc { font-size: 0.9rem; margin-bottom: 0.85rem; }
+  .calendarCard { margin-bottom: 1rem; }
   .featuredActions { gap: 0.75rem; }
   .featuredActions .btn, .featuredActions .btn-filled { width: 100%; justify-content: center; }
 }

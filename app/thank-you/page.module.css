@@ -18,9 +18,17 @@
 .imageOverlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg), transparent); }
 @media (min-width: 768px) { .imageGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 767px) {
-  .page { padding: 6rem 1.25rem 3rem; }
-  .confirmCard { padding: 2rem 1.25rem; }
-  .confirmDesc, .quote { font-size: 1rem; }
+  .page { min-height: auto; padding: 5rem 1rem 1.5rem; }
+  .sparkle { margin-bottom: 1rem; }
+  .title { font-size: clamp(2rem, 8vw, 3rem); line-height: 1; margin-bottom: 1rem; }
+  .quoteWrap { margin-bottom: 1.25rem; }
+  .quote { font-size: 0.95rem; line-height: 1.65; }
+  .confirmCard { padding: 1.25rem 1rem; margin: 0 auto 1.25rem; }
+  .confirmIcon { width: 3rem; height: 3rem; margin-bottom: 0.85rem; }
+  .confirmTitle { font-size: 1.25rem; margin-bottom: 0.6rem; }
+  .confirmDesc { font-size: 0.9rem; line-height: 1.65; margin-bottom: 1rem; }
+  .confirmDivider { margin-bottom: 1rem; }
+  .imageGrid { gap: 0.85rem; }
 }
 @media (max-width: 400px) {
   .confirmCard { padding: 1.75rem 1rem; }

@@ -66,6 +66,13 @@
   --container-max: 82.5rem;
 }
 
+@media (max-width: 767px) {
+  :root {
+    --section-padding-v: clamp(1.5rem, 4vh, 2.5rem);
+    --fluid-gap: clamp(0.75rem, 3vw, 1.5rem);
+  }
+}
+
 :root[data-theme="light"] {
   color-scheme: light;
   --bg: var(--light-bg);
