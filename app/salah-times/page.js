@@ -285,13 +285,6 @@ export default function SalahTimesPage() {
                 <p className={styles.noticeText}>Prayer times are updated automatically using the Aladhan API based on the sun&apos;s position for Blairgowrie, Randburg.</p>
               </div>
             </div>
-            <div className={styles.notice}>
-              <span className="material-symbols-outlined" style={{ color: 'var(--secondary)' }}>groups</span>
-              <div>
-                <h4 className={styles.noticeTitle}>Ladies Facilities</h4>
-                <p className={styles.noticeText}>Separate facilities are available for sisters for all five daily prayers and Jumu&apos;ah.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
