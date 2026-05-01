@@ -4,8 +4,14 @@ import Footer from './components/Footer';
 import WebGLBackground from './components/WebGLBackground';
 import ThemeToggle from './components/ThemeToggle';
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+  (process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`) ||
+  'https://blairgowrie-masjid-web-app.vercel.app';
+
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://blairgowriemasjid.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Blairgowrie Masjid — A Sanctuary for Spiritual Growth',
     template: '%s | Blairgowrie Masjid',
