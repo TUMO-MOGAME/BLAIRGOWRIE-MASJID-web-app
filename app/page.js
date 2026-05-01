@@ -153,6 +153,7 @@ export default function Home() {
             <p className={styles.heroSubtitle}>
               Serving the community with spiritual growth and educational excellence
             </p>
+            <p className={styles.heroBadge}>Ladies Facilities Available</p>
             <div className={styles.heroBtns}>
               <Link href="/salah-times" className="btn-filled">View Salah Times</Link>
               <Link href="/about" className={`btn ${styles.heroBtnSecondary}`}>Our Mission</Link>
