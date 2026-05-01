@@ -3,6 +3,12 @@
   padding-top: 4rem;
 }
 
+@media (max-width: 767px) {
+  .page {
+    padding-top: 5.5rem;
+  }
+}
+
 /* Hero */
 .hero {
   position: relative;
@@ -182,14 +188,24 @@
 .missionGrid {
   max-width: var(--container-max);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: center;
+}
+
+.missionFlow {
+  margin-top: 0.25rem;
+}
+
+.missionFlow::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .missionImgWrap {
   position: relative;
+  float: left;
+  width: 14rem;
+  margin: 0.25rem 1.5rem 0.75rem 0;
+  shape-outside: margin-box;
 }
 
 .missionGlow {
@@ -201,51 +217,45 @@
   border-radius: var(--card-radius);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/3;
   object-fit: cover;
   opacity: 0.85;
 }
 
 .sectionTitle {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-size: clamp(1.6rem, 4vw, 3rem);
   color: var(--fg);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   letter-spacing: 0.03em;
-  line-height: 0.92;
+  line-height: 1;
 }
 
 .bodyText {
   color: var(--fg);
-  font-size: 1.25rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
 }
 
 .pillars {
+  clear: both;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-@media (min-width: 48rem) {
-  .pillars {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1rem;
+  margin-top: 1.75rem;
 }
 
 .pillarTitle {
   font-family: var(--font-display);
-  font-size: 2.0rem;
+  font-size: 1.4rem;
   color: var(--accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   letter-spacing: 0.03em;
 }
 
 .pillarText {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--fg);
 }
 
@@ -317,9 +327,9 @@
 
 .newsCardTitle {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: var(--fg);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   letter-spacing: 0.03em;
   transition: color 0.3s;
 }
@@ -330,9 +340,9 @@
 
 .newsCardDesc {
   color: var(--fg);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
 }
 
 .newsCardDate {
@@ -363,7 +373,7 @@
   background:
     linear-gradient(rgba(10, 10, 15, 0.82), rgba(10, 10, 15, 0.92)),
     url('/pictures/quran.webp') center/cover no-repeat;
-  padding: 3rem;
+  padding: 2rem;
   border-radius: var(--card-radius);
   border: var(--hairline) solid var(--card-border);
   display: flex;
@@ -375,20 +385,20 @@
 
 .locationTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  margin-bottom: 1.25rem;
   color: var(--fg);
   letter-spacing: 0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
 
 .locationDesc {
   color: var(--muted);
-  font-size: 1.15rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
 }
 
 .locationDetails {
@@ -400,9 +410,9 @@
 .locationItem {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   color: var(--fg);
-  font-size: 1.15rem;
+  font-size: 0.95rem;
 }
 
 .locationIcon {
@@ -420,17 +430,17 @@
 .directionsBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.6rem;
   background: var(--accent);
   color: var(--bg);
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 0.125rem;
   font-family: var(--font-mono);
-  font-size: 1.0rem;
+  font-size: 0.85rem;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-top: 3rem;
+  margin-top: 2rem;
   align-self: flex-start;
   transition: all 0.3s ease;
 }
@@ -447,7 +457,7 @@
   border-radius: var(--card-radius);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  min-height: 400px;
+  min-height: 280px;
 }
 
 .locationMap iframe {
@@ -506,8 +516,9 @@
 }
 
 @media (min-width: 768px) {
-  .missionGrid {
-    grid-template-columns: 1fr 1fr;
+  .missionImgWrap {
+    width: 18rem;
+    margin: 0.25rem 2rem 1rem 0;
   }
 
   .newsGrid {
@@ -526,8 +537,21 @@
 }
 
 @media (max-width: 767px) {
+  .missionImgWrap {
+    width: 11rem;
+    margin: 0.2rem 1rem 0.6rem 0;
+  }
+
   .hero {
-    min-height: 80vh;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .heroContent {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .prayerStrip {

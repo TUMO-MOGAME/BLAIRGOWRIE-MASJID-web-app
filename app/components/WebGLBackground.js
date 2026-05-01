@@ -293,37 +293,6 @@ col=mix(col,skyCol,skyMix);float hEdge=smoothstep(-.008,.018,rd.y);col=mix(fogCo
         zIndex: 0, pointerEvents: 'none',
       }} />
 
-      {/* HUD */}
-      <div id="hud" style={{
-        position: 'fixed', top: 'calc(var(--ui-inset) + 5.5rem)', right: 'var(--ui-inset)',
-        zIndex: 10, textAlign: 'right', fontSize: '0.65rem',
-        letterSpacing: '0.15em', color: 'var(--muted)', textTransform: 'uppercase',
-      }}>
-        <div id="hud_pct">000%</div>
-        <div className="progress-bar" style={{
-          width: '7.5rem', height: '0.0625rem', background: 'var(--muted)',
-          marginTop: '0.5rem', marginLeft: 'auto', position: 'relative', overflow: 'hidden',
-        }}>
-          <div id="prog_fill" style={{
-            position: 'absolute', top: 0, bottom: 0, left: 0, width: '0%',
-            background: 'var(--accent)', transition: 'width 0.1s linear',
-          }} />
-        </div>
-        <div id="scene_name" style={{
-          fontSize: '0.6rem', color: 'var(--accent)', marginTop: '0.4rem',
-        }}>DAWN</div>
-      </div>
-
-      {/* Scene dots */}
-      <div id="scene_strip" style={{
-        position: 'fixed', left: 'var(--nav-x)', top: '50%',
-        transform: 'translate(-50%, -50%)', zIndex: 10,
-        display: 'flex', flexDirection: 'column', gap: '0.5rem',
-      }}>
-        {[0, 1, 2, 3, 4].map(i => (
-          <div key={i} className={`scene-dot ${i === 0 ? 'active' : ''}`} />
-        ))}
-      </div>
     </>
   );
 }

@@ -186,31 +186,31 @@ export default function Home() {
       {/* Mission Section */}
       <section className={styles.mission}>
         <div className={styles.missionGrid}>
-          <div className={styles.missionImgWrap}>
-            <div className={styles.missionGlow} />
-            <img
-              src="/pictures/home.webp"
-              alt="Community gathering"
-              className={styles.missionImg}
-            />
-          </div>
-          <div className={styles.missionText}>
-            <h2 className={styles.sectionTitle}>A Sanctuary for Spiritual Growth &amp; Collective Excellence</h2>
+          <h2 className={styles.sectionTitle}>A Sanctuary for Spiritual Growth &amp; Collective Excellence</h2>
+          <div className={styles.missionFlow}>
+            <div className={styles.missionImgWrap}>
+              <div className={styles.missionGlow} />
+              <img
+                src="/pictures/home.webp"
+                alt="Community gathering"
+                className={styles.missionImg}
+              />
+            </div>
             <p className={styles.bodyText}>
               The Blairgowrie Masjid is dedicated to establishing a vibrant spiritual home that nurtures the soul and empowers the mind. We strive to be more than just a place of prayer; we are a center for learning, community service, and bridge-building.
             </p>
             <p className={styles.bodyText}>
               Our mission is to foster an environment where every individual, regardless of their stage in life, can find peace, guidance, and a sense of belonging through the timeless values of Islam.
             </p>
-            <div className={styles.pillars}>
-              <div>
-                <h4 className={styles.pillarTitle}>Education</h4>
-                <p className={styles.pillarText}>Formal and informal programs for all ages to deepen religious understanding.</p>
-              </div>
-              <div>
-                <h4 className={styles.pillarTitle}>Community</h4>
-                <p className={styles.pillarText}>Welfare initiatives and social support systems for our local neighbors.</p>
-              </div>
+          </div>
+          <div className={styles.pillars}>
+            <div>
+              <h4 className={styles.pillarTitle}>Education</h4>
+              <p className={styles.pillarText}>Formal and informal programs for all ages to deepen religious understanding.</p>
+            </div>
+            <div>
+              <h4 className={styles.pillarTitle}>Community</h4>
+              <p className={styles.pillarText}>Welfare initiatives and social support systems for our local neighbors.</p>
             </div>
           </div>
         </div>

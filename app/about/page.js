@@ -59,7 +59,7 @@ export default function AboutPage() {
         </div>
         <div className={styles.visionPillars}>
           {[
-            { icon: 'school', title: 'Education', desc: 'Providing authentic Islamic education for children and adults through structured programs.' },
+            { icon: 'school', title: 'Education and Madrassah', desc: 'Providing authentic Islamic education for children and adults through structured programs.' },
             { icon: 'diversity_3', title: 'Community', desc: "Building a supportive network for Blairgowrie's Muslim families and our neighbors." },
             { icon: 'mosque', title: 'Spirituality', desc: 'Establishing a serene environment for the five daily prayers and spiritual reflection.' },
           ].map((item, i) => (
