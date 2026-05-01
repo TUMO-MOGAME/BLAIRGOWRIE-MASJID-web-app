@@ -5,11 +5,23 @@ import WebGLBackground from './components/WebGLBackground';
 import ThemeToggle from './components/ThemeToggle';
 
 export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://blairgowriemasjid.vercel.app'),
   title: {
     default: 'Blairgowrie Masjid — A Sanctuary for Spiritual Growth',
     template: '%s | Blairgowrie Masjid',
   },
   description: 'Blairgowrie Masjid — A center for prayer, learning, community service, and bridge-building in Blairgowrie, Randburg.',
+  openGraph: {
+    type: 'website',
+    siteName: 'Blairgowrie Masjid',
+    title: 'Blairgowrie Masjid — A Sanctuary for Spiritual Growth',
+    description: 'A center for prayer, learning, community service, and bridge-building in Blairgowrie, Randburg.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blairgowrie Masjid — A Sanctuary for Spiritual Growth',
+    description: 'A center for prayer, learning, community service, and bridge-building in Blairgowrie, Randburg.',
+  },
 };
 
 export const viewport = {
