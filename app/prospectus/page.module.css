@@ -137,8 +137,8 @@
 
 @media (max-width: 767px) {
   .galleryGrid {
-    grid-template-columns: 1fr;
-    padding: 0;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 var(--section-padding-h);
+    gap: 0.75rem;
   }
 }
