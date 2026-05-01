@@ -1,5 +1,5 @@
-.page { padding-top: 5rem; }
-.hero { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem var(--section-padding-h); min-height: 25rem; }
+.page { padding-top: 4rem; }
+.hero { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2.5rem var(--section-padding-h); min-height: 14rem; }
 .heroBg { position: absolute; inset: 0; opacity: 0.15; }
 .heroImg { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: screen; }
 .heroContent { position: relative; z-index: 1; max-width: 48rem; }

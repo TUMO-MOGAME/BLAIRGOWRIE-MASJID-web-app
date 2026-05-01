@@ -1,4 +1,4 @@
-.page { padding-top: 5rem; }
+.page { padding-top: 4rem; }
 .container { max-width: 56rem; margin: 0 auto; padding: var(--section-padding-v) var(--section-padding-h); }
 .header { margin-bottom: 3rem; }
 .title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); color: var(--fg); margin-bottom: 1rem; letter-spacing: 0.03em; line-height: 0.92; }

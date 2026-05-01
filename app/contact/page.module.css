@@ -1,11 +1,11 @@
 .page {
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 
 .hero {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 4rem var(--section-padding-h) 2.5rem;
+  padding: 2.5rem var(--section-padding-h) 2rem;
   text-align: center;
 }
 
