@@ -27,15 +27,13 @@ export default function DonatePage() {
       {/* Message */}
       <section className={styles.message}>
         <div className={styles.messageGrid}>
-          <div className={styles.messageText}>
-            <h2 className={styles.messageQuote}>&ldquo;Build a house for yourself in Jannah, by contributing to the establishment of this House of Allah Ta&apos;ala.&rdquo;</h2>
-            <div className={styles.messageBody}>
-              <p className={styles.blackText}>Our masjid is more than just a building; it is a sanctuary for prayer, a hub for education, and a pillar for our community&apos;s spiritual growth. Every brick laid and every program run is made possible by the generosity of individuals like you.</p>
-              <p className={styles.blackText}>We invite you to be a part of this enduring legacy. Please make a donation today and help us maintain and grow this sacred space for generations to come.</p>
+          <h2 className={styles.messageQuote}>&ldquo;Build a house for yourself in Jannah, by contributing to the establishment of this House of Allah Ta&apos;ala.&rdquo;</h2>
+          <div className={styles.messageFlow}>
+            <div className={styles.messageImgWrap}>
+              <img src="/pictures/mosque-interior.webp" alt="Mosque interior" className={styles.messageImg} />
             </div>
-          </div>
-          <div className={styles.messageImgWrap}>
-            <img src="/pictures/mosque-interior.webp" alt="Mosque interior" className={styles.messageImg} />
+            <p className={styles.blackText}>Our masjid is more than just a building; it is a sanctuary for prayer, a hub for education, and a pillar for our community&apos;s spiritual growth. Every brick laid and every program run is made possible by the generosity of individuals like you.</p>
+            <p className={styles.blackText}>We invite you to be a part of this enduring legacy. Please make a donation today and help us maintain and grow this sacred space for generations to come.</p>
           </div>
         </div>
       </section>
