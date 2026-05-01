@@ -225,7 +225,25 @@ export default function SalahTimesPage() {
           </div>
         </div>
 
-        {/* Times Table */}
+        {/* Times Table — phone shows external Masjid Board, PC shows the local table */}
+        <div className={styles.externalBoard}>
+          <iframe
+            src="https://masjidboardlive.com/boards/?id=blairgowrie-ubay-bin-kab"
+            title="Masjid Times — Live Board"
+            className={styles.externalBoardFrame}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <a
+            href="https://masjidboardlive.com/boards/?id=blairgowrie-ubay-bin-kab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.externalBoardLink}
+          >
+            Open Masjid Board ↗
+          </a>
+        </div>
+
         <div className={styles.tableWrap}>
           <div className={styles.tableContainer}>
             <table className={styles.table}>
