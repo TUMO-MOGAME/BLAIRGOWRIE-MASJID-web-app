@@ -21,7 +21,10 @@ export default function Footer() {
       <div className={styles.grid}>
         {/* Brand */}
         <div>
-          <div className={styles.logo}>BLAIRGOWRIE MASJID</div>
+          <div className={styles.logo}>
+            <img src="/pictures/logo.webp" alt="" className={styles.logoImg} />
+            <span className={styles.logoText}>BLAIRGOWRIE MASJID</span>
+          </div>
           <p className={styles.desc}>A sanctuary for spiritual growth, education, and community service in the heart of Blairgowrie, Randburg.</p>
         </div>
 
