@@ -33,7 +33,10 @@ export default function Navbar() {
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
-          <Link href="/" className={styles.logo}>BLAIRGOWRIE MASJID</Link>
+          <Link href="/" className={styles.logo}>
+            <img src="/pictures/logo.webp" alt="" className={styles.logoImg} />
+            <span className={styles.logoText}>BLAIRGOWRIE MASJID</span>
+          </Link>
 
           <div className={styles.desktopLinks}>
             {links.map(l => (

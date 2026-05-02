@@ -41,11 +41,34 @@
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 5vw, 1.85rem);
   letter-spacing: 0.08em;
   color: var(--fg);
   white-space: nowrap;
+}
+
+.logoImg {
+  height: 2.25rem;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logoText {
+  display: inline-block;
+}
+
+@media (max-width: 480px) {
+  .logoImg {
+    height: 1.75rem;
+  }
+  .logo {
+    gap: 0.4rem;
+  }
 }
 
 .desktopLinks {
